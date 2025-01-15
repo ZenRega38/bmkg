@@ -1,0 +1,45 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      width: 80vw;
+      margin: 20px auto;
+    }
+
+    .image-grid a{
+    text-decoration: none; /* Remove underline from links*/
+   }
+
+  .image-grid img {
+    width: 100%;
+    display: block;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    aspect-ratio: 210 / 297; /* Approximated A4 aspect ratio */
+  }
+
+
+   .image-grid .featured {
+      grid-column: 1 / span 2;
+      grid-row: 1 / span 2;
+
+    }
+h1 {
+    text-align: center;
+    margin: 20px 0;
+}
+.selector-for-some-widget {
+    box-sizing: content-box;
+}
+
+a{
+    text-decoration: none;
+}

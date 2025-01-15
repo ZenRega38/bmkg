@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.bmkg-header{
+    background-color: #377BC9;
+    color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.bmkg-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.bmkg-header-bottom {
+    background-color: #4da1a9;
+    color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    margin-left: 10%;
+}
+
+.dashboard {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.logo img {
+    max-width: 150px;
+    height: auto;
+    margin-right: 40px;
+    margin-left: 140px;
+
+}
+
+.text-content {
+    text-align: left;
+    margin-top: -15px;
+}
+
+.solid-line {
+    border-bottom: 2px solid #fff;
+    margin: 10px 0;
+}
+
+.text-content {
+    text-align: left;
+}
+.bmkg-header .logo img {
+    max-height: 50px;
+}
+
+.nav-menu {
+    margin-left: 5%;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-menu ul li a:hover {
+    color: #ffd700;
+}
+
+.bmkg-footer {
+    background-color: #196067;
+    color: #fff;
+    padding: 20px 20px;
+    width: 100%;
+}
+
+.bmkg-footer .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+}
+
+.footer-section h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #ffd700;
+}
+
+.footer-section p,
+.footer-section ul {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #ffd700;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    margin-right: 0;
+}
+
+
+.copyright-section {
+    margin-left: auto;
+    text-align: right;
+}
+
+.copyright-section {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 14px;
+
+}
+.bmkg-footer .container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+
+}
