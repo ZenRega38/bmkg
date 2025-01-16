@@ -15,16 +15,16 @@
             <h4>Temukan Kami</h4>
             <ul class="social-media-list">
             <li>
-                <a href="https://m.facebook.com/BMKG-Tarakan-1340760139325119/?locale2=id_ID" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a href="https://m.facebook.com/BMKG-Tarakan-1340760139325119/?locale2=id_ID" rel="noopener noreferrer">Facebook</a>
             </li>
             <li>
-                <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>
+                <a href="#" rel="noopener noreferrer">Twitter</a>
             </li>
             <li>
-                <a href="https://www.instagram.com/bmkgtarakan/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://www.instagram.com/bmkgtarakan/" rel="noopener noreferrer">Instagram</a>
             </li>
             <li>
-                <a href="https://www.youtube.com/@bmkgtarakan9438" target="_blank" rel="noopener noreferrer">Youtube</a>
+                <a href="https://www.youtube.com/@bmkgtarakan9438" rel="noopener noreferrer">Youtube</a>
             </li>
             </ul>
 
