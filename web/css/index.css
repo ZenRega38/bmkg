@@ -43,3 +43,10 @@ h1 {
 a{
     text-decoration: none;
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+  height: 30px;
+  width: auto;
+  margin: 30px;
+}

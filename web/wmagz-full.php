@@ -1,19 +1,25 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>W'Magazine - BMKG Tarakan</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/outer.css">
-    <link rel="stylesheet" href="css/index.css">
-  </head>
-  <body>
-  <?php include 'header.php'; ?>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W'Magazine - BMKG Tarakan</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/outer.css">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="assets/script/wmagz_full.js"></script>
+</head>
+<body>
+<?php include 'header.php'; ?>
 
     <h1>W'Magazine</h1>
+    <div class="year-navigation">
+        <img id="prevYearBtn" class="swiper-button-prev" src="assets/image/prev_btn.png">
+        <span id="currentYearDisplay"></span>
+        <img id="nextYearBtn" class="swiper-button-next" src="assets/image/next_btn.png">
+    </div>
     <div class="image-grid">
-     <a href="magazine_january_2025/viewer.html" class="featured"><img src="magazine_january_2025/pages/1.jpg" alt="Featured Image"></a>
+       <a href="magazine_january_2025/viewer.html" class="featured"><img src="magazine_january_2025/pages/1.jpg" alt="Featured Image"></a>
 
         <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.jpg" alt="Image 1"></a>
         <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.jpg" alt="Image 2"></a>
@@ -40,6 +46,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <?php include 'footer.php'; ?>
-  </body>
   
+</body>
 </html>
