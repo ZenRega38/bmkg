@@ -126,6 +126,56 @@ section {
   height: 400px;
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+    top: 50%;
+    width: 40px;
+    height: 50px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-top: -20px;
+    z-index: 10;
+    transition: 0.3s ease-in-out;
+}
+
+.swiper-button-prev {
+  margin-left: 200px;
+}
+
+.swiper-button-next {
+  margin-right: 200px;
+}
+
+ .swiper-button-prev:after, .swiper-button-next:after {
+     font-family: 'FontAwesome';
+     font-size: 20px;
+     color: #fff;
+     background: transparent;
+ }
+
+ .swiper-button-prev:after {
+     content: '\f053'; /* FontAwesome caret-left icon */
+     }
+
+
+ .swiper-button-next:after {
+     content: '\f054'; /* FontAwesome caret-right icon */
+ }
+
+ .swiper-button-prev {
+    left: 0px;
+    background-position: center left;
+}
+
+.swiper-button-next {
+    right: 0px;
+    background-position: center right;
+}
+.swiper-button-prev:hover, .swiper-button-next:hover {
+   transform: translateY(-5px);
+}
+
 @media (max-width: 1167px) {
   .content {
     flex-direction: column;
