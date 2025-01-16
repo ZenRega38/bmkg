@@ -8,8 +8,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/outer.css">
-  <link rel="stylesheet" href="css/index.css">
-  <script src="assets/script/wmagz_full.js"></script>
+  <link rel="stylesheet" href="css/wmagz_full.css">
 </head>
 <body>
 <?php include 'header.php'; ?>
@@ -44,6 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <?php include 'footer.php'; ?>
-  
+    
+  <script src="assets/script/wmagz_full.js"></script>
 </body>
 </html>

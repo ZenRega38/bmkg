@@ -11,7 +11,7 @@
                 <img style="margin-bottom: 10px; height: 200px; width: auto; border-radius: 10px" class="map-preview" src="assets/image/map_satelite.png" alt="">
             </a>
             <p>Stasiun Meteorologi Juata Tarakan</p>
-            <p  style="margin-top: -20px;" >JL.Mulawarman Tarakan - 77111, Kalimantan Utara</p>
+            <p  style="margin-top: -1px;" >JL.Mulawarman Tarakan - 77111, Kalimantan Utara</p>
             <p>Telp. <a href="https://wa.link/1q2a2x" style="text-decoration: none; color: #fff;">08115396509</a> / (0551) 21629/51606</p>     
         </div>
         <div class="footer-section find-us-section">

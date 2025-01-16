@@ -24,9 +24,9 @@
     <section >
         <div class="content">
             <div class="textBox">
-                <h2>W'Magazines</h2>
-                <p>Weather Magazine merupakan publikasi meteorologi yang memberikan prakiraan cuaca akurat, analisis tren iklim, dan wawasan ilmiah dari Stasiun Meteorologi Juwata Tarakan.</p>
-                <a href="wmagz-full.php">Learn More</a>
+                <h2 style="color: #F4BE37;">W'<a href="wmagz.php" style="color: #000; text-decoration: none;">Magazines</a></h2>
+                <p style="color: #000;">Weather Magazine merupakan publikasi meteorologi yang memberikan prakiraan cuaca akurat, analisis tren iklim, dan wawasan ilmiah dari Stasiun Meteorologi Juwata Tarakan.</p>
+                <a class="Btn"href="wmagz-full.php">Learn More</a>
             </div>
 
             <div class="imgBox">

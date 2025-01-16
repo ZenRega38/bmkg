@@ -62,7 +62,7 @@ section {
   color: #fff;
 }
 
-.content .textBox a {
+.content .textBox .Btn {
   display: inline-block;
   margin-top: 20px;
   padding: 8px 20px;
@@ -140,11 +140,11 @@ section {
 }
 
 .swiper-button-prev {
-  margin-left: 200px;
+  padding-left: 200px;
 }
 
 .swiper-button-next {
-  margin-right: 200px;
+  padding-right: 200px;
 }
 
  .swiper-button-prev:after, .swiper-button-next:after {
