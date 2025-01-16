@@ -26,9 +26,8 @@
 		<div class="content">
 			<div class="textBox">
 				<h2>W'Magazines</h2>
-				<p>I have 22+ certificates and still counting, which are from online courses, competitions, webinar, seminar, and project completion.
-				Let’s take a look! And you can also see the pdf version by clicking this button bellow.</p>
-				<a href="https://drive.google.com/drive/folders/19aCnxYu_d2NI-9vwRG8GQwzrwq0xG9ss?usp=sharing">Learn More</a>
+				<p>Weather Magazine merupakan publikasi meteorologi yang memberikan prakiraan cuaca akurat, analisis tren iklim, dan wawasan ilmiah dari Stasiun Meteorologi Juwata Tarakan.</p>
+				<a href="wmagz-full.php">Learn More</a>
 			</div>
 
 			<div class="imgBox">
@@ -36,30 +35,39 @@
 				    <div class="swiper-wrapper">
 
 						<div class="swiper-slide">
-				    		<img src="magazine_january_2025/pages/1.jpg">
-				    		<h2>GDSC Lead Graduation 2023-2024</h2>
-				    		<p>Signed by Google's Global Program Lead</p>
+							<a href="magazine_january_2025/viewer.html">
+								<img src="magazine_january_2025/pages/1.jpg">
+							</a>
+				    		<h2>W'Magz January 2025</h2>
+				    		<p>Kilas Balik Desember 2024</p>
 				    	</div>
 						<div class="swiper-slide">
-				    		<img src="magazine_january_2025/pages/1.jpg">
-				    		<h2>Being The Official Translator of TechFest 2024</h2>
-				    		<p>An international collaboration event</p>
-							<p>between Google DSC, HMTK and CE Universitas Borneo Tarakan</p>
+							<a href="magazine_january_2025/viewer.html">
+								<img src="magazine_january_2025/pages/1.jpg">
+							</a>
+				    		<h2>W'Magz January 2025</h2>
+				    		<p>Kilas Balik Desember 2024</p>
 				    	</div>
 						<div class="swiper-slide">
-				    		<img src="magazine_january_2025/pages/1.jpg">
-				    		<h2>Basic DevOps</h2>
-				    		<p>Dicoding - Valid till 6 May 2026</p>
+							<a href="magazine_january_2025/viewer.html">
+								<img src="magazine_january_2025/pages/1.jpg">
+							</a>
+				    		<h2>W'Magz January 2025</h2>
+				    		<p>Kilas Balik Desember 2024</p>
 				    	</div>
 						<div class="swiper-slide">
-				    		<img src="magazine_january_2025/pages/1.jpg">
-				    		<h2>Youth Abroad Expeditions #3</h2>
-				    		<p>Europe Youth Summit 2023, by Indonesian Millenial of Change</p>
+							<a href="magazine_january_2025/viewer.html">
+								<img src="magazine_january_2025/pages/1.jpg">
+							</a>
+				    		<h2>W'Magz January 2025</h2>
+				    		<p>Kilas Balik Desember 2024</p>
 				    	</div>
 						<div class="swiper-slide">
-				    		<img src="magazine_january_2025/pages/1.jpg">
-				    		<h2>Bali FAB Fest 2022</h2>
-				    		<p>by FAB Foundation ( October 2022 )</p>
+							<a href="magazine_january_2025/viewer.html">
+								<img src="magazine_january_2025/pages/1.jpg">
+							</a>
+				    		<h2>W'Magz January 2025</h2>
+				    		<p>Kilas Balik Desember 2024</p>
 				    	</div>
 				    </div>
 				</div>
