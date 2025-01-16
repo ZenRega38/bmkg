@@ -26,6 +26,7 @@
                 <li><a href="profil.php">Profil</a></li>
                 <li><a href="cuaca.php">Cuaca</a></li>
                 <li><a href="PelPublik.php">Pelayanan Publik</a></li>
+                <li><a href="wmagz.php">W'Magazine</a></li>
             </ul>
         </nav>
     </div>

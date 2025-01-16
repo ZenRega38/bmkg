@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/x-icon" href="img/logo.png">
     <meta charset="utf-8">
-    <title>Achievements</title>
+    <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
+    <title>BMKG Tarakan - W'Magazine</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" type="text/css" href="css/wmagz.css">
     <link rel="stylesheet" href="css/outer.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript">

@@ -1,15 +1,18 @@
 <footer class="bmkg-footer">
     <div class="container">
-        <div class="footer-section">
+        <div class="footer-section" style="padding-right: 30px;">
             <h4>Tentang BMKG</h4>
             <p>Badan Meteorologi, Klimatologi, dan Geofisika menyediakan informasi terkini tentang cuaca, iklim, dan kegempaan di Indonesia.</p>
         </div>
 
         <div class="footer-section">
-            <h4>Kantor Kami</h4>
+            <h4>Kantor</h4>
+            <a href="https://www.google.co.id/maps/place/BMKG+Tarakan/@3.3137343,117.5813539,435m/data=!3m1!1e3!4m6!3m5!1s0x32138a9b98c2ecad:0xe90a0081c74e34!8m2!3d3.3135542!4d117.5814151!16s%2Fg%2F11css6w04c?entry=ttu&g_ep=EgoyMDI1MDExMC4wIKXMDSoASAFQAw%3D%3D">
+                <img style="margin-bottom: 10px; height: 200px; width: auto; border-radius: 10px" class="map-preview" src="assets/image/map_satelite.png" alt="">
+            </a>
             <p>Stasiun Meteorologi Juata Tarakan</p>
-            <p>JL.Mulawarman Tarakan - 77111, Kalimantan Utara</p>
-            <p>Telp. <a href="https://wa.link/1q2a2x" style="text-decoration: none; color: #fff;">08115396509</a> / (0551) 21629/51606</p>
+            <p  style="margin-top: -20px;" >JL.Mulawarman Tarakan - 77111, Kalimantan Utara</p>
+            <p>Telp. <a href="https://wa.link/1q2a2x" style="text-decoration: none; color: #fff;">08115396509</a> / (0551) 21629/51606</p>     
         </div>
         <div class="footer-section find-us-section">
             <h4>Temukan Kami</h4>

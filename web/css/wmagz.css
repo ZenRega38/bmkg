@@ -176,6 +176,13 @@ section {
    transform: translateY(-5px);
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+  height: 30px;
+  width: auto;
+  margin: 30px;
+}
+
 @media (max-width: 1167px) {
   .content {
     flex-direction: column;
