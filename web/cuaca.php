@@ -4,27 +4,29 @@
 <link rel="stylesheet" href="css/outer.css">
     <meta charset="UTF-8">
     <style>
+        
+        section {
+        position: relative;
+        padding: 100px;
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column; 
+        background-image: linear-gradient(
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.1)
+        ),
+        url('assets/image/bg_clouds.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f8ff;
         }
-        
-        .header {
-            background-color: #5f9ea0;
-            color: white;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo {
-            width: 100px;
-            height: 100px;
-            margin-right: 20px;
-        }
-        
+
         .title {
             flex-grow: 1;
         }
@@ -47,7 +49,6 @@
         }
         
         .forecast-title {
-            background-color: #4682b4;
             color: white;
             padding: 10px;
             text-align: center;
@@ -58,6 +59,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Ditambahkan untuk meningkatkan keterbacaan */
         }
         
         .weather-table th {
@@ -68,7 +70,7 @@
         }
         
         .weather-table td {
-            background-color: #5f9ea0;
+            background-color: rgba(95, 158, 160, 0.8); /* Diubah untuk transparansi */
             color: white;
             padding: 10px;
             text-align: center;
@@ -76,18 +78,11 @@
         }
         
         .weather-icons {
-            background-color: #4682b4;
+            background-color: rgba(70, 130, 180, 0.9); /* Diubah untuk transparansi */
             color: white;
             padding: 10px;
             display: flex;
             justify-content: space-around;
-            margin-top: 20px;
-        }
-        
-        .footer {
-            background-color: #2F4F4F;
-            color: white;
-            padding: 20px;
             margin-top: 20px;
         }
         
@@ -104,21 +99,10 @@
 </head>
 <body>
 <?php include 'header.php'; ?>
-    <div class="header">
-        <img src="c:\Users\ASUS\Downloads\IMG_3213-removebg-preview.png" alt="BMKG Logo" class="logo">
-        <div class="title">
-            <h1>Badan Meteorologi, Klimatologi, dan Geofisika Tarakan</h1>
-            <div class="subtitle">Cepat, Tepat, Akurat, Luas, dan Mudah Dipahami</div>
-        </div>
-    </div>
-    
-    <div class="address">
-        JL. MULAWARMAN,TARAKAN - 77111, KALIMANTAN UTARA
-    </div>
-    
-    <div class="forecast-title">
+<section>
+<h2 class="forecast-title">
         Prakiraan Cuaca Kalimantan Utara
-    </div>
+    </h2>
     
     <table class="weather-table">
         <thead>
@@ -206,22 +190,8 @@
         <span>⛈️ = Hujan petir</span>
         <span>🌧️ = Hujan</span>
     </div>
+</section>
 
-    
-    <div class="footer">
-        <div>
-            KANTOR PUSAT<br>
-            Stasiun Meteorologi Juata Tarakan<br>
-            JL.Mulawarman - (0551) 21629/51606<br>
-            Telp. 08115396509
-        </div>
-        <div class="social-icons">
-            <img src="icon/838d85ce-ad66-44e8-b9eb-87d238ff6d27-removebg-preview.png" alt="Instagram">
-            <img src="icon/facebook.png" alt="Facebook">
-            <img src="icon/twitter.png" alt="Twitter">
-            <img src="icon/gmail.png" alt="Email">
-        </div>
-    </div>
     <?php include 'footer.php'; ?>
 </body>
 </html>      ][]
