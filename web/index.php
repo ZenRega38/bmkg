@@ -41,7 +41,7 @@
             </div>
         </div>
     </section>
-    <section class="UMKM">
+    <section class="WMag">
         <h1>Weather Magazine</h1>
         <p>Baca Majalah Cuaca Terkini di W'Mag.</p>
         <div class="imgBox">
