@@ -204,7 +204,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: right;
+    text-align: center;
     clear: both;
     display: inline-block;
    
@@ -219,10 +219,10 @@
     margin-right: 50px;
 }
 
-.berita p {
+.SKM p {
     font-size: 1.1em;
-    color: #666;
-    margin-bottom: 40px;
+    color: #555;
+    margin-bottom: 20px;
 }
 
 .berita .row {
