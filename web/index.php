@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
-    <title>BMKG Tarakan - W'Magazine</title>
+    <title>BMKG Tarakan - Stasiun Meteorologi JUWATA</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" type="text/css" href="css/wmagz.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -21,15 +21,30 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
-    <section >
-        <div class="content">
-            <div class="textBox">
-                <h2 style="color: #F4BE37;">W'<a href="wmagz.php" style="color: #000; text-decoration: none;">Magazines</a></h2>
-                <p style="color: #000;">Weather Magazine merupakan publikasi meteorologi yang memberikan prakiraan cuaca akurat, analisis tren iklim, dan wawasan ilmiah dari Stasiun Meteorologi Juwata Tarakan.</p>
-                <a class="Btn"href="wmagz-full.php">Learn More</a>
+    <section class="Cuacaterkini" id="Cuacaterkini">
+        <div class="row">
+            <!-- Bagian Konten -->
+            <div class="content-section">
+                <div class="title"><h1>Cuaca Saat ini</span></h1>
+                </div>
+                <div class="content">
+                    <h3></h3>
+                    <p>
+                    </p>
+                    <div class="button"><a href="Tentang Kami.html"class ="button-btn">Baca selengkapnya</a>
+                    </div>
+                </div>
             </div>
-
-            <div class="imgBox">
+            <!-- Bagian Gambar -->
+            <div class="images-section">
+                <video src="images/" loop autoplay ="About TarakTrade">
+            </div>
+        </div>
+    </section>
+    <section class="UMKM">
+        <h1>Weather Magazine</h1>
+        <p>Baca Majalah Cuaca Terkini di W'Mag.</p>
+        <div class="imgBox">
                 <div class="swiper-container">
                     <img class="swiper-button-prev" src="assets/image/prev_btn.png"> <!-- Added -->
                     <div class="swiper-wrapper">
@@ -72,7 +87,6 @@
                     <img class="swiper-button-next" src="assets/image/next_btn.png"> <!-- Added -->
                 </div>
             </div>
-
         </div>
     </section>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -115,6 +129,15 @@
         });
 
     </script>
+    </section>
+    <section class="SKM">
+        <h1>SKM</h1>
+        <!-- <p>Apakah UMKM Kesukaan kamu sudah kami datangi?</p> -->
+        <div class="row">
+            <div class="berita-col">
+            </div>
+    
+        </div>
+    </section>
     <?php include 'footer.php'; ?>
 </body>
-</html>
