@@ -197,31 +197,25 @@
         height: 30px;
     }
 }
-
-/* Styling untuk section berita */
+/* SKM Section Styling */
 .SKM {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    padding: 20px;
+    background-color: #f9f9f9; /* Warna latar belakang */
     text-align: center;
-    clear: both;
-    display: inline-block;
-   
+    border: 1px solid #ddd; /* Batas tipis */
+    border-radius: 8px; /* Sudut melengkung */
 }
 
 .SKM h1 {
-    font-size: 2.5em;
+    font-size: 2em;
+    color: #333; /* Warna teks */
     margin-bottom: 10px;
-    color: #333;
-    position: relative;
-    width: 40%;
-    margin-right: 50px;
+    font-weight: bold;
 }
 
 .SKM p {
-    font-size: 1.1em;
-    color: #555;
+    font-size: 1em;
+    color: #666; /* Warna teks */
     margin-bottom: 20px;
 }
 

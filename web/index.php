@@ -132,7 +132,11 @@
     <section class="SKM">
         <h1>SKM</h1>
         <p>Isi Deskripsi disini</p>
-        <div class="row">
+    </section>
+    
+    <section class="gempa">
+        <h1>Info Gempa</h1>
+        <p>Isi Deskripsi disini</p>
             <div class="berita-col">
             </div>
     
