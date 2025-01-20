@@ -10,9 +10,10 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
-    <div class="container">
+    <section>
+        <div class="container-pelpub">
         <div class="card">
-             <h2 class="card-title">Permintaan Data</h2>
+             <h2 class="card-title">Permitaan Data</h2>
              <p class="card-description">Apabila ada pengaduan silahkan ajukan disini</p>
             <button class="card-button">Klik disini</button>
         </div>
@@ -56,6 +57,8 @@
             <a class="card-button" href="kritik-saran.php" style="text-decoration: none;">Form Kritik & Saran</a>
         </div>
     </div>
+    </section>
+    
     <?php include 'footer.php'; ?>
 </body>
 </html>
