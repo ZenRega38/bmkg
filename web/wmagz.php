@@ -21,7 +21,7 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
-    <section >
+    <section>
         <div class="content">
             <div class="textBox">
                 <h2 style="color: #F4BE37;">W'<a href="wmagz.php" style="color: #000; text-decoration: none;">Magazines</a></h2>
@@ -75,6 +75,7 @@
 
         </div>
     </section>
+    
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {

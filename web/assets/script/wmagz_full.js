@@ -33,14 +33,11 @@
     }
 
     updateGrid(currentYear);
-    // Disable next button on first load
     nextYearBtn.disabled = true;
-
   
     prevYearBtn.addEventListener('click', function() {
         currentYear--;
         updateGrid(currentYear);
-         // Enable next button if we have moved back from the future
          nextYearBtn.disabled = false;
        console.log("prevYearBtn clicked");
     });
@@ -50,7 +47,6 @@
      nextYearBtn.addEventListener('click', function() {
         currentYear++;
         updateGrid(currentYear);
-         // disable next button if next year is the current year
         if (currentYear == new Date().getFullYear()){
             nextYearBtn.disabled = true;
          }
