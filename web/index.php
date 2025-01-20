@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
-    <title>BMKG Tarakan - W'Magazine</title>
+    <title>BMKG Tarakan - Stasiun Meteorologi JUWATA</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" href="css/outer.css">
@@ -129,7 +129,6 @@
         });
 
     </script>
-        </div>
     </section>
     <section class="SKM">
         <h1>SKM</h1>
