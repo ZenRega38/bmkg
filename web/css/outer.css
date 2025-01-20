@@ -1,182 +1,478 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap");
+
+/* Reset dan Font Global */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* Variabel Warna */
+:root {
+  --dark-grey: #333333;
+  --medium-grey: #636363;
+  --light-grey: #eeeeee;
+  --ash: #f4f4f4;
+  --primary-color: #2b72fb;
+  --white: white;
+  --border: 1px solid var(--light-grey);
+  --shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  background-color: var(--white);
+  color: var(--dark-grey);
+  letter-spacing: -0.4px;
 }
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: inherit;
+}
+
+.btn {
+  display: block;
+  background-color: var(--primary-color);
+  color: var(--white);
+  text-align: center;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+/* Container Umum */
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 2rem;
+}
+
+/* Cuaca Terkini Section */
 .Cuacaterkini {
-    width: 80%;
-    margin: auto;
-    padding-top: 50px;
-    padding-bottom: 50px;
+  width: 90%;
+  margin: auto;
+  padding: 30px 0;
 }
 
-.content-section{
-    float: left;
-    width: 55%;
+.content-section {
+  width: 100%;
 }
 
-.bmkg-header{
-    background-color: #377BC9;
-    color: #fff;
-    padding: 10px 20px;
-    width: 100%;
+/* Header BMKG */
+.bmkg-header {
+  background-color: #377BC9;
+  color: #fff;
+  padding: 10px 15px;
+  width: 100%;
 }
 
 .bmkg-header .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 auto;
-    width: 100%;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .bmkg-header-bottom {
-    background-color: #4da1a9;
-    color: #fff;
-    padding: 10px 20px;
-    width: 100%;
+  background-color: #4da1a9;
+  color: #fff;
+  padding: 10px 15px;
+  width: 100%;
 }
 
-.container {
-    max-width: 100%;
-    margin: 0 auto;
-    margin-left: 10%;
-}
-
+/* Dashboard Area */
 .dashboard {
-    display: flex;
-    align-items: center;
-    padding: 5px 0;
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
 }
 
 .logo img {
-    max-width: 150px;
-    height: auto;
-    margin-right: 40px;
-    margin-left: 140px;
-
+  max-width: 120px;
+  height: auto;
+  margin-left: 2%;
 }
 
 .text-content {
-    text-align: left;
-    margin-top: -15px;
+  text-align: left;
+  margin-top: -10px;
+  margin-left: 3%;
 }
 
 .solid-line {
-    border-bottom: 2px solid #fff;
-    margin: 10px 0;
+  border-bottom: 2px solid #fff;
+  margin: 8px 0;
 }
 
-.text-content {
-    text-align: left;
-}
 .bmkg-header .logo img {
-    max-height: 50px;
+  max-height: 40px;
 }
 
-.nav-menu {
-    margin-left: 5%;
-}
 
-.nav-menu ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.nav-menu ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.nav-menu ul li a:hover {
-    color: #ffd700;
-}
-
+/* Footer BMKG */
 .bmkg-footer {
-    background-color: #196067;
-    color: #fff;
-    padding: 20px 20px;
-    width: 100%;
+  background-color: #196067;
+  color: #fff;
+  padding: 20px 15px;
+  width: 100%;
 }
 
 .bmkg-footer .container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    max-width: 100%;
-    margin: 0 auto;
-    align-content: center;
-    padding-left: 15%;
+  flex-wrap: wrap;
+  max-width: 100%;
+  margin: 0 auto;
+  align-items: flex-start;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .footer-section {
-    flex: 1;
-    margin: 10px;
-    min-width: 200px;
+  flex: 1 1 150px;
+  margin: 10px 0;
+  min-width: 150px;
 }
 
 .footer-section h4 {
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #ffd700;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #ffd700;
 }
 
 .footer-section p,
 .footer-section ul {
-    font-size: 14px;
-    line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .footer-section ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .footer-section ul li {
-    margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .footer-section ul li a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 .footer-section ul li a:hover {
-    color: #ffd700;
+  color: #ffd700;
 }
 
 .logo-section {
-    display: flex;
-    align-items: center;
-    margin-right: 0;
-}
-
-
-.copyright-section {
-    margin-left: auto;
-    text-align: right;
+  display: flex;
+  align-items: center;
+  margin-right: 0;
 }
 
 .copyright-section {
+  margin-left: auto;
+  text-align: right;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 12px;
+}
+
+/* Navigation Bar Tambahan */
+#nav-menu {
+  border-bottom: var(--border);
+  background-color: #377BC9;
+    padding: 1%;
+
+}
+
+.menu {
+  position: relative;
+  background: #377BC9;
+}
+
+.menu-bar li:first-child .dropdown {
+  flex-direction: initial;
+  min-width: 480px;
+}
+
+.menu-bar li:first-child ul:nth-child(1) {
+  border-right: var(--border);
+}
+
+.menu-bar li:nth-child(n + 2) ul:nth-child(1) {
+  border-bottom: var(--border);
+}
+
+
+.menu-bar .nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  padding: 0.3rem;
+  min-width: 60px;
+  margin: 0 0.6rem;
+}
+
+.menu-bar .nav-link:hover,
+.dropdown-link:hover {
+  color: #ffd700;
+}
+
+.nav-start,
+.nav-end,
+.menu-bar,
+.right-container,
+.right-container .search {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  min-width: 230px;
+  background-color: var(--white);
+  border-radius: 10px;
+  position: absolute;
+  top: 36px;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.97) translateX(-5px);
+  transition: 0.1s ease-in-out;
+  box-shadow: var(--shadow);
+}
+
+.dropdown.active {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1) translateX(5px);
+}
+
+.dropdown ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.15rem;
+}
+
+.dropdown-link {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  border-radius: 7px;
+  transition: 0.1s ease-in-out;
+}
+
+.dropdown-link p {
+  font-size: 0.8rem;
+  color: black;
+}
+
+#hamburger {
+    color: #ffffff;
+  display: none;
+  padding: 0.1rem;
+  margin-left: 1rem;
+  font-size: 1.9rem;
+}
+
+/* Media Queries */
+
+/* Untuk layar kecil (mobile) */
+@media (max-width: 768px) {
+  .Cuacaterkini {
+    padding: 20px 0;
+  }
+  .content-section {
+    width: 100%;
+  }
+  .bmkg-header .container,
+  .bmkg-footer .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .logo-section {
+    margin-bottom: 10px;
+  }
+
+  .nav-menu {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .nav-menu ul {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-menu ul li a {
+    font-size: 0.9rem;
+  }
+  .bmkg-footer .container {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .footer-section {
+    flex: 1 1 100%;
+  }
+  .copyright-section {
+    margin-left: 0;
     text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-    font-size: 14px;
+  }
 
-}
-.bmkg-footer .container{
+  #hamburger {
+    display: block;
+  }
+
+  .container {
+    padding: 1.2rem;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    min-height: calc(100vh - 90px);
+    width: 100vw;
+    background-color: #377BC9;/* Tambahkan background color pada menu mobile */
+  }
+    .dropdown {
+        background-color: #ffffff;  /* Tambahkan background color pada dropdown mobile */
+    }
+  .menu-bar li:first-child ul:nth-child(1) {
+    border-right: none;
+    border-bottom: var(--border);
+  }
+
+  .dropdown {
+    display: none;
+    min-width: 100%;
+    border: none !important;
+    border-radius: 5px;
+    position: static;
+    top: 0;
+    left: 0;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .menu.show,
+  .dropdown.active {
+    display: block;
+  }
+
+  .dropdown ul {
+    padding-left: 0.3rem;
+  }
+
+  .menu-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    row-gap: 1rem;
+    padding: 1rem;
+  }
+
+  .menu-bar .nav-link {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    max-width: 100%;
-    margin: 0 auto;
+    width: 100%;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0;
+  }
 
+  .menu-bar li:first-child .dropdown {
+    min-width: 100%;
+  }
+
+  .menu-bar > li:not(:last-child) {
+    padding-bottom: 0.5rem;
+    border-bottom: var(--border);
+  }
+}
+
+/* Untuk tablet landscape dan layar lebih besar */
+@media (min-width: 769px) {
+  .content-section {
+    width: 55%;
+  }
+
+  .bmkg-header .container,
+  .bmkg-footer .container {
+    flex-direction: row;
+  }
+  .nav-menu {
+    margin-top: 0;
+  }
+
+  .nav-menu ul {
+    flex-direction: row;
+  }
+}
+
+/* Untuk layar desktop dan lebih besar */
+@media (min-width: 1200px) {
+  .Cuacaterkini {
+    width: 80%;
+  }
+
+  .logo img {
+    max-width: 150px;
+    margin-right: 40px;
+    margin-left: 140px;
+  }
+  .nav-menu ul li a {
+    font-size: 1rem;
+  }
+  .footer-section h4 {
+    font-size: 16px;
+  }
+  .footer-section p,
+  .footer-section ul {
+    font-size: 14px;
+  }
+  .copyright-section {
+    font-size: 14px;
+  }
+  .bmkg-footer .container {
+    padding-left: 15%;
+  }
+}
+
+@media (max-width: 600px) {
+  .right-container {
+    display: none;
+  }
 }
