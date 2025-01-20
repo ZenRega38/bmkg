@@ -5,7 +5,7 @@
     <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
     <title>BMKG Tarakan - Stasiun Meteorologi JUWATA</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" href="css/beranda.css">
     <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -133,7 +133,7 @@
         <h1>SKM</h1>
         <p>Isi Deskripsi disini</p>
     </section>
-    
+
     <section class="gempa">
         <h1>Info Gempa</h1>
         <p>Isi Deskripsi disini</p>
