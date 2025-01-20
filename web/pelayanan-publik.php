@@ -56,6 +56,6 @@
             <a class="card-button" href="kritik-saran.php" style="text-decoration: none;">Form Kritik & Saran</a>
         </div>
     </div>
-    <?php include 'header.php'; ?>
+    <?php include 'footer.php'; ?>
 </body>
 </html>
