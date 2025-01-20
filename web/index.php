@@ -137,10 +137,6 @@
     <section class="gempa">
         <h1>Info Gempa</h1>
         <p>Isi Deskripsi disini</p>
-            <div class="berita-col">
-            </div>
-    
-        </div>
     </section>
     <?php include 'footer.php'; ?>
 </body>
