@@ -9,7 +9,6 @@
 /* Mengimpor font Poppins dari Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-
 /* Styling untuk section Cuacaterkini */
 .Cuacaterkini {
     width: 100%;
@@ -34,7 +33,6 @@
 .Cuacaterkini .title h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
-    color: #333;
 }
 
 .Cuacaterkini .content h3 {
@@ -80,13 +78,12 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
+/* Styling untuk section UMKM */
 .UMKM {
     padding: 20px;
     text-align: center;
     margin: 30px auto;
-    max-width: 1200px; /* Lebar maksimal section */
-    
+    max-width: 1200px;
 }
 
 .UMKM h1 {
@@ -109,7 +106,7 @@
 
 .swiper-container {
     width: 100%;
-    max-width: 800px; /* Lebar maksimal swiper container */
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -118,19 +115,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 250px; /* Lebar slide */
-    height: auto;  /* Tinggi slide auto */
+    width: 250px;
+    height: auto;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(255, 253, 253, 0.726);
     transition: transform 0.3s ease, opacity 0.5s ease;
 }
 
 .swiper-slide img {
     width: 100%;
     display: block;
-    max-height: 300px; /* Tinggi maksimal gambar */
+    max-height: 300px;
     object-fit: cover;
 }
 
@@ -148,8 +145,9 @@
     opacity: 0;
     transition: opacity 0.3s ease;
 }
+
 .swiper-slide.swiper-slide-active h2,
-.swiper-slide.swiper-slide-active p{
+.swiper-slide.swiper-slide-active p {
     opacity: 1;
 }
 
@@ -158,23 +156,23 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
-    z-index: 10; /* Pastikan button ada di atas slide */
+    z-index: 10;
 }
 
 .swiper-button-next {
     right: 10px;
-    background-image: url('assets/image/next_btn.png'); /* Pastikan path benar */
+    background-image: url('assets/image/next_btn.png');
 }
 
 .swiper-button-prev {
     left: 10px;
-    background-image: url('assets/image/prev_btn.png'); /* Pastikan path benar */
+    background-image: url('assets/image/prev_btn.png');
 }
 
 /* Responsif */
@@ -188,9 +186,9 @@
     }
 
     .swiper-slide {
-         width: 200px; /*Lebar slide untuk layar lebih kecil*/
+        width: 200px;
     }
-    
+
     .swiper-button-next,
     .swiper-button-prev {
         width: 30px;
@@ -198,69 +196,41 @@
     }
 }
 
-/* Styling untuk section berita */
+/* SKM Section Styling */
 .SKM {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: right;
-    clear: both;
-    display: inline-block;
-   
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
 .SKM h1 {
-    font-size: 2.5em;
+    font-size: 2em;
     margin-bottom: 10px;
-    color: #333;
-    position: relative;
-    width: 40%;
-    margin-right: 50px;
+    font-weight: bold;
 }
 
-.berita p {
-    font-size: 1.1em;
-    color: #666;
-    margin-bottom: 40px;
-}
-
-.berita .row {
-    width: 90%;
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.berita .berita-col {
-    flex-basis: 30%;
-    text-align: center;
-    margin-bottom: 30px;
-    transition: transform 0.3s ease-in-out;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.berita .berita-col:hover{
-    transform: scale(1.05);
-}
-.berita .berita-col img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.berita .berita-col h3 {
-    font-size: 1.4em;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.berita .berita-col p {
+.SKM p {
     font-size: 1em;
     color: #666;
+    margin-bottom: 20px;
 }
 
+/* Styling untuk section gempa */
+.gempa {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.gempa p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+}
 
 /* Media Query untuk Responsif */
 @media (max-width: 768px) {
@@ -279,8 +249,8 @@
     }
 
     .UMKM .UMKM-col,
-    .berita .berita-col{
+    .berita .berita-col {
         flex-basis: 80%;
-         margin: 15px auto;
+        margin: 15px auto;
     }
 }
