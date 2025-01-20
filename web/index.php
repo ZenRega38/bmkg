@@ -129,10 +129,9 @@
         });
 
     </script>
-    </section>
     <section class="SKM">
         <h1>SKM</h1>
-        <!-- <p>Apakah UMKM Kesukaan kamu sudah kami datangi?</p> -->
+        <p>Isi Deskripsi disini</p>
         <div class="row">
             <div class="berita-col">
             </div>

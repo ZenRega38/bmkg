@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<?php include 'header.php'; ?>
-    <div class="container">
+    <?php include 'header.php'; ?>
+    <section>
+        <div class="container-pelpub">
         <div class="card">
-             <h2 class="card-title">Permintaan Data</h2>
+             <h2 class="card-title">Permitaan Data</h2>
              <p class="card-description">Apabila ada pengaduan silahkan ajukan disini</p>
             <button class="card-button">Klik disini</button>
         </div>
@@ -56,6 +57,8 @@
             <a class="card-button" href="kritik-saran.php" style="text-decoration: none;">Form Kritik & Saran</a>
         </div>
     </div>
+    </section>
+    
     <?php include 'footer.php'; ?>
 </body>
 </html>
