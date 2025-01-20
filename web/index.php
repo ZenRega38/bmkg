@@ -135,8 +135,7 @@
     </section>
 
     <section class="gempa">
-        <h1>Info Gempa</h1>
-        <p>Isi Deskripsi disini</p>
+        <?php include 'tes-gempa.php'; ?>
     </section>
     <?php include 'footer.php'; ?>
 </body>

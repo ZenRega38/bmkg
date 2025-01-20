@@ -72,7 +72,7 @@
             background-color: rgba(95, 158, 160, 0.8);
             color: white;
             padding: 10px;
-            text-align: left; /* Changed to left alignment */
+            text-align: left;
             border: 1px solid #4682b4;
         }
 
@@ -212,14 +212,12 @@
                 echo '<tr>';
                 echo '<th>Suhu</th>';
                 echo '<th>Tutupan Awan</th>';
-                echo '<th>Tekanan Udara</th>';
-                echo '<th>Cuaca</th>';
-                echo '<th>Deskripsi Cuaca (ID)</th>';
-                echo '<th>Arah Angin ke</th>';
+                echo '<th>Deskripsi Cuaca</th>';
                 echo '<th>Kecepatan Angin</th>';
                 echo '<th>Kelembapan Udara</th>';
                 echo '<th>Jarak Pandang</th>';
-                echo '<th>Local Datetime</th>';
+                echo '<th>Waktu Setempat</th>';
+                echo '<th>Tanggal</th>';
                 echo '</tr>';
                 echo '</thead>';
                 echo '<tbody>';
@@ -228,17 +226,29 @@
                         $weather_desc = isset($forecast['weather_desc']) ? $forecast['weather_desc'] : 'Unknown';
                         $icon_html = isset($icon_mapping[$weather_desc]) ? $icon_mapping[$weather_desc] : '';
 
+                        $local_datetime = isset($forecast['local_datetime']) ? $forecast['local_datetime'] : null;
+                        $formatted_time = 'N/A';
+                        $formatted_date = 'N/A';
+
+                        if ($local_datetime) {
+                            try {
+                                $date = new DateTime($local_datetime);
+                                $formatted_time = $date->format('H:i'); // Only the hour
+                                $formatted_date = $date->format('Y-m-d'); // Only the date
+                            } catch (Exception $e) {
+                                // Handle invalid date format
+                            }
+                        }
+
                         echo '<tr>';
                         echo '<td>' . (isset($forecast['t']) ? $forecast['t'] : 'N/A') . ' °C</td>';
                         echo '<td>' . (isset($forecast['tcc']) ? $forecast['tcc'] : 'N/A') . ' %</td>';
-                        echo '<td>' . (isset($forecast['tp']) ? $forecast['tp'] : 'N/A') . '</td>';
-                        echo '<td>' . (isset($forecast['weather']) ? $forecast['weather'] : 'N/A') . '</td>';
                         echo '<td>' . $icon_html . ' ' . $weather_desc . '</td>';
-                        echo '<td>' . (isset($forecast['wd_to']) ? $forecast['wd_to'] : 'N/A') . '</td>';
                         echo '<td>' . (isset($forecast['ws']) ? $forecast['ws'] : 'N/A') . ' km/jam</td>';
                         echo '<td>' . (isset($forecast['hu']) ? $forecast['hu'] : 'N/A') . ' %</td>';
                         echo '<td>' . (isset($forecast['vs_text']) ? $forecast['vs_text'] : 'N/A') . '</td>';
-                        echo '<td>' . (isset($forecast['local_datetime']) ? $forecast['local_datetime'] : 'N/A') . '</td>';
+                        echo '<td>' . $formatted_time . '</td>';
+                        echo '<td>' . $formatted_date . '</td>';
                         echo '</tr>';
                     }
                 }
