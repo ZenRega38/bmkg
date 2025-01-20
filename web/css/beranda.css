@@ -1,0 +1,256 @@
+/* Reset beberapa style default browser */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Menggunakan font Poppins */
+}
+
+/* Mengimpor font Poppins dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Styling untuk section Cuacaterkini */
+.Cuacaterkini {
+    width: 100%;
+    padding: 100px 0;
+    background-color: #f5f5f5;
+}
+
+.Cuacaterkini .row {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.Cuacaterkini .content-section {
+    flex-basis: 48%;
+    padding: 15px;
+}
+
+.Cuacaterkini .title h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.Cuacaterkini .content h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.Cuacaterkini .content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #666;
+}
+
+.Cuacaterkini .button {
+    margin-top: 20px;
+}
+
+.Cuacaterkini .button-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.Cuacaterkini .button-btn:hover {
+    background-color: #45a049;
+}
+
+.Cuacaterkini .images-section {
+    flex-basis: 48%;
+    padding: 15px;
+    text-align: center;
+}
+
+.Cuacaterkini .images-section video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling untuk section UMKM */
+.UMKM {
+    padding: 20px;
+    text-align: center;
+    margin: 30px auto;
+    max-width: 1200px;
+}
+
+.UMKM h1 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+.UMKM p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.UMKM .imgBox {
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.swiper-container {
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    height: auto;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(255, 253, 253, 0.726);
+    transition: transform 0.3s ease, opacity 0.5s ease;
+}
+
+.swiper-slide img {
+    width: 100%;
+    display: block;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.swiper-slide h2 {
+    margin: 10px 0;
+    font-size: 1.2em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.swiper-slide p {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.swiper-slide.swiper-slide-active h2,
+.swiper-slide.swiper-slide-active p {
+    opacity: 1;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.swiper-button-next {
+    right: 10px;
+    background-image: url('assets/image/next_btn.png');
+}
+
+.swiper-button-prev {
+    left: 10px;
+    background-image: url('assets/image/prev_btn.png');
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .UMKM h1 {
+        font-size: 2em;
+    }
+
+    .UMKM p {
+        font-size: 1em;
+    }
+
+    .swiper-slide {
+        width: 200px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* SKM Section Styling */
+.SKM {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.SKM h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.SKM p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Styling untuk section gempa */
+.gempa {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.gempa p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Media Query untuk Responsif */
+@media (max-width: 768px) {
+    .Cuacaterkini .row,
+    .UMKM .row,
+    .berita .row {
+        flex-direction: column;
+    }
+
+    .Cuacaterkini .content-section,
+    .Cuacaterkini .images-section,
+    .UMKM .UMKM-col,
+    .berita .berita-col {
+        flex-basis: 100%;
+        margin-bottom: 20px;
+    }
+
+    .UMKM .UMKM-col,
+    .berita .berita-col {
+        flex-basis: 80%;
+        margin: 15px auto;
+    }
+}

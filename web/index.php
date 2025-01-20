@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
-    <title>BMKG Tarakan - W'Magazine</title>
+    <title>BMKG Tarakan - Stasiun Meteorologi JUWATA</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" href="css/beranda.css">
     <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -129,17 +129,13 @@
         });
 
     </script>
-        </div>
-    </section>
     <section class="SKM">
         <h1>SKM</h1>
-        <!-- <p>Apakah UMKM Kesukaan kamu sudah kami datangi?</p> -->
-        <div class="row">
-            <div class="berita-col">
-            </div>
-    
-        </div>
+        <p>Isi Deskripsi disini</p>
+    </section>
+
+    <section class="gempa">
+        <?php include 'tes-gempa.php'; ?>
     </section>
     <?php include 'footer.php'; ?>
 </body>
-</html>

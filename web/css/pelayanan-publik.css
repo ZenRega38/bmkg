@@ -9,18 +9,21 @@
 body {
     background-color: #f8f8f8;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-.container {
+.container-pelpub {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Kolom dinamis */
+    gap: 20px; /* Jarak antar elemen */
+    max-width: 1200px; /* Batas maksimum lebar */
     padding: 20px;
+    margin: 20px auto; /* Pusatkan container */
     width: 100%;
+    overflow-x: hidden; /* Hindari scroll horizontal */
 }
 
 .card {
@@ -33,13 +36,17 @@ body {
     flex-direction: column;
     align-items: center;
     transition: all 0.3s ease;
+    max-width: 100%; /* Pastikan elemen tidak overflow */
+    word-wrap: break-word; /* Bungkus kata panjang */
+    overflow-wrap: break-word; /* Untuk dukungan modern */
+    width: 100%;
+    min-height: 300px;
 }
 
 .card:hover {
-  box-shadow: 0 6px 12px rgba(0,0,0, 0.2);
-  transform: scale(1.02)
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
 }
-
 
 .card-icon {
     font-size: 3em;
@@ -58,7 +65,6 @@ body {
     margin-bottom: 20px;
     line-height: 1.4;
 }
-
 
 .card-button {
     background-color: #000;
