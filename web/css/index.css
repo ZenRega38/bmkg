@@ -81,7 +81,7 @@
 }
 
 
-.{
+.WMag{
     padding: 20px;
     text-align: center;
     margin: 30px auto;
@@ -89,18 +89,18 @@
     
 }
 
-.UMKM h1 {
+.WMag h1 {
     font-size: 2.2em;
     margin-bottom: 10px;
 }
 
-.UMKM p {
+.WMag p {
     font-size: 1.1em;
     color: #555;
     margin-bottom: 20px;
 }
 
-.UMKM .imgBox {
+.WMag .imgBox {
     max-width: 100%;
     overflow: hidden;
     display: flex;
