@@ -14,7 +14,7 @@
             font-family: Arial, sans-serif;
         }
         .gambar img {
-            max-height: 400px;
+            max-height: auto;
             object-fit: contain;
         }
     </style>

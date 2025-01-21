@@ -20,7 +20,7 @@
             background-color: #ffffff;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            text-align: ;
+            /* text-align: ; */
         }
 
         .metar-title {
