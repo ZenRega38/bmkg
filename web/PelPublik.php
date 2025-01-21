@@ -25,18 +25,6 @@
         </div>
 
         <div class="card">
-            <h2 class="card-title">Permintaan Data</h2>
-            <p class="card-description">Apabila ada pengaduan silahkan ajukan disini</p>
-            <button class="card-button">Klik disini</button>
-        </div>
-
-        <div class="card">
-            <h2 class="card-title">Permintaan Data</h2>
-            <p class="card-description">Apabila ada pengaduan silahkan ajukan disini</p>
-            <button class="card-button">Klik disini</button>
-        </div>
-
-        <div class="card">
             <div class="card-icon">
                 <i class="fa fa-phone"></i>
             </div>
