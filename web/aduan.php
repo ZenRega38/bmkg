@@ -7,6 +7,8 @@
     <title>BMKG Tarakan - Aduan</title>
     <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="css/pel_publik.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
     <?php include 'header.php'; ?>
@@ -21,6 +23,7 @@
         Loading...
       </iframe>
     </div>
+    <script src="assets/script/nav.js"></script>
     <?php include 'footer.php'; ?>
 </body>
 </html>

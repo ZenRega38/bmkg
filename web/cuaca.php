@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
     <link rel="stylesheet" href="css/outer.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta charset="UTF-8">
     <style>
         section {
@@ -267,7 +268,7 @@
     ?>
 
 </section>
-
+<script src="assets/script/nav.js"></script>
 <?php include 'footer.php'; ?>
 </body>
 </html>

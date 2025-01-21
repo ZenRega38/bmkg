@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/beranda.css">
     <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript">
         $(window).on('scroll', function(){
@@ -137,5 +139,6 @@
     <section class="gempa">
         <?php include 'tes-gempa.php'; ?>
     </section>
+    <script src="assets/script/nav.js"></script>
     <?php include 'footer.php'; ?>
 </body>

@@ -22,9 +22,9 @@
         <div class="container">
             <nav class="menu">
                 <ul class="menu-bar">
-                    <li><a class="nav-link" href="/" style="color:white;">Beranda</a></li>
-                    <li><a class="nav-link" href="/" style="color:white;">Profil</a></li>
-                    <li><a class="nav-link" href="/" style="color:white;">Cuaca</a></li>
+                    <li><a class="nav-link" href="index.php" style="color:white;">Beranda</a></li>
+                    <li><a class="nav-link" href="profil.php" style="color:white;">Profil</a></li>
+                    <li><a class="nav-link" href="cuaca.php" style="color:white;">Cuaca</a></li>
                     <li>
                     <button
                         class="nav-link dropdown-btn"
@@ -42,19 +42,22 @@
                             <a class="dropdown-link" href="#">Permintaan Data</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="#">W'magazine</a>
+                            <a class="dropdown-link" href="wmagz.php">W'magazine</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="#">Aduan</a>
+                            <a class="dropdown-link" href="aduan.php">Aduan</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="#">Kritik dan Saran</a>
+                            <a class="dropdown-link" href="kritik-saran.php">Kritik dan Saran</a>
                         </li>
                         <li role="menuitem">
                             <a class="dropdown-link" href="#">PTSP</a>
                         </li>
                         <li role="menuitem">
                             <a class="dropdown-link" href="#">Kontak</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-link" href="pelayanan-publik.php">Selengkapnya</a>
                         </li>
                         </ul>
                     </div>
