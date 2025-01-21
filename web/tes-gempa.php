@@ -142,7 +142,6 @@ $gempa = $data['Infogempa']['gempa'];
             </div>
         </div>
     </div>
-
     <footer class="footer">
         <p><a href="https://www.bmkg.go.id/gempabumi">Lihat Selengkapnya</a></p>
     </footer>

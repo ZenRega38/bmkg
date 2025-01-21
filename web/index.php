@@ -130,12 +130,16 @@
 
     </script>
     <section class="SKM">
-        <h1>SKM</h1>
+        <h1>Visualisasi Citra Satelit</h1>
         <p>Isi Deskripsi disini</p>
+        <?php include 'tes-skm.php'; ?>
     </section>
 
     <section class="gempa">
         <?php include 'tes-gempa.php'; ?>
+    </section>
+    <section class="cuacabandara">
+        <?php include 'tes-cuacabandara.php'; ?>
     </section>
     <?php include 'footer.php'; ?>
 </body>

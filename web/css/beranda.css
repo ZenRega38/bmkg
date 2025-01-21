@@ -120,7 +120,7 @@
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(255, 253, 253, 0.726);
+    box-shadow: 0 4px 8px rgb(255, 253, 253);
     transition: transform 0.3s ease, opacity 0.5s ease;
 }
 
@@ -140,7 +140,7 @@
 
 .swiper-slide p {
     font-size: 0.9em;
-    color: #777;
+    color: #ffffff;
     margin-bottom: 15px;
     opacity: 0;
     transition: opacity 0.3s ease;
