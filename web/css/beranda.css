@@ -115,9 +115,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 250px;
+    width: 200px;
     height: auto;
-    background: #fff;
+    background: none;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(255, 253, 253, 0.726);
@@ -156,8 +156,8 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 24px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

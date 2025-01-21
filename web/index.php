@@ -101,7 +101,7 @@
                 stretch: 0,
                 depth: 200,
                 modifier: 1,
-                slideShadows: true,
+                slideShadows: false,
             },
             navigation: {
              nextEl: ".swiper-button-next",
