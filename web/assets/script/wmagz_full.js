@@ -17,7 +17,7 @@
 
         // Example: dynamically add images
         for (let i = 1; i <= 15; i++) {
-            const imagePath = `magazine_january_${year}/pages/1.jpg`;
+            const imagePath = `magazine_january_${year}/pages/1.png`;
             const link = document.createElement('a');
             link.href = `magazine_january_${year}/viewer.html`;
             const img = document.createElement('img');

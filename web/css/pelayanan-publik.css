@@ -7,23 +7,54 @@
 }
 
 body {
-    background-color: #f8f8f8;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background: url('Desain\ tanpa\ judul\ \(1\).png');
+}
+
+.judul-layanan {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center; 
+    margin: 40px auto; 
+    padding-left: 20px; 
+    width: 100%;
+    max-width: 1200px; 
+    box-sizing: border-box;
+}
+
+.judul-container {
+    display: flex;
+    align-items: center;
+}
+
+.garis {
+    width: 5px; 
+    height: 50px; 
+    background-color: #fbff00;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+.judul-container h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .container-pelpub {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Kolom dinamis */
-    gap: 20px; /* Jarak antar elemen */
-    max-width: 1200px; /* Batas maksimum lebar */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
+    max-width: 1200px; 
     padding: 20px;
-    margin: 20px auto; /* Pusatkan container */
+    margin: 20px auto; 
     width: 100%;
-    overflow-x: hidden; /* Hindari scroll horizontal */
+    overflow-x: hidden;
 }
 
 .card {
@@ -36,9 +67,9 @@ body {
     flex-direction: column;
     align-items: center;
     transition: all 0.3s ease;
-    max-width: 100%; /* Pastikan elemen tidak overflow */
-    word-wrap: break-word; /* Bungkus kata panjang */
-    overflow-wrap: break-word; /* Untuk dukungan modern */
+    max-width: 100%; 
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
     width: 100%;
     min-height: 300px;
 }
@@ -75,7 +106,7 @@ body {
     cursor: pointer;
     font-size: 1em;
     transition: background-color 0.3s ease;
-    margin-top: auto; /* Push button to the bottom */
+    margin-top: auto;
 }
 
 .card-button:hover {
