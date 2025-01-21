@@ -10,6 +10,12 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
+    <section class="judul-layanan">
+        <div class="judul-container">
+        <div class="garis"></div>
+        <h1>Layanan Publik BMKG</h1>
+    </section>
+
     <section>
         <div class="container-pelpub">
         <div class="card">
