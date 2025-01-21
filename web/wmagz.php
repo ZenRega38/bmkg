@@ -37,35 +37,35 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
