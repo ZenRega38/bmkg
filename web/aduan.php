@@ -12,14 +12,15 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
-    <div class="iframe-container">
+    <div class="iframe-container" style="display: flex; justify-content: center;">
       <iframe 
         src="https://docs.google.com/forms/d/e/1FAIpQLSdLV41Fs6Lszw--B8uybrl6roZ_yXVc76pfmoy2vi1JxskRXw/viewform?embedded=true" 
         width="640" 
         height="805" 
         frameborder="0" 
         marginheight="0" 
-        marginwidth="0">
+        marginwidth="0"
+        >
         Loading...
       </iframe>
     </div>
