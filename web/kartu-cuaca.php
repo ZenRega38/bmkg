@@ -10,7 +10,8 @@
             width: 90%;
             margin: auto;
             text-align: center;
-            padding-top: 50px;
+            padding-top: 20px;
+            padding-bottom: 5px;
             position: relative;
         }
 
@@ -26,7 +27,8 @@
 
         .row {
             display: flex;
-            gap: 15px;
+            align-items: center;
+            gap: 20px;
             overflow: hidden;
             padding-bottom: 20px;
             position: relative;
@@ -34,7 +36,9 @@
         }
 
         .cuaca-col {
+            height: 150px;
             flex:auto;
+            align-items: center;
             width: 10rem;
             border-radius: 10px;
             margin-bottom: 5%;
@@ -66,12 +70,12 @@
             color: white;
             border: none;
             padding: 15px;
-            font-size: 1.5em;
+            font-size: 1em;
             cursor: pointer;
             border-radius: 50%;
             position: absolute;
             top: 50%;
-            transform: translateY(50%);
+            transform: translateY(10%);
             z-index: 10;
             display: flex;
             align-items: center;
