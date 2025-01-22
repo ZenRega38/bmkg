@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="css/wmagz.css">
     <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript">
         $(window).on('scroll', function(){
@@ -35,35 +37,35 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
@@ -75,7 +77,7 @@
 
         </div>
     </section>
-    
+    <script src="assets/script/nav.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {

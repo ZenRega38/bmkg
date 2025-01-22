@@ -18,17 +18,62 @@
     </div>
 </header>
 
-<header class="bmkg-header">
-    <div class="container">
-        <nav class="nav-menu">
-            <ul>
-                <li><a href="index.php">Beranda</a></li>
-                <li><a href="profil.php">Profil</a></li>
-                <li><a href="cuaca.php">Cuaca</a></li>
-                <li><a href="PelPublik.php">Pelayanan Publik</a></li>
-                <li><a href="wmagz.php">W'Magazine</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<header id="nav-menu" aria-label="navigation bar">
+        <div class="container">
+            <nav class="menu">
+                <ul class="menu-bar">
+                    <li><a class="nav-link" href="index.php" style="color:white;">Beranda</a></li>
+                    <li><a class="nav-link" href="profil.php" style="color:white;">Profil</a></li>
+                    <li><a class="nav-link" href="cuaca.php" style="color:white;">Cuaca</a></li>
+                    <li>
+                    <button
+                        class="nav-link dropdown-btn"
+                        data-dropdown="dropdown2"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        aria-label="discover"
+                        style="color:white;">
+                        Pelayanan Publik
+                        <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div id="dropdown2" class="dropdown">
+                        <ul role="menu">
+                        <li role="menuitem">
+                            <a class="dropdown-link" href="#">Permintaan Data</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-link" href="wmagz.php">W'magazine</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-link" href="aduan.php">Aduan</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-link" href="kritik-saran.php">Kritik dan Saran</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-link" href="#">PTSP</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-link" href="#">Kontak</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-link" href="pelayanan-publik.php">Selengkapnya</a>
+                        </li>
+                        </ul>
+                    </div>
+                    </li>
+                </ul>
+            </nav>
 
+            <button
+                id="hamburger"
+                aria-label="hamburger"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >
+                <i class="bx bx-menu" aria-hidden="true"></i>
+            </button>
+
+            </div>
+        </div>
+    </header>

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/beranda.css">
     <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript">
         $(window).on('scroll', function(){
@@ -101,7 +103,7 @@
                 stretch: 0,
                 depth: 200,
                 modifier: 1,
-                slideShadows: true,
+                slideShadows: false,
             },
             navigation: {
              nextEl: ".swiper-button-next",
@@ -130,13 +132,16 @@
 
     </script>
     <section class="SKM">
-        <h1>SKM</h1>
+        <h1>Visualisasi Citra Satelit</h1>
         <p>Isi Deskripsi disini</p>
+        <?php include 'tes-skm.php'; ?>
     </section>
 
     <section class="gempa">
-        <h1>Info Gempa</h1>
-        <p>Isi Deskripsi disini</p>
+        <?php include 'tes-gempa.php'; ?>
+    </section>
+    <section class="cuacabandara">
+        <?php include 'tes-cuacabandara.php'; ?>
     </section>
     <?php include 'footer.php'; ?>
 </body>

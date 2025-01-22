@@ -1,0 +1,153 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1, h2, p {
+    margin: 0 0 15px;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    z-index: 1000;
+    transition: background 0.3s ease-in-out;
+}
+
+header.black {
+    background: #333;
+    color: #fff;
+}
+
+header a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Sections */
+section {
+    padding: 60px 0;
+}
+
+section h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Cuaca Terkini */
+.cuaca-terkini {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.cuaca-terkini h1 {
+    font-size: 2.5rem;
+}
+
+.cuaca-terkini .btn {
+    background-color: #fff;
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.cuaca-terkini video {
+    width: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+}
+
+/* Weather Magazine */
+.weather-magazine {
+    background-color: #fff;
+    text-align: center;
+}
+
+.weather-magazine .swiper-container {
+    padding-top: 20px;
+}
+
+.weather-magazine .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.weather-magazine img {
+    width: 80%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.weather-magazine h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+/* Citra Satelit */
+.citra-satelit {
+    text-align: center;
+}
+
+.citra-satelit img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+/* Info Gempa */
+.info-gempa {
+    background-color: #f1f1f1;
+    padding: 40px 0;
+}
+
+.info-gempa img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+}
+
+.info-gempa p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+/* Cuaca Bandara */
+.cuaca-bandara {
+    background-color: #e9ecef;
+    padding: 40px 0;
+}
+
+.cuaca-bandara a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+}

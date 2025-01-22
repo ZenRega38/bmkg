@@ -31,7 +31,7 @@ function loadPage(page, pageElement) {
 		pageElement.find('.loader').remove();
 	});
 
-	img.attr('src', 'pages/' +  page + '.jpg');
+	img.attr('src', 'pages/' +  page + '.png');
 
 	loadRegions(page, pageElement);
 
@@ -145,7 +145,7 @@ function loadLargePage(page, pageElement) {
 		
 	});
 	
-	img.attr('src', 'pages/' +  page + '-large.jpg');
+	img.attr('src', 'pages/' +  page + '-large.png');
 }
 
 function loadSmallPage(page, pageElement) {
@@ -156,7 +156,7 @@ function loadSmallPage(page, pageElement) {
 
 	img.unbind('load');
 
-	img.attr('src', 'pages/' +  page + '.jpg');
+	img.attr('src', 'pages/' +  page + '.png');
 }
 
 function isChrome() {
@@ -256,7 +256,7 @@ function setPreview(view) {
 
 	var previewWidth = 112,
 		previewHeight = 73,
-		previewSrc = 'pages/preview.jpg',
+		previewSrc = 'pages/preview.png',
 		preview = $(_thumbPreview.children(':first')),
 		numPages = (view==1 || view==$('#slider').slider('option', 'max')) ? 1 : 2,
 		width = (numPages==1) ? previewWidth/2 : previewWidth;
