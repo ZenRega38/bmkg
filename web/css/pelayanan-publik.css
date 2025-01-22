@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif; /* Or any font you like */
+    font-family: 'Poppins', sans-serif; 
     scroll-behavior: smooth;
 }
 
@@ -12,15 +12,46 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('Desain\ tanpa\ judul\ \(1\).png');
+    overflow-x: hidden;
+}
+
+#background-video {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 105%; 
+    height: auto; 
+    object-fit: cover; 
+    z-index: -2; 
+    filter: brightness(0.7);
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 180%;
+    background: linear-gradient(
+        to bottom, 
+        rgba(33, 33, 33, 0.68) 40%,       
+        rgba(0, 0, 0, 0.5) 60%,            
+        /*rgba(117, 117, 117, 0.605) 80%,*/     
+        rgba(255, 255, 255, 1) 90%);
+    z-index: -1; /
+}
+
+header {
+    background-color: #fff; 
+    z-index: 1; 
+    position: relative;
 }
 
 .judul-layanan {
     display: flex;
-    justify-content: flex-start; 
+    justify-content: center;
     align-items: center; 
     margin: 40px auto; 
-    padding-left: 20px; 
     width: 100%;
     max-width: 1200px; 
     box-sizing: border-box;
@@ -28,87 +59,127 @@ body {
 
 .judul-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
 .garis {
-    width: 5px; 
-    height: 50px; 
-    background-color: #fbff00;
-    margin-right: 10px;
+    width: 100px; 
+    height: 5px; 
+    background-color: #ffc800;
+    margin: 15px;
     border-radius: 3px;
 }
 
 .judul-container h1 {
-    font-size: 36px;
+    font-size: 30px;
     font-weight: bold;
-    color: #333;
+    margin-top: 20px;
+    color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
+
+.judul-container h2 {
+    max-width: 50%;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.box {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; 
+    margin: 50px 0 50px 0;
+    padding: 20px;
+    max-width: 1200px; 
+    background-color: rgba(249, 249, 249, 1);
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
 .container-pelpub {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 20px;
-    max-width: 1200px; 
-    padding: 20px;
-    margin: 20px auto; 
+    gap: 5px;
+    max-width: 800px; 
+    padding: 10px;
+    margin: 10px auto; 
     width: 100%;
     overflow-x: hidden;
 }
 
 .card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    transition: all 0.3s ease;
-    max-width: 100%; 
-    word-wrap: break-word;
-    overflow-wrap: break-word; 
+    gap: 15px;
     width: 100%;
-    min-height: 300px;
+    max-width: 350px;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 15px;
+    color: white;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(
+        90deg, 
+        rgba(61, 194, 194, 0.596), 
+        #0b7f94 30%, 
+        #0b7f94 70%, 
+        rgba(61, 194, 194, 0.596)); 
+    background-size: 200% 100%;
+    background-position: 0 0; 
+    transition: background-position 0.5s ease; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
+  
 .card:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    transform: scale(1.02);
+    background-position: -100% 0;
 }
 
 .card-icon {
-    font-size: 3em;
-    margin-bottom: 10px;
-    color: #333;
+    font-size: 3em; 
+    color: white; 
+    flex-shrink: 0; 
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column; 
+    gap: 5px; 
 }
 
 .card-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: #333;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    margin: 0; 
 }
 
 .card-description {
-    color: #666;
-    margin-bottom: 20px;
+    font-size: 0.95em; 
+    color: white; 
     line-height: 1.4;
+    margin: 0; 
 }
 
 .card-button {
-    background-color: #000;
-    color: #fff;
+    background-color: #f2f2f2;
+    color: #000000;
     border: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 0.9em;
     transition: background-color 0.3s ease;
     margin-top: auto;
+    min-width: auto;
+    align-self: flex-start;
 }
 
 .card-button:hover {
-    background-color: #333;
+    background-color: #757575;
 }
