@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Configuration
-$url = 'https://api.bmkg.go.id/publik/prakiraan-cuaca?adm1=65';
+$url = 'https://api.bmkg.go.id/publik/prakiraan-cuaca?adm2=65.71';
 
 // Function to fetch JSON data
 function ambilDataCuaca($url)
@@ -165,8 +165,8 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             margin-right: 5px;
         }
         .swiper-container {
-            display: flex;
-            justify-content: center;
+            width: 80%; /* Adjust as needed */
+            margin: 20px auto;
             padding: 20px;
         }
         .swiper-slide {
@@ -175,6 +175,8 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             display: flex;
             justify-content: center;
             align-items: center;
+             background-color: rgba(70, 130, 180, 0.9);
+             color: white;
              padding: 10px 20px;
              cursor: pointer;
               border-radius: 8px;
@@ -182,7 +184,8 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         }
          .swiper-button-next,
          .swiper-button-prev {
-           all : unset;
+             color: white; /* Set the navigation button color */
+             background-color: #5f9ea0;
          }
          /*remove styling swiper, swiper-wrapper, swiper-slide */
          .swiper,
@@ -198,27 +201,18 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     <h2 class="forecast-title">
         Prakiraan Cuaca <?= $selectedCity . ', ' . $selectedCityData['provinsi'] ?>
     </h2>
+
     <div class="swiper-container">
-        <div class="swiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <a href="cuaca.php?kota=<?= $prevCity ?>" class="swiper-button-prev"></a>
-            </div>
-            <div class="swiper-wrapper">
              <?php foreach ($citiesData as $city => $data): ?>
                 <div class="swiper-slide">
-                    <a style = 'text-decoration : none; color:#000' href="cuaca.php?kota=<?= $city ?>">
+                    <a href="index.php?kota=<?= $city ?>">
                         <?= $city ?>
                     </a>
                 </div>
              <?php endforeach; ?>
         </div>
-            <div class="swiper-slide">
-              <a href="cuaca.php?kota=<?= $nextCity ?>" class="swiper-button-next"></a>
-            </div>
-        </div>
-    </div>
-    </div>
+       </div>
 
     <?php
     // Icon mapping
@@ -236,7 +230,6 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         'Kabut' => '<span class="weather-icon">🌫️</span>',
         'Asap' => '<span class="weather-icon">🌫️</span>',
         'Berawan Tebal' => '<span class="weather-icon">🌥️</span>',
-        'Kabut Asap' => '<span class="weather-icon">🌫️</span>',
         'Cloudy' => '<span class="weather-icon">☁️</span>',
         'Light Rain' => '<span class="weather-icon">🌦️</span>',
         'Moderate Rain' => '<span class="weather-icon">🌧️</span>',
@@ -328,8 +321,32 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     echo '</tbody>';
     echo '</table>';
     ?>
-     
+     <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a href="index.php?kota=<?= $prevCity ?>" class="swiper-button-prev"></a>
+            </div>
+            <div class="swiper-slide">
+              <a href="index.php?kota=<?= $nextCity ?>" class="swiper-button-next"></a>
+            </div>
+        </div>
+    </div>
 </section>
 <?php include 'footer.php'; ?>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    const swiper = new Swiper('.swiper-container', {
+        slidesPerView: 3, // Number of slides visible at once (adjust as needed)
+        spaceBetween: 10, // Spacing between slides (adjust as needed)
+    });
+    const swiper_nav = new Swiper('.swiper', {
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+         loop: true,
+        allowTouchMove: false,
+    });
+</script>
 </body>
 </html>
