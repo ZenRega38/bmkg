@@ -22,9 +22,9 @@
         <div class="container">
             <nav class="menu">
                 <ul class="menu-bar">
-                    <li><a class="nav-link" href="index.php" style="color:white;">Beranda</a></li>
-                    <li><a class="nav-link" href="profil.php" style="color:white;">Profil</a></li>
-                    <li><a class="nav-link" href="cuaca.php" style="color:white;">Cuaca</a></li>
+                    <li><a class="nav-link" href="index.php">Beranda</a></li>
+                    <li><a class="nav-link" href="profil.php" >Profil</a></li>
+                    <li><a class="nav-link" href="cuaca.php">Cuaca</a></li>
                     <li>
                     <button
                         class="nav-link dropdown-btn"
@@ -32,7 +32,7 @@
                         aria-haspopup="true"
                         aria-expanded="false"
                         aria-label="discover"
-                        style="color:white;">
+                        >
                         Pelayanan Publik
                         <i class="bx bx-chevron-down" aria-hidden="true"></i>
                     </button>
@@ -57,7 +57,7 @@
                             <a class="dropdown-link" href="#">Kontak</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="pelayanan-publik.php">Selengkapnya</a>
+                            <a class="dropdown-link" href="PelPublik.php">Selengkapnya</a>
                         </li>
                         </ul>
                     </div>
