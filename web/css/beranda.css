@@ -18,6 +18,7 @@
 }
 
 .Cuacaterkini .row {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -26,13 +27,14 @@
 }
 
 .Cuacaterkini .content-section {
+    width: 100%;
     flex-basis: 48%;
     padding: 15px;
 }
 
 .Cuacaterkini .title h1 {
     font-size: 2.5em;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .Cuacaterkini .content {
@@ -116,7 +118,7 @@
 
 /* Styling untuk section UMKM */
 .UMKM {
-    padding: 20px;
+    /* padding: 20px; */
     text-align: center;
     margin: 30px auto;
     max-width: 1200px;

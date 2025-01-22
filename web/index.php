@@ -65,8 +65,6 @@
         </div>
     </div>
 </section>
-
-
     <?php include 'kartu-cuaca.php'; ?>
     <section class="UMKM">
         <h1>Weather Magazine</h1>
