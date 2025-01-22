@@ -10,7 +10,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -57,7 +56,7 @@ header {
     box-sizing: border-box;
 }
 
-.judul-container {
+.judul-container2 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,7 +101,7 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-.container-pelpub {
+.container2-pelpub {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 5px;

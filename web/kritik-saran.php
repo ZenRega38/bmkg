@@ -6,11 +6,12 @@
     <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
     <title>BMKG Tarakan - Aduan</title>
     <link rel="stylesheet" href="css/outer.css">
-    <link rel="stylesheet" href="css/pel_publik.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
     <?php include 'header.php'; ?>
-    <div class="iframe-container">
+    <div class="iframe-container" style = "display: flex; justify-content: center; align-items: center;">
       <iframe 
         src="https://docs.google.com/forms/d/e/1FAIpQLScDEGe7PXW5dksKdZUaMVHYPs8PBsV8oAbl8ZisjVUPy7lCzQ/viewform?embedded=true" 
         width="640" 
@@ -21,6 +22,8 @@
         Loading...
       </iframe>
     </div>
+
+    <script src="assets/script/nav.js"></script>
     <?php include 'footer.php'; ?>
 </body>
 </html>
