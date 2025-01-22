@@ -24,25 +24,50 @@
 <body>
     <?php include 'header.php'; ?>
     <section class="Cuacaterkini" id="Cuacaterkini">
-        <div class="row">
-            <!-- Bagian Konten -->
-            <div class="content-section">
-                <div class="title"><h1>Cuaca Saat ini</span></h1>
-                </div>
-                <div class="content">
-                    <h3></h3>
-                    <p>
-                    </p>
-                    <div class="button"><a href="Tentang Kami.html"class ="button-btn">Baca selengkapnya</a>
+    <div class="row">
+        <!-- Bagian Konten Cuaca Terkini -->
+        <div class="content-section">
+            <div class="title">
+                <h1>Cuaca Saat Ini</h1>
+            </div>
+            
+            <div class="content">
+                <div class="weather-info">
+                    <div class="info-item large">
+                        <span class="label">Suhu:</span>
+                        <span class="value" id="suhu">28°C</span>
+                    </div>
+                    <div class="info-item large">
+                        <span class="label">Cuaca:</span>
+                        <span class="value" id="cuaca">Cerah</span>
+                    </div>
+                    <div class="info-item small">
+                        <span class="label">Kecepatan Angin:</span>
+                        <span class="value" id="kecepatan-angin">15 km/h</span>
+                    </div>
+                    <div class="info-item small">
+                        <span class="label">Arah Angin:</span>
+                        <span class="value" id="arah-angin">Timur Laut</span>
+                    </div>
+                    <div class="info-item small">
+                        <span class="label">Kelembaban:</span>
+                        <span class="value" id="kelembaban">80%</span>
                     </div>
                 </div>
-            </div>
-            <!-- Bagian Gambar -->
-            <div class="images-section">
-                <video src="images/" loop autoplay ="About TarakTrade">
+                <div class="button">
+                    <a href="cuaca.php" class="button-btn">Baca Selengkapnya</a>
+                </div>
             </div>
         </div>
-    </section>
+        <!-- Bagian Gambar -->
+        <div class="images-section">
+            <video src="images/cuaca-video.mp4" loop autoplay></video>
+        </div>
+    </div>
+</section>
+
+
+    <?php include 'kartu-cuaca.php'; ?>
     <section class="UMKM">
         <h1>Weather Magazine</h1>
         <p>Baca Majalah Cuaca Terkini di W'Mag.</p>
@@ -52,35 +77,35 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.jpg">
+                                <img src="magazine_january_2025/pages/1.png">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
@@ -134,9 +159,7 @@
     <section class="SKM">
         <h1>Visualisasi Citra Satelit</h1>
         <p>Isi Deskripsi disini</p>
-        <?php include 'tes-skm.php'; ?>
     </section>
-
     <section class="gempa">
         <?php include 'tes-gempa.php'; ?>
     </section>

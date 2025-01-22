@@ -2,13 +2,14 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     font-family: 'Poppins', sans-serif; /* Menggunakan font Poppins */
 }
 
 /* Mengimpor font Poppins dari Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* Styling untuk section Cuacaterkini */
 /* Styling untuk section Cuacaterkini */
 .Cuacaterkini {
     width: 100%;
@@ -17,12 +18,11 @@
 }
 
 .Cuacaterkini .row {
-    width: 90%;
-    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin: auto;
 }
 
 .Cuacaterkini .content-section {
@@ -35,16 +35,34 @@
     margin-bottom: 20px;
 }
 
-.Cuacaterkini .content h3 {
-    font-size: 1.8em;
+.Cuacaterkini .content {
+    width: 100%;
+    font-size: 1.1em;
+    color: #666;
+}
+
+.weather-info {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.weather-info .info-item {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.weather-info .info-item .label {
+    font-weight: bold;
     color: #555;
 }
 
-.Cuacaterkini .content p {
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: #666;
+.weather-info .info-item .value {
+    color: #007bff;
 }
 
 .Cuacaterkini .button {
@@ -76,6 +94,24 @@
     height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .Cuacaterkini .row {
+        flex-direction: column;
+    }
+
+    .Cuacaterkini .content-section,
+    .Cuacaterkini .images-section {
+        flex-basis: 100%;
+        margin-bottom: 20px;
+    }
+
+    .Cuacaterkini .button-btn {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* Styling untuk section UMKM */
