@@ -236,6 +236,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         'Kabut' => '<span class="weather-icon">🌫️</span>',
         'Asap' => '<span class="weather-icon">🌫️</span>',
         'Berawan Tebal' => '<span class="weather-icon">🌥️</span>',
+        'Kabut Asap' => '<span class="weather-icon">🌫️</span>',
         'Cloudy' => '<span class="weather-icon">☁️</span>',
         'Light Rain' => '<span class="weather-icon">🌦️</span>',
         'Moderate Rain' => '<span class="weather-icon">🌧️</span>',
