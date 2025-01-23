@@ -224,6 +224,7 @@ button {
 
 
 .menu-bar .nav-link {
+  color: #ffffff;
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: -0.6px;
@@ -232,7 +233,11 @@ button {
   margin: 0 0.6rem;
 }
 
-.menu-bar .nav-link:hover,
+.nav-link:hover{
+  color: #ffd700;
+
+}
+
 .dropdown-link:hover {
   color: #ffd700;
 }

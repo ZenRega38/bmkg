@@ -7,8 +7,13 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/beranda.css">
     <link rel="stylesheet" href="css/outer.css">
+      <link rel="stylesheet" href="css/berita.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript">
@@ -64,6 +69,7 @@
             <video src="images/cuaca-video.mp4" loop autoplay></video>
         </div>
     </div>
+    
 </section>
     <?php include 'kartu-cuaca.php'; ?>
     <section class="UMKM">
@@ -112,7 +118,7 @@
                     <img class="swiper-button-next" src="assets/image/next_btn.png"> <!-- Added -->
                 </div>
             </div>
-        </div>
+        
     </section>
     <script>
         async function fetchWeatherData() {
@@ -210,8 +216,40 @@
     <section class="gempa">
         <?php include 'tes-gempa.php'; ?>
     </section>
+    <section class="kegiatan-bmkg">
+    <h1>Kegiatan Stasiun Meterologi JUWATA</h1>
+      <p>Berita Terbaru Stasiun Meterologi Juwata Tarakan</p>
+      <main class="row">
+        <div class="news-item">
+            <img src="gambar1.jpg" alt="Ravalnas 2024">
+            <div class="news-content">
+                <p class="date">22 Januari 2025</p>
+                <h3>Ravalnas 2024, Transformasi BMKG Menuju Indonesia Emas 2045</h3>
+                <p>Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) menyelenggarakan Rapat Evaluasi Nasional (Ravalnas) Tahun 2024 sebagai bentuk reformasi birokrasi dalam transformasi BMKG menuju Indonesia Emas 2045.</p>
+                <a href="#">Baca selengkapnya →</a>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="gambar2.jpg" alt="Rekonsiliasi Laporan Keuangan">
+            <div class="news-content">
+                <p class="date">18 Januari 2025</p>
+                <h3>Balai Besar MKG Wilayah IV Makassar Adakan Rekonsiliasi Laporan Keuangan Semester II Tahun Anggaran 2024</h3>
+                <a href="#">Baca selengkapnya →</a>
+            </div>
+        </div>
+         <div class="news-item">
+            <img src="gambar3.jpg" alt="Natal Oikumene">
+            <div class="news-content">
+                <p class="date">18 Januari 2025</p>
+                <h3>BMKG Gelar Perayaan Natal Oikumene dengan Penuh Kehangatan dan Sukacita</h3>
+                <a href="#">Baca selengkapnya →</a>
+            </div>
+        </div>
+        <!-- Tambahkan lebih banyak news-item di sini -->
+    </main>
+    </section>
     <section class="cuacabandara">
-        <?php include 'tes-cuacabandara.php'; ?>
     </section>
     <?php include 'footer.php'; ?>
 </body>
+</html>
