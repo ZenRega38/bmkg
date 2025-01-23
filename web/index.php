@@ -27,38 +27,38 @@
     <div class="row">
         <!-- Bagian Konten Cuaca Terkini -->
         <div class="content-section">
-            <div class="title">
-                <h1>Cuaca Saat Ini</h1>
+        <div class="title">
+            <h1>Cuaca Saat Ini</h1>
+        </div>
+        <div class="content">
+            <div class="weather-info">
+                <div class="info-item large">
+                    <span class="label">Suhu:</span>
+                    <span class="value" id="suhu"></span>
+                </div>
+                <div class="info-item large">
+                    <span class="label">Cuaca:</span>
+                    <span class="value" id="cuaca"></span>
+                </div>
+                <div class="info-item small">
+                    <span class="label">Kecepatan Angin:</span>
+                    <span class="value" id="kecepatan-angin"></span>
+                </div>
+                <div class="info-item small">
+                    <span class="label">Arah Angin:</span>
+                    <span class="value" id="arah-angin"></span>
+                </div>
+                <div class="info-item small">
+                    <span class="label">Kelembaban:</span>
+                    <span class="value" id="kelembaban"></span>
+                </div>
             </div>
-            
-            <div class="content">
-                <div class="weather-info">
-                    <div class="info-item large">
-                        <span class="label">Suhu:</span>
-                        <span class="value" id="suhu">28°C</span>
-                    </div>
-                    <div class="info-item large">
-                        <span class="label">Cuaca:</span>
-                        <span class="value" id="cuaca">Cerah</span>
-                    </div>
-                    <div class="info-item small">
-                        <span class="label">Kecepatan Angin:</span>
-                        <span class="value" id="kecepatan-angin">15 km/h</span>
-                    </div>
-                    <div class="info-item small">
-                        <span class="label">Arah Angin:</span>
-                        <span class="value" id="arah-angin">Timur Laut</span>
-                    </div>
-                    <div class="info-item small">
-                        <span class="label">Kelembaban:</span>
-                        <span class="value" id="kelembaban">80%</span>
-                    </div>
-                </div>
-                <div class="button">
-                    <a href="cuaca.php" class="button-btn">Baca Selengkapnya</a>
-                </div>
+            <div class="button">
+                <a href="cuaca.php" class="button-btn">Baca Selengkapnya</a>
             </div>
         </div>
+    </div>
+    
         <!-- Bagian Gambar -->
         <div class="images-section">
             <video src="images/cuaca-video.mp4" loop autoplay></video>
@@ -114,6 +114,55 @@
             </div>
         </div>
     </section>
+    <script>
+        async function fetchWeatherData() {
+            try {
+                const response = await fetch('https://api.bmkg.go.id/publik/prakiraan-cuaca?adm2=65.71');
+                const data = await response.json();
+                updateWeatherInfo(data);
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+            }
+        }
+
+        function updateWeatherInfo(data) {
+            const now = new Date();
+            const localTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Makassar' }));
+            const localHour = localTime.getHours();
+
+             // Cari data cuaca untuk kecamatan dengan waktu terdekat
+            let closestData = null;
+            let timeDiff = Infinity;
+                
+            for (const locationData of data.data) {
+            for (const forecast of locationData.cuaca) {
+                for (const item of forecast) {
+                    const forecastTime = new Date(item.local_datetime);
+                    const forecastHour = forecastTime.getHours();
+                    const diff = Math.abs(localHour - forecastHour);
+    
+                    if (diff < timeDiff) {
+                        timeDiff = diff;
+                        closestData = item;
+                    }
+                }
+               }
+           }
+
+                if (closestData) {
+                document.getElementById('suhu').textContent = closestData.t + '°C';
+                document.getElementById('cuaca').textContent = closestData.weather_desc;
+                document.getElementById('kecepatan-angin').textContent = closestData.ws + ' km/h';
+                document.getElementById('arah-angin').textContent = closestData.wd;
+                document.getElementById('kelembaban').textContent = closestData.hu + '%';
+            } else {
+                console.log('Data cuaca tidak ditemukan untuk jam saat ini.');
+            }
+           
+        }
+
+       fetchWeatherData();
+    </script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {

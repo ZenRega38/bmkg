@@ -37,7 +37,7 @@
 
         .cuaca-col {
             height: 150px;
-            flex:auto;
+            flex: auto;
             align-items: center;
             width: 10rem;
             border-radius: 10px;
@@ -116,34 +116,7 @@
         </button>
 
         <div class="row" id="cuacaRow">
-            <div class="cuaca-col">
-                <a href="#"><img src="images/kelurahan_a.png" alt="Kelurahan A"></a>
-                <h3>Kelurahan A</h3>
-                <p>Suhu: 30°C</p>
-                <p>Kecepatan Angin: 15 km/jam</p>
-                <p>Kelembapan: 80%</p>
-            </div>
-            <div class="cuaca-col">
-                <a href="#"><img src="images/kelurahan_b.png" alt="Kelurahan B"></a>
-                <h3>Kelurahan B</h3>
-                <p>Suhu: 28°C</p>
-                <p>Kecepatan Angin: 12 km/jam</p>
-                <p>Kelembapan: 85%</p>
-            </div>
-            <div class="cuaca-col">
-                <a href="#"><img src="images/kelurahan_c.png" alt="Kelurahan C"></a>
-                <h3>Kelurahan C</h3>
-                <p>Suhu: 32°C</p>
-                <p>Kecepatan Angin: 10 km/jam</p>
-                <p>Kelembapan: 75%</p>
-            </div>
-            <div class="cuaca-col">
-                <a href="#"><img src="images/kelurahan_d.png" alt="Kelurahan D"></a>
-                <h3>Kelurahan D</h3>
-                <p>Suhu: 29°C</p>
-                <p>Kecepatan Angin: 18 km/jam</p>
-                <p>Kelembapan: 70%</p>
-            </div>
+           <!-- Data cuaca akan dimasukkan di sini oleh JavaScript -->
         </div>
 
         <button class="arrow-button arrow-right" onclick="scrollRight()">
@@ -153,13 +126,13 @@
 
     <script>
         const row = document.getElementById('cuacaRow');
-        const cardWidth = document.querySelector('.cuaca-col').offsetWidth + 20; // Lebar kartu + gap
+        const cardWidth = document.querySelector('.cuaca-col')?.offsetWidth + 20; // Lebar kartu + gap
         let position = 0;
         let isScrolling = false;
 
         function scrollLeft() {
             if (isScrolling) return;
-            isScrolling = true;
+             isScrolling = true;
 
             position += cardWidth;
             row.style.transition = 'transform 0.5s ease-in-out';
@@ -168,16 +141,18 @@
             setTimeout(() => {
                 const cards = document.querySelectorAll('.cuaca-col');
                 const lastCard = cards[cards.length - 1];
-                row.style.transition = 'none';
-                row.insertBefore(lastCard, cards[0]);
-                position -= cardWidth;
-                row.style.transform = `translateX(${position}px)`;
+                 if (lastCard){
+                    row.style.transition = 'none';
+                    row.insertBefore(lastCard, cards[0]);
+                    position -= cardWidth;
+                    row.style.transform = `translateX(${position}px)`;
+                   }
                 isScrolling = false;
             }, 500);
         }
 
         function scrollRight() {
-            if (isScrolling) return;
+              if (isScrolling) return;
             isScrolling = true;
 
             position -= cardWidth;
@@ -187,13 +162,75 @@
             setTimeout(() => {
                 const cards = document.querySelectorAll('.cuaca-col');
                 const firstCard = cards[0];
-                row.style.transition = 'none';
-                row.appendChild(firstCard);
-                position += cardWidth;
-                row.style.transform = `translateX(${position}px)`;
+                 if (firstCard){
+                    row.style.transition = 'none';
+                    row.appendChild(firstCard);
+                    position += cardWidth;
+                    row.style.transform = `translateX(${position}px)`;
+                    }
                 isScrolling = false;
             }, 500);
         }
     </script>
+    <script>
+        async function fetchWeatherData() {
+            try {
+                const response = await fetch('https://api.bmkg.go.id/publik/prakiraan-cuaca?adm2=65.71');
+                const data = await response.json();
+                updateWeatherInfo(data);
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+            }
+        }
+
+       function updateWeatherInfo(data) {
+        const now = new Date();
+        const localTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Makassar' }));
+        const localHour = localTime.getHours();
+
+        const cuacaRow = document.getElementById('cuacaRow');
+        cuacaRow.innerHTML = '';
+
+        data.data.forEach((locationData, index) => {
+            const kecamatanName = locationData.lokasi.kecamatan;
+            let closestData = null;
+            let timeDiff = Infinity;
+
+            for (const forecast of locationData.cuaca) {
+                for (const item of forecast) {
+                    const forecastTime = new Date(item.local_datetime);
+                    const forecastHour = forecastTime.getHours();
+                    const diff = Math.abs(localHour - forecastHour);
+
+                    if (diff < timeDiff) {
+                        timeDiff = diff;
+                        closestData = item;
+                    }
+                }
+            }
+
+            if (closestData) {
+                const cuacaCol = document.createElement('div');
+                cuacaCol.classList.add('cuaca-col');
+
+                const imagePath = `images/kecamatan_${index + 1}.png`;
+
+                cuacaCol.innerHTML = `
+                    <a href="#"><img src="${imagePath}" alt="${kecamatanName}"></a>
+                    <h3>${kecamatanName}</h3>
+                    <p>Suhu: ${closestData.t}°C</p>
+                    <p>Kecepatan Angin: ${closestData.ws} km/jam</p>
+                    <p>Kelembapan: ${closestData.hu}%</p>
+                `;
+                cuacaRow.appendChild(cuacaCol);
+            } else {
+                console.log(`Data cuaca tidak ditemukan untuk ${kecamatanName}.`);
+            }
+        });
+    }
+
+
+        fetchWeatherData();
+        </script>
 </body>
 </html>
