@@ -64,6 +64,7 @@
             <video src="images/cuaca-video.mp4" loop autoplay></video>
         </div>
     </div>
+    
 </section>
     <?php include 'kartu-cuaca.php'; ?>
     <section class="UMKM">
@@ -154,14 +155,14 @@
         });
 
     </script>
-    <section class="SKM">
+    <!-- <section class="SKM">
         <h1>Visualisasi Citra Satelit</h1>
         <p>Isi Deskripsi disini</p>
-    </section>
+    </section> -->
     <section class="gempa">
         <?php include 'tes-gempa.php'; ?>
     </section>
-    <section class="cuacabandara">
+    <section class="gempa">
         <?php include 'tes-cuacabandara.php'; ?>
     </section>
     <?php include 'footer.php'; ?>

@@ -114,38 +114,37 @@
         <button class="arrow-button arrow-left" onclick="scrollLeft()">
             <i class="fa-solid fa-arrow-left"></i>
         </button>
-
-        <div class="row" id="cuacaRow">
+            <div class="row" id="cuacaRow">
             <div class="cuaca-col">
-                <a href="#"><img src="images/kelurahan_a.png" alt="Kelurahan A"></a>
                 <h3>Kelurahan A</h3>
                 <p>Suhu: 30°C</p>
                 <p>Kecepatan Angin: 15 km/jam</p>
                 <p>Kelembapan: 80%</p>
+                <p>Kondisi Cuaca: Cerah</p> 
             </div>
-            <div class="cuaca-col">
-                <a href="#"><img src="images/kelurahan_b.png" alt="Kelurahan B"></a>
+             <div class="cuaca-col">
                 <h3>Kelurahan B</h3>
                 <p>Suhu: 28°C</p>
                 <p>Kecepatan Angin: 12 km/jam</p>
                 <p>Kelembapan: 85%</p>
+                <p>Kondisi Cuaca: Berawan</p>
             </div>
             <div class="cuaca-col">
-                <a href="#"><img src="images/kelurahan_c.png" alt="Kelurahan C"></a>
-                <h3>Kelurahan C</h3>
+                 <h3>Kelurahan C</h3>
                 <p>Suhu: 32°C</p>
                 <p>Kecepatan Angin: 10 km/jam</p>
                 <p>Kelembapan: 75%</p>
+                <p>Kondisi Cuaca: Panas</p>
             </div>
             <div class="cuaca-col">
-                <a href="#"><img src="images/kelurahan_d.png" alt="Kelurahan D"></a>
                 <h3>Kelurahan D</h3>
                 <p>Suhu: 29°C</p>
                 <p>Kecepatan Angin: 18 km/jam</p>
                 <p>Kelembapan: 70%</p>
-            </div>
-        </div>
+                <p>Kondisi Cuaca: Hujan</p>
+                </div>
 
+            </div>
         <button class="arrow-button arrow-right" onclick="scrollRight()">
             <i class="fa-solid fa-arrow-right"></i>
         </button>
