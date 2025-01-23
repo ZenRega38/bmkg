@@ -201,7 +201,6 @@
     </main>
     </section>
     <section class="cuacabandara">
-        <?php include 'tes-cuacabandara.php'; ?>
     </section>
     <?php include 'footer.php'; ?>
 </body>
