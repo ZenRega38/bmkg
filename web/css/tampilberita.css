@@ -1,0 +1,95 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f9;
+    color: #333;
+}
+
+header {
+    background-color: #104a7b;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.news-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    width: calc(33% - 30px);  /* Agar ada 3 item per baris */
+    min-width: 300px; /* agar tidak terlalu kecil di layar kecil */
+}
+
+
+.news-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.news-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.date {
+    color: #777;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+}
+
+h3 {
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.news-content p {
+    margin-bottom: 15px;
+}
+
+.news-content a {
+    color: #104a7b;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.news-content a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #e0e0e0;
+    color: #777;
+}
+
+@media (max-width: 768px) {
+    .news-item {
+        width: calc(50% - 30px); /* 2 item per baris di layar lebih kecil */
+    }
+}
+
+@media (max-width: 500px) {
+    .news-item {
+       width: 90%; /* 1 item per baris di layar paling kecil */
+    }
+}
