@@ -30,7 +30,6 @@
             align-items: flex-start;
             gap: 20px;
             overflow: hidden;
-            padding-bottom: 20px;
             position: relative;
             transition: transform 0.5s ease-in-out;
         }
@@ -39,7 +38,7 @@
             flex: auto;
              width: 10rem;
             border-radius: 10px;
-             margin-bottom: 5%;
+             /* margin-bottom: 5%; */
            text-align: left;
             background-color: #f4f7fc;
            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -52,7 +51,7 @@
         .cuaca-col img {
             width: 80%; /* Reduced image width */
             border-radius: 10px;
-              margin-bottom: 10px;
+            /* margin-bottom: 10px; */
              align-self: center; /* center image in their own container */
         }
 
@@ -60,7 +59,7 @@
 
         .cuaca-col h3 {
             margin-top: 0;
-            margin-bottom: 10px;
+            /* margin-bottom: 10px; */
             color: #1976d2;
             font-size: 1.2em;
         }
@@ -75,6 +74,6 @@
 </head>
 <body>
     <section class="cuaca" id="kartu-cuaca">
-       </section>
+    </section>
 </body>
 </html>

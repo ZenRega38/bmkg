@@ -155,7 +155,7 @@
                     <img class="swiper-button-next" src="assets/image/next_btn.png"> <!-- Added -->
                 </div>
             </div>
-        
+        </div>
     </section>
     <script>
           function updateClocks() {
@@ -331,10 +331,10 @@
             },
         });
     </script>
-    <section class="SKM">
+    <!-- <section class="SKM">
         <h1>Visualisasi Citra Satelit</h1>
         <p>Isi Deskripsi disini</p>
-    </section>
+    </section> -->
     <section class="gempa">
        <?php include 'tes-gempa.php'; ?>
     </section>

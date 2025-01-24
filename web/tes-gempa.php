@@ -23,7 +23,7 @@ $gempa = $data['Infogempa']['gempa'];
             margin: 0;
             padding: 0;
         }
-        
+
         .container-gempa {
             max-width: 1200px;
             margin: 20px auto;
@@ -45,19 +45,23 @@ $gempa = $data['Infogempa']['gempa'];
         }
 
         .info {
+            text-align: left;
             flex: 2;
             padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .info h2 {
-            font-size: 1.8em;
+            font-size: 2em;
             margin-bottom: 10px;
             color: #333;
         }
 
         .info p {
             margin: 8px 0;
-            font-size: 1.1em;
+            font-size: 1.2em;
             line-height: 1.5;
         }
 
@@ -85,28 +89,43 @@ $gempa = $data['Infogempa']['gempa'];
             border-radius: 8px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-box i {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #0057a3;
+            transition: color 0.3s;
+        }
+
+        .stat-box:hover i {
+            color: #ff5722;
         }
 
         .stat-box strong {
             display: block;
-            font-size: 1.2em;
+            font-size: 1.3em;
             color: #0057a3;
             margin-bottom: 5px;
         }
 
-        .footer {
-            text-align: center;
+        .link-selengkapnya {
             margin-top: 20px;
-            font-size: 0.9em;
-            color: #555;
-        }
-
-        .footer a {
+            font-size: 1em;
             color: #0057a3;
             text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
         }
 
-        .footer a:hover {
+        .link-selengkapnya:hover {
+            color: #ff5722;
             text-decoration: underline;
         }
     </style>
@@ -120,30 +139,34 @@ $gempa = $data['Infogempa']['gempa'];
 
         <!-- Bagian Informasi Gempa -->
         <div class="info">
-            <h2>Gempa Bumi Terkini</h2>
-            <p class="badge">Gempa Dirasakan</p>
-            <p><strong>Pusat Gempa:</strong> <?= $gempa['Wilayah']; ?></p>
-            <p><strong>Tanggal:</strong> <?= $gempa['Tanggal']; ?>, <?= $gempa['Jam']; ?> WIB</p>
-            <p><strong>Saran BMKG:</strong> Hati-hati terhadap gempa bumi susulan yang mungkin terjadi.</p>
+            <div>
+                <h2>Gempa Bumi Terkini</h2>
+                <p class="badge">Gempa Dirasakan</p>
+                <p><strong>Pusat Gempa:</strong> <?= $gempa['Wilayah']; ?></p>
+                <p><strong>Tanggal:</strong> <?= $gempa['Tanggal']; ?>, <?= $gempa['Jam']; ?> WIB</p>
+                <p><strong>Saran BMKG:</strong> Hati-hati terhadap gempa bumi susulan yang mungkin terjadi.</p>
+            </div>
 
             <div class="stats">
                 <div class="stat-box">
+                    <i class="fa-solid fa-chart-line"></i>
                     <strong><?= $gempa['Magnitude']; ?></strong>
                     Magnitudo
                 </div>
                 <div class="stat-box">
+                    <i class="fa-solid fa-water"></i>
                     <strong><?= $gempa['Kedalaman']; ?></strong>
                     Kedalaman
                 </div>
                 <div class="stat-box">
+                    <i class="fa-solid fa-location-arrow"></i>
                     <strong><?= $gempa['Coordinates']; ?></strong>
                     Koordinat
                 </div>
             </div>
+
+            <a class="link-selengkapnya" href="https://www.bmkg.go.id/gempabumi" target="_blank">Lihat Selengkapnya...</a>
         </div>
     </div>
-    <footer class="footer">
-        <p><a href="https://www.bmkg.go.id/gempabumi">Lihat Selengkapnya</a></p>
-    </footer>
 </body>
 </html>
