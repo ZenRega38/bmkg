@@ -194,66 +194,102 @@
         `
         }
 
-        document.getElementById('kartu-cuaca').innerHTML = kartuCuacaHTML();
+         document.getElementById('kartu-cuaca').innerHTML = kartuCuacaHTML();
 
-        async function fetchWeatherData() {
+          async function fetchWeatherData() {
             try {
-                const response = await fetch('https://api.bmkg.go.id/publik/prakiraan-cuaca?adm2=65.71');
-                const data = await response.json();
+                 const response = await fetch('https://api.bmkg.go.id/publik/prakiraan-cuaca?adm2=65.71');
+                 const data = await response.json();
                 updateWeatherInfo(data);
-            } catch (error) {
+                 updateWeatherDisplay(data)
+              } catch (error) {
                 console.error('Error fetching weather data:', error);
             }
         }
 
-         function updateWeatherInfo(data) {
-             const now = new Date();
-            const localTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Makassar' }));
-            const localHour = localTime.getHours();
+         function updateWeatherDisplay(data) {
+           const now = new Date();
+           const localTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Makassar' }));
+           const localHour = localTime.getHours();
 
-             const cuacaRow = document.getElementById('cuacaRow');
-            cuacaRow.innerHTML = '';
+            let closestData = null;
+           let timeDiff = Infinity;
 
-              data.data.forEach((locationData, index) => {
-              const kecamatanName = locationData.lokasi.kecamatan;
-               let closestData = null;
-               let timeDiff = Infinity;
+           for (const locationData of data.data) {
+             for (const forecast of locationData.cuaca) {
+                 for (const item of forecast) {
+                      const forecastTime = new Date(item.local_datetime);
+                      const forecastHour = forecastTime.getHours();
+                     const diff = Math.abs(localHour - forecastHour);
 
-                for (const forecast of locationData.cuaca) {
-                   for (const item of forecast) {
-                       const forecastTime = new Date(item.local_datetime);
-                       const forecastHour = forecastTime.getHours();
-                       const diff = Math.abs(localHour - forecastHour);
-
-                        if (diff < timeDiff) {
-                            timeDiff = diff;
-                            closestData = item;
+                      if (diff < timeDiff) {
+                          timeDiff = diff;
+                         closestData = item;
                         }
                     }
                 }
+            }
+
+            if (closestData) {
+               document.getElementById('suhu').textContent = closestData.t + '°C';
+              document.getElementById('cuaca').textContent = closestData.weather_desc;
+               document.getElementById('kecepatan-angin').textContent = closestData.ws + ' km/h';
+                document.getElementById('arah-angin').textContent = closestData.wd;
+                document.getElementById('kelembaban').textContent = closestData.hu + '%';
+            } else {
+              console.log('Data cuaca tidak ditemukan untuk jam saat ini.');
+            }
+        }
+
+       function updateWeatherInfo(data) {
+             const now = new Date();
+             const localTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Makassar' }));
+             const localHour = localTime.getHours();
+
+            const cuacaRow = document.getElementById('cuacaRow');
+             cuacaRow.innerHTML = '';
+
+            data.data.forEach((locationData, index) => {
+              const kecamatanName = locationData.lokasi.kecamatan;
+                let closestData = null;
+                let timeDiff = Infinity;
+
+                for (const forecast of locationData.cuaca) {
+                   for (const item of forecast) {
+                        const forecastTime = new Date(item.local_datetime);
+                         const forecastHour = forecastTime.getHours();
+                         const diff = Math.abs(localHour - forecastHour);
+
+                         if (diff < timeDiff) {
+                            timeDiff = diff;
+                             closestData = item;
+                        }
+                    }
+               }
 
                if (closestData) {
                    const cuacaCol = document.createElement('div');
-                    cuacaCol.classList.add('cuaca-col');
+                     cuacaCol.classList.add('cuaca-col');
                    const imagePath = closestData.image;
-
 
                      cuacaCol.innerHTML = `
                          <a href="#"><img src="${imagePath}" alt="${kecamatanName}"></a>
-                       <h3>${kecamatanName}</h3>
+                        <h3>${kecamatanName}</h3>
                          <p>${closestData.weather_desc}</p>
-                         <p>Suhu: ${closestData.t}°C</p>
+                        <p>Suhu: ${closestData.t}°C</p>
                         <p>Kecepatan Angin: ${closestData.ws} km/jam</p>
-                       <p>Kelembapan: ${closestData.hu}%</p>
+                        <p>Kelembapan: ${closestData.hu}%</p>
                     `;
-                    cuacaRow.appendChild(cuacaCol);
+                   cuacaRow.appendChild(cuacaCol);
                } else {
-                  console.log(`Data cuaca tidak ditemukan untuk ${kecamatanName}.`);
-               }
-            });
+                 console.log(`Data cuaca tidak ditemukan untuk ${kecamatanName}.`);
+                }
+           });
         }
-
-        fetchWeatherData();
+         // Call fetchWeatherData only after the page is loaded, and more specifically after the HTML elements that will be updated exist
+        document.addEventListener('DOMContentLoaded', function() {
+           fetchWeatherData();
+         });
     </script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
      <script>
