@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
+     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript">
@@ -25,7 +25,7 @@
             }
         })
     </script>
-    <style>
+     <style>
         .clock-container {
             width: 91%; /* Adjusted to 100% */
             display: flex;
@@ -48,6 +48,13 @@
             color: #555;
             white-space: nowrap; /* Prevent line break */
             text-align: left; /* Make sure date/day is left-aligned */
+        }
+         .images-section #map {
+            height: 400px;
+            width: 100%;
+        }
+        .images-section iframe {
+             border-radius : 15px;
         }
     </style>
 </head>
@@ -96,10 +103,9 @@
     
         <!-- Bagian Gambar -->
         <div class="images-section">
-            <video src="images/cuaca-video.mp4" loop autoplay></video>
+            <div id="map"></div>
         </div>
     </div>
-    
 </section>
     <?php include 'kartu-cuaca.php'; ?>
     <section class="UMKM">
@@ -151,21 +157,21 @@
         
     </section>
     <script>
-        function updateClocks() {
+          function updateClocks() {
             const now = new Date();
 
              // Date and Day
-            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-            const dayName = days[now.getDay()];
+             const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+             const dayName = days[now.getDay()];
             const date = now.toLocaleDateString();
-            document.getElementById("dateDay").textContent = `${dayName}, ${date}`;
+           document.getElementById("dateDay").textContent = `${dayName}, ${date}`;
 
-            // UTC time
+             // UTC time
             const utcHours = now.getUTCHours();
             const utcMinutes = now.getUTCMinutes();
-            const utcSeconds = now.getUTCSeconds();
+             const utcSeconds = now.getUTCSeconds();
 
-            document.getElementById("utcTime").textContent = `${formatTime(utcHours)}:${formatTime(utcMinutes)}:${formatTime(utcSeconds)}`;
+             document.getElementById("utcTime").textContent = `${formatTime(utcHours)}:${formatTime(utcMinutes)}:${formatTime(utcSeconds)}`;
 
              // WITA time (UTC+8)
             const witaHours = (utcHours + 8) % 24;
@@ -176,14 +182,14 @@
             return unit < 10 ? `0${unit}` : unit;
         }
 
-        setInterval(updateClocks, 1000);
+         setInterval(updateClocks, 1000);
         updateClocks(); // Initialize immediately
         
         async function fetchWeatherData() {
             try {
                 const response = await fetch('https://api.bmkg.go.id/publik/prakiraan-cuaca?adm2=65.71');
                 const data = await response.json();
-                updateWeatherInfo(data);
+               updateWeatherInfo(data);
             } catch (error) {
                 console.error('Error fetching weather data:', error);
             }
@@ -192,43 +198,41 @@
         function updateWeatherInfo(data) {
             const now = new Date();
             const localTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Makassar' }));
-            const localHour = localTime.getHours();
+             const localHour = localTime.getHours();
 
              // Cari data cuaca untuk kecamatan dengan waktu terdekat
             let closestData = null;
-            let timeDiff = Infinity;
+           let timeDiff = Infinity;
                 
             for (const locationData of data.data) {
-            for (const forecast of locationData.cuaca) {
-                for (const item of forecast) {
-                    const forecastTime = new Date(item.local_datetime);
-                    const forecastHour = forecastTime.getHours();
+             for (const forecast of locationData.cuaca) {
+                 for (const item of forecast) {
+                       const forecastTime = new Date(item.local_datetime);
+                       const forecastHour = forecastTime.getHours();
                     const diff = Math.abs(localHour - forecastHour);
-    
-                    if (diff < timeDiff) {
-                        timeDiff = diff;
-                        closestData = item;
-                    }
-                }
-               }
-           }
 
-                if (closestData) {
+                       if (diff < timeDiff) {
+                        timeDiff = diff;
+                           closestData = item;
+                      }
+                  }
+               }
+            }
+
+             if (closestData) {
                 document.getElementById('suhu').textContent = closestData.t + '°C';
                 document.getElementById('cuaca').textContent = closestData.weather_desc;
-                document.getElementById('kecepatan-angin').textContent = closestData.ws + ' km/h';
-                document.getElementById('arah-angin').textContent = closestData.wd;
+               document.getElementById('kecepatan-angin').textContent = closestData.ws + ' km/h';
+              document.getElementById('arah-angin').textContent = closestData.wd;
                 document.getElementById('kelembaban').textContent = closestData.hu + '%';
-            } else {
-                console.log('Data cuaca tidak ditemukan untuk jam saat ini.');
+           } else {
+               console.log('Data cuaca tidak ditemukan untuk jam saat ini.');
             }
-           
         }
-
        fetchWeatherData();
     </script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
+     <script>
         var swiper = new Swiper('.swiper-container', {
             effect: 'coverflow',
             grabCursor: true,
@@ -256,58 +260,73 @@
                     var slide = slides[i];
                     if (slide.classList.contains('swiper-slide-active')) {
                     slide.querySelector('h2').style.opacity = '1';
-                    slide.querySelector('p').style.opacity = '1';
-                    } else {
+                     slide.querySelector('p').style.opacity = '1';
+                   } else {
                     slide.querySelector('h2').style.opacity = '0';
                     slide.querySelector('p').style.opacity = '0';
-                    }
+                   }
                 }
-                },
+              },
             },
         });
-
     </script>
     <section class="SKM">
         <h1>Visualisasi Citra Satelit</h1>
         <p>Isi Deskripsi disini</p>
     </section>
     <section class="gempa">
-        <?php include 'tes-gempa.php'; ?>
+       <?php include 'tes-gempa.php'; ?>
     </section>
     <section class="kegiatan-bmkg">
-    <h1>Kegiatan Stasiun Meterologi JUWATA</h1>
-      <p>Berita Terbaru Stasiun Meterologi Juwata Tarakan</p>
-      <main class="row">
-        <div class="news-item">
-            <img src="gambar1.jpg" alt="Ravalnas 2024">
-            <div class="news-content">
-                <p class="date">22 Januari 2025</p>
-                <h3>Ravalnas 2024, Transformasi BMKG Menuju Indonesia Emas 2045</h3>
-                <p>Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) menyelenggarakan Rapat Evaluasi Nasional (Ravalnas) Tahun 2024 sebagai bentuk reformasi birokrasi dalam transformasi BMKG menuju Indonesia Emas 2045.</p>
-                <a href="#">Baca selengkapnya →</a>
+        <h1>Kegiatan Stasiun Meterologi JUWATA</h1>
+        <p>Berita Terbaru Stasiun Meterologi Juwata Tarakan</p>
+         <main class="row">
+            <div class="news-item">
+                 <img src="gambar1.jpg" alt="Ravalnas 2024">
+                <div class="news-content">
+                     <p class="date">22 Januari 2025</p>
+                    <h3>Ravalnas 2024, Transformasi BMKG Menuju Indonesia Emas 2045</h3>
+                    <p>Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) menyelenggarakan Rapat Evaluasi Nasional (Ravalnas) Tahun 2024 sebagai bentuk reformasi birokrasi dalam transformasi BMKG menuju Indonesia Emas 2045.</p>
+                    <a href="#">Baca selengkapnya →</a>
+                </div>
             </div>
-        </div>
-        <div class="news-item">
-            <img src="gambar2.jpg" alt="Rekonsiliasi Laporan Keuangan">
-            <div class="news-content">
-                <p class="date">18 Januari 2025</p>
-                <h3>Balai Besar MKG Wilayah IV Makassar Adakan Rekonsiliasi Laporan Keuangan Semester II Tahun Anggaran 2024</h3>
-                <a href="#">Baca selengkapnya →</a>
+            <div class="news-item">
+               <img src="gambar2.jpg" alt="Rekonsiliasi Laporan Keuangan">
+                 <div class="news-content">
+                    <p class="date">18 Januari 2025</p>
+                    <h3>Balai Besar MKG Wilayah IV Makassar Adakan Rekonsiliasi Laporan Keuangan Semester II Tahun Anggaran 2024</h3>
+                    <a href="#">Baca selengkapnya →</a>
+                </div>
+           </div>
+            <div class="news-item">
+                <img src="gambar3.jpg" alt="Natal Oikumene">
+               <div class="news-content">
+                    <p class="date">18 Januari 2025</p>
+                     <h3>BMKG Gelar Perayaan Natal Oikumene dengan Penuh Kehangatan dan Sukacita</h3>
+                    <a href="#">Baca selengkapnya →</a>
+                </div>
             </div>
-        </div>
-         <div class="news-item">
-            <img src="gambar3.jpg" alt="Natal Oikumene">
-            <div class="news-content">
-                <p class="date">18 Januari 2025</p>
-                <h3>BMKG Gelar Perayaan Natal Oikumene dengan Penuh Kehangatan dan Sukacita</h3>
-                <a href="#">Baca selengkapnya →</a>
-            </div>
-        </div>
-        <!-- Tambahkan lebih banyak news-item di sini -->
-    </main>
+            <!-- Tambahkan lebih banyak news-item di sini -->
+        </main>
     </section>
     <section class="cuacabandara">
     </section>
     <?php include 'footer.php'; ?>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+         var map = L.map('map').setView([3.353339, 117.582684], 13);
+
+         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+           maxZoom: 19,
+        }).addTo(map);
+
+        var marker = L.marker([3.353339, 117.582684]).addTo(map);
+         const apiKey = 'f1749350b540a2ca3c0b6a869d96894e';
+        L.tileLayer(`https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${apiKey}`, {
+             zIndex : 50,
+              maxZoom : 19
+         }).addTo(map);
+
+    </script>
 </body>
 </html>
