@@ -74,75 +74,7 @@
     </style>
 </head>
 <body>
-    <section class="cuaca">
-        <h1>Cuaca Terkini di Kecamatan Tarakan</h1>
-        <p>Periksa cuaca terkini di setiap kecamatan.</p>
-
-
-        <div class="row" id="cuacaRow">
-            <!-- Data cuaca akan dimasukkan di sini oleh JavaScript -->
-        </div>
-    </section>
-    <script>
-        async function fetchWeatherData() {
-            try {
-                const response = await fetch('https://api.bmkg.go.id/publik/prakiraan-cuaca?adm2=65.71');
-                const data = await response.json();
-                updateWeatherInfo(data);
-                updateCardWidth(); // Update cardWidth setelah data dimuat
-            } catch (error) {
-                console.error('Error fetching weather data:', error);
-            }
-        }
-
-
-        function updateWeatherInfo(data) {
-          const now = new Date();
-          const localTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Makassar' }));
-          const localHour = localTime.getHours();
-
-          const cuacaRow = document.getElementById('cuacaRow');
-          cuacaRow.innerHTML = '';
-
-             data.data.forEach((locationData, index) => {
-              const kecamatanName = locationData.lokasi.kecamatan;
-              let closestData = null;
-              let timeDiff = Infinity;
-
-                for (const forecast of locationData.cuaca) {
-                    for (const item of forecast) {
-                        const forecastTime = new Date(item.local_datetime);
-                         const forecastHour = forecastTime.getHours();
-                        const diff = Math.abs(localHour - forecastHour);
-
-                      if (diff < timeDiff) {
-                         timeDiff = diff;
-                           closestData = item;
-                      }
-                   }
-               }
-
-            if (closestData) {
-                    const cuacaCol = document.createElement('div');
-                    cuacaCol.classList.add('cuaca-col');
-                    const imagePath = closestData.image;
-
-
-                   cuacaCol.innerHTML = `
-                       <a href="#"><img src="${imagePath}" alt="${kecamatanName}"></a>
-                        <h3>${kecamatanName}</h3>
-                        <p>${closestData.weather_desc}</p>
-                         <p>Suhu: ${closestData.t}°C</p>
-                         <p>Kecepatan Angin: ${closestData.ws} km/jam</p>
-                         <p>Kelembapan: ${closestData.hu}%</p>
-                   `;
-                   cuacaRow.appendChild(cuacaCol);
-              } else {
-                 console.log(`Data cuaca tidak ditemukan untuk ${kecamatanName}.`);
-             }
-         });
-      }
-        fetchWeatherData();
-    </script>
+    <section class="cuaca" id="kartu-cuaca">
+       </section>
 </body>
 </html>
