@@ -27,7 +27,7 @@
     </script>
     <style>
         .clock-container {
-            width: 92%; /* Adjusted to 100% */
+            width: 91%; /* Adjusted to 100% */
             display: flex;
             justify-content: right;
             align-items: center;
