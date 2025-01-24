@@ -67,6 +67,8 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
 <html lang="id">
 <head>
     <link rel="stylesheet" href="css/outer.css">
+    <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
+    <title>Cuaca - BMKG Tarakan</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <meta charset="UTF-8">
     <style>

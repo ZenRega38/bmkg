@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
-  <title>BMKG Tarakan - W'Magazine</title>
+  <title>W'Magazine - BMKG Tarakan</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/outer.css">
