@@ -1,5 +1,5 @@
 <header class="bmkg-header-bottom">
-    <div class="container">
+    <div class="container-header">
         <div class="dashboard">
         <div class="logo">
             <img src="assets/image/LOGO.png" alt="BMKG Logo" />
