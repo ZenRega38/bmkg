@@ -263,6 +263,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
 <body>
 <?php include 'header.php'; ?>
 <script src="assets/script/nav.js"></script>
+
 <section>
     <h2 class="forecast-title">
         Prakiraan Cuaca <?= $selectedCity . ', ' . $selectedCityData['provinsi'] ?>
