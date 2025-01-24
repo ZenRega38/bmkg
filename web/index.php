@@ -60,6 +60,7 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
+    <script src="assets/script/nav.js"></script>
     <div class="clock-container">
         <div class="date-day" id="dateDay"></div>
         <div class="clock" id="utcClock">UTC: <span id="utcTime"></span></div>

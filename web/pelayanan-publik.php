@@ -34,7 +34,7 @@
                 <div class="card-content">
                     <h2 class="card-title">W'Mag</h2>
                     <p class="card-description">Weather Magazine: publikasi meteorologi yang menyajikan prakiraan cuaca, analisis iklim, dan wawasan ilmiah dari Stasiun Meteorologi Juwata Tarakan.</p>
-                    <button class="card-button">Klik disini</button>
+                    <a class="card-button" href="wmagz.php" style="text-decoration: none;">Klik disini</a>
                 </div>
             </div>
 
@@ -56,7 +56,7 @@
                 <div class="card-content">
                     <h2 class="card-title">PTSP</h2>
                     <p class="card-description">Apabila ada pengaduan silahkan ajukan disini</p>
-                    <button class="card-button">Klik disini</button>
+                    <a class="card-button" href="https://ptsp.bmkg.go.id/">Klik disini</a>
                 </div>
             </div>
 
