@@ -1,5 +1,5 @@
 <header class="bmkg-header-bottom">
-    <div class="container">
+    <div class="container-header">
         <div class="dashboard">
         <div class="logo">
             <img src="assets/image/LOGO.png" alt="BMKG Logo" />
@@ -51,13 +51,13 @@
                             <a class="dropdown-link" href="kritik-saran.php">Kritik dan Saran</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="#">PTSP</a>
+                            <a class="dropdown-link" href="https://ptsp.bmkg.go.id/">PTSP</a>
                         </li>
                         <li role="menuitem">
                             <a class="dropdown-link" href="#">Kontak</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="PelPublik.php">Selengkapnya</a>
+                            <a class="dropdown-link" href="pelayanan-publik.php">Selengkapnya</a>
                         </li>
                         </ul>
                     </div>

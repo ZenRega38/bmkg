@@ -67,6 +67,17 @@ button {
   column-gap: 2rem;
 }
 
+.container-header {
+   max-width: 100%;
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 2rem;
+}
+
 /* Cuaca Terkini Section */
 .Cuacaterkini {
   width: 90%;

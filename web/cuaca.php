@@ -36,21 +36,24 @@ foreach ($dataCuaca['data'] as $location_data) {
     $adm2 = isset($location_data['lokasi']['adm2']) ? $location_data['lokasi']['adm2'] : 'N/A';
     $provinsi = isset($location_data['lokasi']['provinsi']) ? $location_data['lokasi']['provinsi'] : 'N/A';
     $kotkab = isset($location_data['lokasi']['kotkab']) ? $location_data['lokasi']['kotkab'] : 'N/A';
+    $timezone = isset($location_data['lokasi']['timezone']) && !empty($location_data['lokasi']['timezone'])
+        ? $location_data['lokasi']['timezone']
+        : 'Asia/Jakarta'; //Default timezone
     $citiesData[$kotkab] = [
         'adm2' => $adm2,
         'provinsi' => $provinsi,
         'cuaca' => $location_data['cuaca'],
-        'timezone' => isset($location_data['lokasi']['timezone']) ? $location_data['lokasi']['timezone'] : 'Asia/Jakarta' //Default timezone
+        'timezone' => $timezone
     ];
 }
 
 // Mendapatkan kota yang dipilih
-$selectedCity = $_GET['kota'] ?? array_key_first($citiesData);
+$defaultCity = array_key_last($citiesData); // Get the last key
+$selectedCity = $_GET['kota'] ?? $defaultCity;
 
 // Memeriksa apakah kota ada
 if (!isset($citiesData[$selectedCity])) {
-    echo '<p class="error">Kota tidak ditemukan.</p>';
-    exit;
+    $selectedCity = $defaultCity;
 }
 
 $selectedCityData = $citiesData[$selectedCity];
@@ -64,7 +67,11 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
 <html lang="id">
 <head>
     <link rel="stylesheet" href="css/outer.css">
+    <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
+    <title>Cuaca - BMKG Tarakan</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta charset="UTF-8">
     <style>
         section {
@@ -83,11 +90,11 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             background-size: cover;
         }
 
-        body {
-            font-family: Arial, sans-serif;
+       body {
+           font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-        }
+           padding: 0;
+       }
 
         .title {
             flex-grow: 1;
@@ -132,7 +139,6 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             justify-content: center;
         }
 
-
          .current-weather-table {
             width: 100%;
             border-collapse: collapse;
@@ -154,6 +160,9 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             text-align: center;
             border: 1px solid #4682b4;
         }
+         .weather-table-container {
+             overflow-x: auto;
+         }
 
         .weather-table {
             width: 100%;
@@ -177,6 +186,28 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             border: 1px solid #4682b4;
         }
 
+        .filter-container {
+            text-align: center;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+       .filter-container select {
+            background-color: #4682b4;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .filter-container select:hover {
+             background-color: #5f9ea0;
+        }
+
+
         .weather-icons {
             background-color: rgba(70, 130, 180, 0.9);
             color: white;
@@ -192,7 +223,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
 
         .social-icons img {
             width: 30px;
-            height: 30px;
+           height: 30px;
             margin-left: 10px;
         }
 
@@ -203,29 +234,29 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             vertical-align: middle;
             margin-right: 5px;
         }
-        .swiper-container {
+       .swiper-container {
             display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
-        .swiper-slide {
-            text-align: center;
-            font-size: 18px;
-            display: flex;
-            justify-content: center;
+           justify-content: center;
+          padding: 20px;
+       }
+       .swiper-slide {
+           text-align: center;
+          font-size: 18px;
+          display: flex;
+          justify-content: center;
             align-items: center;
             padding: 10px 20px;
             cursor: pointer;
-            border-radius: 8px;
-            margin: 5px;
-        }
-        .swiper-button-next,
-        .swiper-button-prev {
+          border-radius: 8px;
+           margin: 5px;
+       }
+       .swiper-button-next,
+       .swiper-button-prev {
             all : unset;
         }
         /*remove styling swiper, swiper-wrapper, swiper-slide */
-        .swiper,
-        .swiper-wrapper,
+       .swiper,
+       .swiper-wrapper,
         .swiper-slide{
             all: unset;
         }
@@ -233,6 +264,8 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
 </head>
 <body>
 <?php include 'header.php'; ?>
+<script src="assets/script/nav.js"></script>
+
 <section>
     <h2 class="forecast-title">
         Prakiraan Cuaca <?= $selectedCity . ', ' . $selectedCityData['provinsi'] ?>
@@ -240,27 +273,28 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         <div class="swiper-container">
             <div class="swiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+                   <div class="swiper-slide">
                         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                            <a href="cuaca.php?kota=<?= $prevCity ?>" class="swiper-button-prev" style="text-decoration: none; color: #000; font-size: 20px; display:flex;align-items: center;">
+                           <a href="cuaca.php?kota=<?= $prevCity ?>"  onclick="reloadPage(event)" style="text-decoration: none; color: #000; font-size: 20px; display:flex;align-items: center;">
+                                <img style="width:16px;height:22px;margin-right: 16px;" src="assets/image/prev_btn.png" class="swiper-button-prev"/>
+                           </a>
 
-                            </a>
-                            <a style="text-decoration: none; color: #000; font-size: 20px;" href="cuaca.php?kota=<?= $selectedCity ?>">
-                                <?= $selectedCity ?>
-                            </a>
-                            <a href="cuaca.php?kota=<?= $nextCity ?>" class="swiper-button-next" style="text-decoration: none; color: #000; font-size: 20px; display:flex;align-items: center;">
-
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                           <a style="text-decoration: none; color: #000; font-size: 20px;" href="cuaca.php?kota=<?= $selectedCity ?>">
+                                 <?= $selectedCity ?>
+                           </a>
+                           <a href="cuaca.php?kota=<?= $nextCity ?>" onclick="reloadPage(event)" style="text-decoration: none; color: #000; font-size: 20px; display:flex;align-items: center;">
+                              <img style="width:16px;height:22px;margin-left: 16px;" src="assets/image/next_btn.png" class="swiper-button-next"/>
+                           </a>
+                       </div>
+                  </div>
+              </div>
             </div>
-        </div>
+       </div>
 
       <div class="current-weather-container">
         <?php
              // Pemetaan ikon
-              $icon_mapping = [
+            $icon_mapping = [
                 'Cerah' => '<span class="weather-icon">☀️</span>',
                 'Berawan' => '<span class="weather-icon">☁️</span>',
                 'Hujan Ringan' => '<span class="weather-icon">🌦️</span>',
@@ -319,92 +353,107 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                 ];
 
 
-            $timezone = $selectedCityData['timezone'];
+            $timezone = $selectedCityData['timezone'] ?? 'Asia/Jakarta';
             $now = new DateTime('now', new DateTimeZone($timezone));
 
             $currentForecast = null;
             $minDiff = PHP_INT_MAX;
 
-            foreach ($selectedCityData['cuaca'] as $forecast_set) {
-                foreach ($forecast_set as $forecast) {
-                $forecastTime = new DateTime($forecast['local_datetime'], new DateTimeZone($timezone));
-                $diff = abs($now->getTimestamp() - $forecastTime->getTimestamp());
-                    if ($diff < $minDiff) {
-                        $minDiff = $diff;
-                        $currentForecast = $forecast;
+           if (isset($selectedCityData['cuaca'])){
+                 foreach ($selectedCityData['cuaca'] as $forecast_set) {
+                    foreach ($forecast_set as $forecast) {
+                         if (isset($forecast['local_datetime'])){
+                            $forecastTime = new DateTime($forecast['local_datetime'], new DateTimeZone($timezone));
+                            $diff = abs($now->getTimestamp() - $forecastTime->getTimestamp());
+                            if ($diff < $minDiff) {
+                               $minDiff = $diff;
+                                $currentForecast = $forecast;
+                           }
+                         }
+                   }
+               }
+           }
+
+            if ($currentForecast) {
+               $weather_desc = isset($currentForecast['weather_desc']) ? $currentForecast['weather_desc'] : 'Unknown';
+                $icon_html = isset($icon_mapping[$weather_desc]) ? $icon_mapping[$weather_desc] : '';
+
+               $formatted_time = $now->format('H:i');
+
+               echo '<div class="current-weather">';
+               echo '<div class="current-weather-time" style =" font-size: 20px; text-align : center;" id="realtime-clock">' . $formatted_time . ' WIB</div>';
+                  echo '<div class="current-weather-temp" style =" display: flex; justify-content: center; align-items: center; font-size: 30px;">' . (isset($currentForecast['t']) ? $currentForecast['t'] : 'N/A') . '°C</div>';
+                 echo '<div class="current-weather-icon" style="display: flex; justify-content: center; align-items: center; font-size: 30px; flex-direction:row;">
+                          <span style="margin-right: 18px; margin-top: -24px">' . $icon_html . '</span>
+                         <span>' . $weather_desc . '</span>
+                     </div>';
+                echo '<div class="current-weather-humidity" style="display: flex; justify-content: center; align-items: center; font-size: 16px;">💧' . (isset($currentForecast['hu']) ? $currentForecast['hu'] : 'N/A') . ' %</div>';
+              echo '</div>';
+          }
+         ?>
+      </div>
+    <div class="filter-container">
+       <select onchange="filterTable(this.value)">
+            <option value="all">Tiga Hari Kedepan</option>
+            <option value="today">Hari Ini</option>
+           <option value="tomorrow">Besok</option>
+            <option value="today-tomorrow">Hari Ini & Besok</option>
+        </select>
+   </div>
+    <div class="weather-table-container">
+        <table class="weather-table" id="weatherTable">
+            <thead>
+                <tr>
+                    <th>Suhu</th>
+                   <th>Tutupan Awan</th>
+                   <th>Deskripsi Cuaca</th>
+                    <th>Kecepatan Angin</th>
+                    <th>Kelembapan Udara</th>
+                  <th>Jarak Pandang</th>
+                   <th>Waktu Setempat</th>
+                   <th>Tanggal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (isset($selectedCityData['cuaca'])){
+                   foreach ($selectedCityData['cuaca'] as $forecast_set) {
+                        foreach ($forecast_set as $forecast) {
+                          $weather_desc = isset($forecast['weather_desc']) ? $forecast['weather_desc'] : 'Unknown';
+                            $icon_html = isset($icon_mapping[$weather_desc]) ? $icon_mapping[$weather_desc] : '';
+
+                            $local_datetime = isset($forecast['local_datetime']) ? $forecast['local_datetime'] : null;
+                           $formatted_time = 'N/A';
+                          $formatted_date = 'N/A';
+
+                            if ($local_datetime) {
+                                try {
+                                   $date = new DateTime($local_datetime);
+                                     $formatted_time = $date->format('H:i');
+                                   $formatted_date = $date->format('Y-m-d');
+                                } catch (Exception $e) {
+                                     // Handle invalid date format
+                               }
+                           }
+
+                            echo '<tr data-date="' . $formatted_date . '">';
+                           echo '<td>' . (isset($forecast['t']) ? $forecast['t'] : 'N/A') . ' °C</td>';
+                           echo '<td>' . (isset($forecast['tcc']) ? $forecast['tcc'] : 'N/A') . ' %</td>';
+                            echo '<td>' . $icon_html . ' ' . $weather_desc . '</td>';
+                           echo '<td>' . (isset($forecast['ws']) ? $forecast['ws'] : 'N/A') . ' km/jam</td>';
+                           echo '<td>' . (isset($forecast['hu']) ? $forecast['hu'] : 'N/A') . ' %</td>';
+                           echo '<td>' . (isset($forecast['vs_text']) ? $forecast['vs_text'] : 'N/A') . '</td>';
+                            echo '<td>' . $formatted_time . '</td>';
+                           echo '<td>' . $formatted_date . '</td>';
+                           echo '</tr>';
+                       }
                     }
                 }
-             }
-            if ($currentForecast) {
-                $weather_desc = isset($currentForecast['weather_desc']) ? $currentForecast['weather_desc'] : 'Unknown';
-                 $icon_html = isset($icon_mapping[$weather_desc]) ? $icon_mapping[$weather_desc] : '';
 
-                $formatted_time = $now->format('H:i');
-
-                echo '<div class="current-weather">';
-                 echo '<div class="current-weather-time" style =" font-size: 20px; text-align : center;" id="realtime-clock">' . $formatted_time . ' WIB</div>';
-                    echo '<div class="current-weather-temp" style =" display: flex; justify-content: center; align-items: center; font-size: 30px;">' . (isset($currentForecast['t']) ? $currentForecast['t'] : 'N/A') . '°C</div>';
-                    echo '<div class="current-weather-icon" style="display: flex; justify-content: center; align-items: center; font-size: 30px;">
-                            <span style="margin-right: 5px;">' . $icon_html . '</span>
-                            <span>' . $weather_desc . '</span>
-                         </div>';
-                     echo '<div class="current-weather-humidity" style="display: flex; justify-content: center; align-items: center; font-size: 16px;">💧' . (isset($currentForecast['hu']) ? $currentForecast['hu'] : 'N/A') . ' %</div>';
-                   echo '</div>';
-            }
-           ?>
-          </div>
-
-    <?php
-
-    // Tabel Detail Cuaca
-    echo '<table class="weather-table">';
-    echo '<thead>';
-    echo '<tr>';
-    echo '<th>Suhu</th>';
-    echo '<th>Tutupan Awan</th>';
-    echo '<th>Deskripsi Cuaca</th>';
-    echo '<th>Kecepatan Angin</th>';
-    echo '<th>Kelembapan Udara</th>';
-    echo '<th>Jarak Pandang</th>';
-    echo '<th>Waktu Setempat</th>';
-    echo '<th>Tanggal</th>';
-    echo '</tr>';
-    echo '</thead>';
-    echo '<tbody>';
-    foreach ($selectedCityData['cuaca'] as $forecast_set) {
-        foreach ($forecast_set as $forecast) {
-            $weather_desc = isset($forecast['weather_desc']) ? $forecast['weather_desc'] : 'Unknown';
-            $icon_html = isset($icon_mapping[$weather_desc]) ? $icon_mapping[$weather_desc] : '';
-
-            $local_datetime = isset($forecast['local_datetime']) ? $forecast['local_datetime'] : null;
-            $formatted_time = 'N/A';
-            $formatted_date = 'N/A';
-
-            if ($local_datetime) {
-                try {
-                    $date = new DateTime($local_datetime);
-                    $formatted_time = $date->format('H:i');
-                    $formatted_date = $date->format('Y-m-d');
-                } catch (Exception $e) {
-                    // Handle invalid date format
-                }
-            }
-
-            echo '<tr>';
-            echo '<td>' . (isset($forecast['t']) ? $forecast['t'] : 'N/A') . ' °C</td>';
-            echo '<td>' . (isset($forecast['tcc']) ? $forecast['tcc'] : 'N/A') . ' %</td>';
-            echo '<td>' . $icon_html . ' ' . $weather_desc . '</td>';
-            echo '<td>' . (isset($forecast['ws']) ? $forecast['ws'] : 'N/A') . ' km/jam</td>';
-            echo '<td>' . (isset($forecast['hu']) ? $forecast['hu'] : 'N/A') . ' %</td>';
-            echo '<td>' . (isset($forecast['vs_text']) ? $forecast['vs_text'] : 'N/A') . '</td>';
-            echo '<td>' . $formatted_time . '</td>';
-            echo '<td>' . $formatted_date . '</td>';
-            echo '</tr>';
-        }
-    }
-    echo '</tbody>';
-    echo '</table>';
-    ?>
+                ?>
+            </tbody>
+        </table>
+    </div>
 </section>
 <?php include 'footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -417,24 +466,61 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         // If we need pagination
     });
     function updateClock() {
-        const clockElement = document.getElementById('realtime-clock');
+      const clockElement = document.getElementById('realtime-clock');
         const timezone = '<?php echo $selectedCityData['timezone']; ?>'; // Get the timezone from PHP
-        const date = new Date();
-        const options = {
-            timeZone: timezone,
+       const date = new Date();
+       const options = {
+           timeZone: timezone,
             hour: '2-digit',
             minute: '2-digit',
-        };
+       };
         const formattedTime = date.toLocaleTimeString(undefined, options);
 
-        clockElement.textContent = formattedTime + ' WITA';
-    }
+       clockElement.textContent = formattedTime + ' WITA';
+  }
 
     // Update the clock every second
-    setInterval(updateClock, 1000);
+   setInterval(updateClock, 1000);
 
     // Initial clock update
     updateClock();
+    function filterTable(filter) {
+            const table = document.getElementById('weatherTable');
+            const rows = table.getElementsByTagName('tr');
+            const today = new Date();
+           const tomorrow = new Date(today);
+           tomorrow.setDate(today.getDate() + 1);
+            const threeDaysAhead = new Date(today);
+            threeDaysAhead.setDate(today.getDate() + 3)
+           for (let i = 1; i < rows.length; i++) { // start from 1 to skip header row
+                const row = rows[i];
+               const rowDate = new Date(row.getAttribute('data-date'));
+
+               if (rowDate && filter !== 'all') {
+                    let showRow = false;
+                   if (filter === 'today' && rowDate.toDateString() === today.toDateString()) {
+                        showRow = true;
+                  }else if (filter === 'tomorrow' && rowDate.toDateString() === tomorrow.toDateString()){
+                        showRow = true;
+                   } else if (filter === 'today-tomorrow' && (rowDate.toDateString() === today.toDateString() || rowDate.toDateString() === tomorrow.toDateString())) {
+                       showRow = true;
+                   }
+
+                    if (showRow){
+                        row.style.display = '';
+                    } else{
+                       row.style.display = 'none';
+                  }
+               }else{
+                    row.style.display = ''; // Show all if filter is 'all'
+                }
+            }
+       }
+
+   function reloadPage(event) {
+        event.preventDefault();
+       window.location.href = event.currentTarget.getAttribute('href');
+   }
 </script>
 </body>
 </html>
