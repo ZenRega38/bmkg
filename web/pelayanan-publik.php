@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
     <title>Pelayanan Publik - BMKG Tarakan</title>
     <link rel="stylesheet" href="css/pelayanan-publik.css">
     <link rel="stylesheet" href="css/outer.css">
