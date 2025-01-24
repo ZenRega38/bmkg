@@ -13,8 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript">
         $(window).on('scroll', function(){
@@ -25,31 +24,6 @@
             }
         })
     </script>
-    <style>
-        .clock-container {
-            width: 92%; /* Adjusted to 100% */
-            display: flex;
-            justify-content: right;
-            align-items: center;
-            margin-bottom: 10px; /* Tambahkan margin jika perlu */
-            padding: 0 20px; /* Add some horizontal padding */
-        }
-        .clock {
-            align-items: right ;
-            margin: 5px; /* Mengurangi margin di antara jam */
-            font-size: 1em;
-            color: #333; /* Warna teks default */
-            font-weight: bold;
-           white-space: nowrap; /* Prevent line break */
-           text-align: right; /* Make sure time is right-aligned */
-        }
-        .date-day {
-             font-size: 1em;
-            color: #555;
-            white-space: nowrap; /* Prevent line break */
-            text-align: left; /* Make sure date/day is left-aligned */
-        }
-    </style>
 </head>
 <body>
     <?php include 'header.php'; ?>
@@ -59,48 +33,47 @@
         <div class="clock" id="witaClock">WITA: <span id="witaTime"></span></div>
     </div>
     <section class="Cuacaterkini" id="Cuacaterkini">
-    <div class="row">
-        <!-- Bagian Konten Cuaca Terkini -->
-        <div class="content-section">
-        <div class="title">
-            <h1>Cuaca Saat Ini</h1>
-        </div>
-        <div class="content">
-            <div class="weather-info">
-                <div class="info-item large">
-                    <span class="label">Suhu:</span>
-                    <span class="value" id="suhu"></span>
+        <div class="row">
+            <!-- Bagian Konten Cuaca Terkini -->
+            <div class="content-section">
+                <div class="title">
+                    <h1>Cuaca Saat Ini</h1>
                 </div>
-                <div class="info-item large">
-                    <span class="label">Cuaca:</span>
-                    <span class="value" id="cuaca"></span>
-                </div>
-                <div class="info-item small">
-                    <span class="label">Kecepatan Angin:</span>
-                    <span class="value" id="kecepatan-angin"></span>
-                </div>
-                <div class="info-item small">
-                    <span class="label">Arah Angin:</span>
-                    <span class="value" id="arah-angin"></span>
-                </div>
-                <div class="info-item small">
-                    <span class="label">Kelembaban:</span>
-                    <span class="value" id="kelembaban"></span>
+                <div class="content">
+                    <div class="weather-info">
+                        <div class="info-item large">
+                            <span class="label">Suhu:</span>
+                            <span class="value" id="suhu"></span>
+                        </div>
+                        <div class="info-item large">
+                            <span class="label">Cuaca:</span>
+                            <span class="value" id="cuaca"></span>
+                        </div>
+                        <div class="info-item small">
+                            <span class="label">Kecepatan Angin:</span>
+                            <span class="value" id="kecepatan-angin"></span>
+                        </div>
+                        <div class="info-item small">
+                            <span class="label">Arah Angin:</span>
+                            <span class="value" id="arah-angin"></span>
+                        </div>
+                        <div class="info-item small">
+                            <span class="label">Kelembaban:</span>
+                            <span class="value" id="kelembaban"></span>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <a href="cuaca.php" class="button-btn">Baca Selengkapnya</a>
+                    </div>
                 </div>
             </div>
-            <div class="button">
-                <a href="cuaca.php" class="button-btn">Baca Selengkapnya</a>
-            </div>
+            
+           <!-- Bagian Gambar -->
+          <div class="images-section">
+            <div id="map"></div>
+           </div>
         </div>
-    </div>
-    
-        <!-- Bagian Gambar -->
-        <div class="images-section">
-            <video src="images/cuaca-video.mp4" loop autoplay></video>
-        </div>
-    </div>
-    
-</section>
+    </section>
     <?php include 'kartu-cuaca.php'; ?>
     <section class="UMKM">
         <h1>Weather Magazine</h1>
@@ -189,43 +162,40 @@
             }
         }
 
-        function updateWeatherInfo(data) {
-            const now = new Date();
-            const localTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Makassar' }));
+       function updateWeatherInfo(data) {
+             const now = new Date();
+             const localTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Makassar' }));
             const localHour = localTime.getHours();
 
-             // Cari data cuaca untuk kecamatan dengan waktu terdekat
-            let closestData = null;
+             let closestData = null;
             let timeDiff = Infinity;
-                
+
             for (const locationData of data.data) {
-            for (const forecast of locationData.cuaca) {
-                for (const item of forecast) {
-                    const forecastTime = new Date(item.local_datetime);
-                    const forecastHour = forecastTime.getHours();
-                    const diff = Math.abs(localHour - forecastHour);
-    
-                    if (diff < timeDiff) {
-                        timeDiff = diff;
-                        closestData = item;
-                    }
-                }
+              for (const forecast of locationData.cuaca) {
+                  for (const item of forecast) {
+                       const forecastTime = new Date(item.local_datetime);
+                      const forecastHour = forecastTime.getHours();
+                      const diff = Math.abs(localHour - forecastHour);
+
+                      if (diff < timeDiff) {
+                            timeDiff = diff;
+                         closestData = item;
+                      }
+                   }
                }
            }
-
-                if (closestData) {
+             if (closestData) {
                 document.getElementById('suhu').textContent = closestData.t + '°C';
                 document.getElementById('cuaca').textContent = closestData.weather_desc;
-                document.getElementById('kecepatan-angin').textContent = closestData.ws + ' km/h';
-                document.getElementById('arah-angin').textContent = closestData.wd;
-                document.getElementById('kelembaban').textContent = closestData.hu + '%';
-            } else {
-                console.log('Data cuaca tidak ditemukan untuk jam saat ini.');
-            }
-           
-        }
+               document.getElementById('kecepatan-angin').textContent = closestData.ws + ' km/h';
+               document.getElementById('arah-angin').textContent = closestData.wd;
+               document.getElementById('kelembaban').textContent = closestData.hu + '%';
+           } else {
+                 console.log('Data cuaca tidak ditemukan untuk jam saat ini.');
+           }
 
-       fetchWeatherData();
+        }
+        fetchWeatherData();
     </script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
@@ -309,5 +279,21 @@
     <section class="cuacabandara">
     </section>
     <?php include 'footer.php'; ?>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+         var map = L.map('map').setView([3.353339, 117.582684], 13);
+
+         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        var marker = L.marker([3.353339, 117.582684]).addTo(map);
+         const apiKey = 'f1749350b540a2ca3c0b6a869d96894e';
+        L.tileLayer(`https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${apiKey}`, {
+              zIndex : 50,
+             maxZoom : 19,
+         }).addTo(map);
+
+    </script>
 </body>
 </html>
