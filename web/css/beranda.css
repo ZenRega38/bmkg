@@ -259,15 +259,9 @@
 .gempa {
     padding: 20px;
     background-color: #f9f9f9;
-    text-align: center;
+    text-align: left;
     border: 1px solid #ddd;
     border-radius: 8px;
-}
-
-.gempa p {
-    font-size: 1em;
-    color: #666;
-    margin-bottom: 20px;
 }
 
 .kegiatan-bmkg {
