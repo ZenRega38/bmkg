@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/beranda.css">
     <link rel="stylesheet" href="css/outer.css">
-      <link rel="stylesheet" href="css/berita.css">
+    <link rel="stylesheet" href="css/berita.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,9 +25,39 @@
             }
         })
     </script>
+    <style>
+        .clock-container {
+            width: 92%; /* Adjusted to 100% */
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            margin-bottom: 10px; /* Tambahkan margin jika perlu */
+            padding: 0 20px; /* Add some horizontal padding */
+        }
+        .clock {
+            align-items: right ;
+            margin: 5px; /* Mengurangi margin di antara jam */
+            font-size: 1em;
+            color: #333; /* Warna teks default */
+            font-weight: bold;
+           white-space: nowrap; /* Prevent line break */
+           text-align: right; /* Make sure time is right-aligned */
+        }
+        .date-day {
+             font-size: 1em;
+            color: #555;
+            white-space: nowrap; /* Prevent line break */
+            text-align: left; /* Make sure date/day is left-aligned */
+        }
+    </style>
 </head>
 <body>
     <?php include 'header.php'; ?>
+    <div class="clock-container">
+        <div class="date-day" id="dateDay"></div>
+        <div class="clock" id="utcClock">UTC: <span id="utcTime"></span></div>
+        <div class="clock" id="witaClock">WITA: <span id="witaTime"></span></div>
+    </div>
     <section class="Cuacaterkini" id="Cuacaterkini">
     <div class="row">
         <!-- Bagian Konten Cuaca Terkini -->
@@ -121,6 +151,34 @@
         
     </section>
     <script>
+        function updateClocks() {
+            const now = new Date();
+
+             // Date and Day
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const dayName = days[now.getDay()];
+            const date = now.toLocaleDateString();
+            document.getElementById("dateDay").textContent = `${dayName}, ${date}`;
+
+            // UTC time
+            const utcHours = now.getUTCHours();
+            const utcMinutes = now.getUTCMinutes();
+            const utcSeconds = now.getUTCSeconds();
+
+            document.getElementById("utcTime").textContent = `${formatTime(utcHours)}:${formatTime(utcMinutes)}:${formatTime(utcSeconds)}`;
+
+             // WITA time (UTC+8)
+            const witaHours = (utcHours + 8) % 24;
+            document.getElementById("witaTime").textContent = `${formatTime(witaHours)}:${formatTime(utcMinutes)}:${formatTime(utcSeconds)}`;
+        }
+
+        function formatTime(unit) {
+            return unit < 10 ? `0${unit}` : unit;
+        }
+
+        setInterval(updateClocks, 1000);
+        updateClocks(); // Initialize immediately
+        
         async function fetchWeatherData() {
             try {
                 const response = await fetch('https://api.bmkg.go.id/publik/prakiraan-cuaca?adm2=65.71');
