@@ -9,6 +9,30 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/wisata.css">
     <link rel="stylesheet" href="css/outer.css">
+    <style>
+        .dataset-selector {
+            margin-top: 30px;
+            text-align: center;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dataset-selector select {
+            background-color: #4682b4;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+             margin-bottom: 10px;
+        }
+        .dataset-selector select:hover {
+             background-color: #5f9ea0;
+        }
+    </style>
 </head>
 <body>
 <?php include 'header.php'; ?>
@@ -315,12 +339,12 @@ $nunukan = [
             'assets/image/wisata/nunukan/rumah_dua_negara/2.png',
             'assets/image/wisata/nunukan/rumah_dua_negara/3.png',
         ],
-        'rating' => null,
-        'rating_count' => null,
+        'rating' => 4.7,
+        'rating_count' => 409,
         'type' => 'Landmark',
         'status' => 'Open',
         'location' => 'Jl. Sei Pancang, Nunukan, Kec. Nunukan, Kabupaten Nunukan, Kalimantan Utara 77481',
-        'map_link' => '',
+        'map_link' => 'https://www.google.co.id/maps/dir//Wisata+Rumah+Dua+Negara,+77483+Tawau,+Sabah,+Malaysia/@4.1667212,117.8612812,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3215a1c52fb3c987:0xcef633e4f840bfac!2m2!1d117.8638561!2d4.1667212?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 4.166386,
         'lng' => 117.863879,
         'zoom' => 15,
@@ -333,12 +357,12 @@ $nunukan = [
             'assets/image/wisata/nunukan/pantai_batu_lamampu/2.png',
              'assets/image/wisata/nunukan/pantai_batu_lamampu/3.png',
         ],
-        'rating' => null,
-        'rating_count' => null,
+        'rating' => 4.2,
+        'rating_count' => 87,
         'type' => 'Beach',
-        'status' => 'Open',
+        'status' => 'Open 24 Hours',
         'location' => 'Lamijung, Kec. Nunukan Sel., Kabupaten Nunukan, Kalimantan Utara',
-         'map_link' => '',
+         'map_link' => 'https://www.google.co.id/maps/dir//2WR3%2B4HH+Obejek+Batu+Lamampu,+Tanjung+Karang/@4.0403165,117.9014101,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3215a7e70471e6f5:0x6476a404bc6b2c2c!2m2!1d117.903985!2d4.0403165?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 4.040271,
         'lng' => 117.903874,
         'zoom' => 15,
@@ -347,16 +371,14 @@ $nunukan = [
      [
         'title' => 'Air Terjun Binusan',
         'images' => [
-            'assets/image/wisata/nunukan/air_terjun_binusan/1.png',
-            'assets/image/wisata/nunukan/air_terjun_binusan/2.png',
-            'assets/image/wisata/nunukan/air_terjun_binusan/3.png',
+            'assets/image/wisata/nunukan/air_terjun_binusan/1.png'
         ],
         'rating' => null,
         'rating_count' => null,
         'type' => 'Waterfall',
         'status' => 'Open',
         'location' => 'Binusan, Nunukan, Nunukan Regency, North Kalimantan',
-       'map_link' => '',
+       'map_link' => 'https://www.google.co.id/maps/dir//Jl.+Air+Terjun,+Binusan,+Kec.+Nunukan,+Kabupaten+Nunukan,+Kalimantan+Utara+77482/@4.0845183,117.6272005,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3215b977321f0701:0x285d2964011d66d4!2m2!1d117.6297754!2d4.0845183?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 4.084068,
         'lng' => 117.629475,
         'zoom' => 15,
@@ -367,13 +389,13 @@ $nunukan = [
         'images' => [
             'assets/image/wisata/nunukan/alun_alun_kota_nunukan/1.png',
             'assets/image/wisata/nunukan/alun_alun_kota_nunukan/2.png',
-             'assets/image/wisata/nunukan/alun_alun_kota_nunukan/3.png',
+            'assets/image/wisata/nunukan/alun_alun_kota_nunukan/3.png',
         ],
-         'rating' => null,
-        'rating_count' => null,
+         'rating' => 4.3,
+        'rating_count' => 2440,
         'type' => 'Park',
         'status' => 'Open',
-        'location' => 'Nunukan, Nunukan Regency, North Kalimantan',
+        'location' => 'Jl. Pattimura, Nunukan Tim., Kec. Nunukan, Kabupaten Nunukan, Kalimantan Utara 77482',
         'map_link' => '',
         'lat' => 4.140271,
         'lng' => 117.651113,
@@ -383,34 +405,32 @@ $nunukan = [
     [
         'title' => 'Pantai Pasir Putih Mengkadu',
         'images' => [
-            'assets/image/wisata/nunukan/pantai_pasir_putih_mengkadu/1.png',
-            'assets/image/wisata/nunukan/pantai_pasir_putih_mengkadu/2.png',
-            'assets/image/wisata/nunukan/pantai_pasir_putih_mengkadu/3.png',
+            'assets/image/wisata/nunukan/pantai_pasir_putih_mengkadu/1.png'
         ],
-         'rating' => null,
-        'rating_count' => null,
+        'rating' => 4.3,
+        'rating_count' => 4,
         'type' => 'Beach',
         'status' => 'Open',
         'location' => 'Mengkadu, Nunukan Sel., Nunukan Regency, North Kalimantan',
-        'map_link' => '',
+        'map_link' => 'https://www.google.co.id/maps/dir//XM9G%2B3JJ+Pantai+Pasir+Putih+Sei+Mengkadu,+Tj.+Harapan,+Nunukan+Sel.,+Kabupaten+Nunukan,+Kalimantan+Utara+77482/@3.9677034,117.6765072,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3215b3d844aa2adb:0x9f2a361ec284f5f2!2m2!1d117.6765072!2d3.9677034?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 4.078614,
         'lng' => 117.727129,
         'zoom' => 15,
         'adm4' => '65.03.09.1003' //Closest Match : Mansapa
     ],
     [
-        'title' => 'Pantai Eching',
+        'title' => 'Pantai Encing',
         'images' => [
-            'assets/image/wisata/nunukan/pantai_eching/1.png',
-           'assets/image/wisata/nunukan/pantai_eching/2.png',
-            'assets/image/wisata/nunukan/pantai_eching/3.png',
+            'assets/image/wisata/nunukan/pantai_encing/1.png',
+           'assets/image/wisata/nunukan/pantai_encing/2.png',
+            'assets/image/wisata/nunukan/pantai_encing/3.png',
         ],
-         'rating' => null,
-        'rating_count' => null,
+        'rating' => 3.8,
+        'rating_count' => 135,
         'type' => 'Beach',
         'status' => 'Open',
         'location' => 'Sei Nyamuk, Sebatik Tim., Nunukan Regency, North Kalimantan',
-        'map_link' => '',
+        'map_link' => 'https://www.google.co.id/maps/dir//Pantai+Encing,+South+Nunukan,+Nunukan+Regency,+North+Kalimantan+77482/@4.1091293,117.7904945,11.27z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3215bb3e256eb0a1:0x6d84853e3c908c33!2m2!1d117.7144943!2d4.0928584?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 4.091620,
         'lng' => 117.713838,
          'zoom' => 15,
@@ -443,13 +463,14 @@ $tana_tidung = [
              'assets/image/wisata/tana_tidung/air_terjun_gunung_rian/1.png',
             'assets/image/wisata/tana_tidung/air_terjun_gunung_rian/2.png',
             'assets/image/wisata/tana_tidung/air_terjun_gunung_rian/3.png',
+            'assets/image/wisata/tana_tidung/air_terjun_gunung_rian/4.png'
         ],
-        'rating' => null,
-        'rating_count' => null,
+        'rating' => 4.4,
+        'rating_count' => 173,
         'type' => 'Waterfall',
-        'status' => 'Open',
+        'status' => 'Open 7:00am - 5:00pm',
         'location' => 'Gunung Rian, Sesayap Hilir, Tana Tidung Regency, North Kalimantan',
-        'map_link' => '',
+        'map_link' => 'https://www.google.co.id/maps/dir//GR5G%2B6CX+Rian+Mountain+Waterfall,+Rian,+Sesayap,+Tana+Tidung+Regency,+North+Kalimantan+77152/@3.5081035,116.8165846,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3216b84132ed16e9:0xe209d1f9b7e74d0b!2m2!1d116.8261118!2d3.5081035?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 3.507632,
         'lng' => 116.825684,
         'zoom' => 15,
@@ -460,14 +481,14 @@ $tana_tidung = [
         'images' => [
             'assets/image/wisata/tana_tidung/taman_hutan_mangrove/1.png',
             'assets/image/wisata/tana_tidung/taman_hutan_mangrove/2.png',
-             'assets/image/wisata/tana_tidung/taman_hutan_mangrove/3.png',
+            'assets/image/wisata/tana_tidung/taman_hutan_mangrove/3.png',
         ],
-        'rating' => null,
-        'rating_count' => null,
+        'rating' => 4.5,
+        'rating_count' => 60,
         'type' => 'Nature Preserve',
-        'status' => 'Open',
+        'status' => 'Open 8:00am - 5:00pm',
         'location' => 'Tideng Pale Tim., Sesayap, Tana Tidung Regency, North Kalimantan',
-        'map_link' => '',
+        'map_link' => 'https://www.google.co.id/maps/dir//JW79%2B334+Taman+Hutan+Manggrove+Tana+Tidung,+Tideng+Pale,+Kec.+Sesayap,+Kabupaten+Tana+Tidung,+Kalimantan+Utara+77152/@3.6126257,116.9151261,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3216bd959e56be07:0xaf084375237091fd!2m2!1d116.917701!2d3.6126257?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 3.612615,
         'lng' => 116.917656,
         'zoom' => 15,
@@ -480,12 +501,12 @@ $tana_tidung = [
              'assets/image/wisata/tana_tidung/baloy_adat_tidung/2.png',
              'assets/image/wisata/tana_tidung/baloy_adat_tidung/3.png',
         ],
-        'rating' => null,
-        'rating_count' => null,
+        'rating' => 5.0,
+        'rating_count' => 5,
        'type' => 'Historical Landmark',
         'status' => 'Open',
-        'location' => 'Jl. Perintis, Tideng Pale, Sesayap, Tana Tidung Regency, North Kalimantan 77663',
-         'map_link' => '',
+        'location' => 'Menjelutung, Sesayap Hilir, Tana Tidung Regency, North Kalimantan 77453',
+         'map_link' => 'https://www.google.co.id/maps/dir//J5RQ%2B8HW+Balai+Adat+Tidung,+Menjelutung,+Sesayap+Hilir,+Tana+Tidung+Regency,+North+Kalimantan+77453/@3.6408749,117.1863741,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x321421042274fb47:0xe2e5b188d2a089a4!2m2!1d117.188949!2d3.6408749?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 3.581022,
         'lng' => 117.007007,
         'zoom' => 15,
@@ -498,12 +519,12 @@ $tana_tidung = [
             'assets/image/wisata/tana_tidung/ekowisata_kujau/2.png',
              'assets/image/wisata/tana_tidung/ekowisata_kujau/3.png',
         ],
-        'rating' => null,
-        'rating_count' => null,
+        'rating' => 4.1,
+        'rating_count' => 63,
         'type' => 'Ecotourism',
-        'status' => 'Open',
-        'location' => 'Kujau, Sesayap Hilir, Tana Tidung Regency, North Kalimantan',
-        'map_link' => '',
+        'status' => 'Open 8:00am - 5:00pm',
+        'location' => 'Jl. Ahmad Yani, Kujau, Kec. Sesayap, Kabupaten Tana Tidung, Kalimantan Utara 77152',
+        'map_link' => 'https://www.google.co.id/maps/dir//C2V7%2BXP9+Ekowisata+Yaki+Anan+Desa+Kujau,+Jl.+Ahmad+Yani,+Kujau,+Kec.+Sesayap,+Kabupaten+Tana+Tidung,+Kalimantan+Utara+77152/@3.4449045,117.0121786,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3216af61d45e28e5:0x5f756fdbd38ab8ce!2m2!1d117.0143673!2d3.4449045?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 3.444839,
         'lng' => 117.014444,
         'zoom' => 15,
@@ -516,30 +537,30 @@ $tana_tidung = [
              'assets/image/wisata/tana_tidung/hutan_pinus/2.png',
              'assets/image/wisata/tana_tidung/hutan_pinus/3.png',
         ],
-        'rating' => null,
-        'rating_count' => null,
+        'rating' => 4.4,
+        'rating_count' => 44,
         'type' => 'Forest',
         'status' => 'Open',
-        'location' => 'Tideng Pale Tim., Sesayap, Tana Tidung Regency, North Kalimantan',
-         'map_link' => '',
+        'location' => 'Jl. Perintis, Tideng Pale, Kec. Sesayap, Kabupaten Tana Tidung, Kalimantan Utara 77152',
+         'map_link' => 'https://www.google.co.id/maps/dir//JW34%2BGRC+Hutan+Pinus+Tana+Tidung,+Jl.+Perintis,+Tideng+Pale,+Kec.+Sesayap,+Kabupaten+Tana+Tidung,+Kalimantan+Utara+77152/@3.6038169,116.9044303,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3216bdf9d3c6a371:0x77ba2193cf8f2725!2m2!1d116.9070052!2d3.6038169?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 3.514849,
         'lng' => 116.935876,
         'zoom' => 15,
          'adm4' => '65.04.01.2005' //Closest Match : Tideng Pale Timur
     ],
-     [
+    [
         'title' => 'Sungai Rongkang',
        'images' => [
             'assets/image/wisata/tana_tidung/sungai_rongkang/1.png',
             'assets/image/wisata/tana_tidung/sungai_rongkang/2.png',
             'assets/image/wisata/tana_tidung/sungai_rongkang/3.png',
         ],
-         'rating' => null,
-        'rating_count' => null,
+         'rating' => 4.5,
+        'rating_count' => 4,
        'type' => 'River',
         'status' => 'Open',
-        'location' => 'Rongkang, Sesayap Hilir, Tana Tidung Regency, North Kalimantan',
-        'map_link' => '',
+        'location' => 'Sedulun, Sesayap, Tana Tidung Regency, North Kalimantan 77152',
+        'map_link' => 'https://www.google.co.id/maps/dir//GV9H%2B58M+Wisata+Rongkang,+Sedulun,+Kec.+Sesayap,+Kabupaten+Tana+Tidung,+Kalimantan+Utara+77152/@3.5179696,116.8687669,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3216b98ac6c3853b:0xbf2c1adb30ee0313!2m2!1d116.8782941!2d3.5179696?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 3.518023,
         'lng' => 116.878062,
         'zoom' => 15,
@@ -548,19 +569,19 @@ $tana_tidung = [
 ];
 
 $malinau = [
-     [
+    [
         'title' => 'Air Terjun Semolon',
         'images' => [
             'assets/image/wisata/malinau/air_terjun_semolon/1.png',
             'assets/image/wisata/malinau/air_terjun_semolon/2.png',
              'assets/image/wisata/malinau/air_terjun_semolon/3.png',
         ],
-        'rating' => null,
-        'rating_count' => null,
+        'rating' => 4.5,
+        'rating_count' => 66,
        'type' => 'Waterfall',
         'status' => 'Open',
-        'location' => 'Semolon, Malinau Sel., Malinau Regency, North Kalimantan',
-        'map_link' => '',
+        'location' => 'Harapan Maju, Mentarang, Malinau Regency, North Kalimantan 77554',
+        'map_link' => 'https://www.google.co.id/maps/dir//F98M%2B852+Semolon+Waterfall,+Harapan+Maju,+Mentarang,+Malinau+Regency,+North+Kalimantan+77554/@3.4657502,116.3803002,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x321728528e75e7dd:0xe682e32f75850e34!2m2!1d116.3828751!2d3.4657502?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 3.465443,
         'lng' => 116.383060,
         'zoom' => 15,
@@ -573,12 +594,12 @@ $malinau = [
             'assets/image/wisata/malinau/air_terjun_sekelibon/2.png',
             'assets/image/wisata/malinau/air_terjun_sekelibon/3.png',
         ],
-         'rating' => null,
-        'rating_count' => null,
-         'type' => 'Waterfall',
+         'rating' => 4.4,
+        'rating_count' => 12,
+        'type' => 'Waterfall',
         'status' => 'Open',
-        'location' => 'Paking, Malinau Bar., Malinau Regency, North Kalimantan',
-        'map_link' => '',
+        'location' => 'Paking, Mentarang, Malinau Regency, North Kalimantan 77555',
+        'map_link' => 'https://www.google.co.id/maps/dir//GCJ7%2B3GC+Air+terjun+sekelibon,+Paking,+Kec.+Mentarang,+Kabupaten+Malinau,+Kalimantan+Utara+77555/@3.5301873,116.4111784,17z/data=!4m16!1m7!3m6!1s0x321725d10b6d48d9:0x1a5865d785062ed3!2sAir+terjun+sekelibon!8m2!3d3.5301873!4d116.4137533!16s%2Fg%2F11qnrlssy6!4m7!1m0!1m5!1m1!1s0x321725d10b6d48d9:0x1a5865d785062ed3!2m2!1d116.4137533!2d3.5301873?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 3.530181,
         'lng' => 116.413775,
         'zoom' => 15,
@@ -591,12 +612,12 @@ $malinau = [
             'assets/image/wisata/malinau/air_terjun_marthin_bila/2.png',
              'assets/image/wisata/malinau/air_terjun_marthin_bila/3.png',
         ],
-         'rating' => null,
-        'rating_count' => null,
+         'rating' => 5.0,
+        'rating_count' => 2,
        'type' => 'Waterfall',
         'status' => 'Open',
-        'location' => 'Malinau Kota, Malinau Regency, North Kalimantan',
-        'map_link' => '',
+        'location' => 'Metut, Malinau Sel., Malinau Regency, North Kalimantan 77554',
+        'map_link' => 'https://www.google.co.id/maps/dir//VGW7%2BV87+Air+Terjun+Marthin+Billa,+Metut,+Malinau+Sel.,+Kabupaten+Malinau,+Kalimantan+Utara+77554/@2.8991384,116.5031203,4627m/data=!3m1!1e3!4m16!1m7!3m6!1s0x321103433f4e9d55:0x8b529affc9794d4e!2sAir+Terjun+Marthin+Billa!8m2!3d2.8971687!4d116.5133116!16s%2Fg%2F11lrn72vpy!4m7!1m0!1m5!1m1!1s0x321103433f4e9d55:0x8b529affc9794d4e!2m2!1d116.5133116!2d2.8971687?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 2.891916,
         'lng' => 116.512699,
         'zoom' => 15,
@@ -606,15 +627,15 @@ $malinau = [
         'title' => 'Desa Wisata Setulang',
         'images' => [
             'assets/image/wisata/malinau/desa_wisata_setulang/1.png',
-             'assets/image/wisata/malinau/desa_wisata_setulang/2.png',
+            'assets/image/wisata/malinau/desa_wisata_setulang/2.png',
             'assets/image/wisata/malinau/desa_wisata_setulang/3.png',
         ],
-         'rating' => null,
-        'rating_count' => null,
+         'rating' => 4.6,
+        'rating_count' => 202,
        'type' => 'Village',
         'status' => 'Open',
        'location' => 'Setulang, Malinau Sel., Malinau Regency, North Kalimantan 77554',
-       'map_link' => '',
+       'map_link' => 'https://google.co.id/maps/dir//Desa+Wisata+Setulang,+Setulang,+Malinau+Sel.,+Kabupaten+Malinau,+Kalimantan+Utara+77554/@3.4563759,116.4950313,869m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x3216d6d967788b4d:0xb7e371139443db59!2m2!1d116.4976062!2d3.4563759?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 3.456280,
         'lng' => 116.497703,
         'zoom' => 15,
@@ -624,19 +645,22 @@ $malinau = [
         'title' => 'Taman Nasional Kayan Mentarang',
         'images' => [
             'assets/image/wisata/malinau/taman_nasional_kayan_mentarang/1.png',
-             'assets/image/wisata/malinau/taman_nasional_kayan_mentarang/2.png',
+            'assets/image/wisata/malinau/taman_nasional_kayan_mentarang/2.png',
             'assets/image/wisata/malinau/taman_nasional_kayan_mentarang/3.png',
+            'assets/image/wisata/malinau/taman_nasional_kayan_mentarang/4.png',
+            'assets/image/wisata/malinau/taman_nasional_kayan_mentarang/5.png',
+            'assets/image/wisata/malinau/taman_nasional_kayan_mentarang/6.png',
         ],
-         'rating' => null,
-        'rating_count' => null,
+         'rating' => 4.4,
+        'rating_count' => 270,
         'type' => 'National Park',
        'status' => 'Open',
-        'location' => 'Malinau Regency, North Kalimantan',
-        'map_link' => '',
+        'location' => 'Balai Taman Nasional Kayan Mentarang Pemda, Jl. Pusat Pemerintahan, Tanjung Belimbing, Pujungan, Kabupaten Malinau, Kalimantan Utara 77562',
+        'map_link' => 'https://www.google.co.id/maps/dir//V9CH%2BPCG+Kayan+Mentarang+National+Park,+Balai+Taman+Nasional+Kayan+Mentarang+Pemda,+Jl.+Pusat+Pemerintahan,+Tanjung+Belimbing,+Pujungan,+Kabupaten+Malinau,+Kalimantan+Utara+77562/@2.8718169,115.3760006,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x2de5f1f024acf7dd:0x2f283b3e910b04c7!2m2!1d115.3785755!2d2.8718169?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D',
         'lat' => 2.871742,
         'lng' => 115.378597,
         'zoom' => 15,
-        'adm4' => null // No specific village location, using null.
+        'adm4' => '65.02.03.2001' // Closest Match: Pujungan
     ],
     [
         'title' => 'Desa Wisata Long Alango',
@@ -649,12 +673,13 @@ $malinau = [
         'rating_count' => null,
         'type' => 'Village',
        'status' => 'Open',
-        'location' => 'Long Alango, Bahau Hulu, Malinau Regency, North Kalimantan',
+        'location' => 'Long Tebulo, Bahau Hulu, Malinau Regency, North Kalimantan',
          'map_link' => '',
         'lat' => 2.961141,
         'lng' => 115.856618,
         'zoom' => 15,
-         'adm4' => null // No specific village, using null.
+        'adm4' => '65.02.05.2001' // Closest Match: Long Nawang
+        
     ],
 ];
 
@@ -688,7 +713,15 @@ $currentCards = ${$selectedDataset};
         <div class="card-content">
             <h2 class="card-title"><?= $card['title'] ?></h2>
             <div class="card-rating">
-                <span class="rating-stars"><?= $card['rating'] ?> <?= str_repeat('★', floor($card['rating'])) ?><?= (round($card['rating'] - floor($card['rating'])) > 0) ? '☆' : '' ?></span>
+                <span class="rating-stars">
+                    <?=                     
+                        $fullStars = ($card['rating']);
+                        $emptyStars = 6 - $fullStars;
+                        echo str_repeat('★', $fullStars);
+                        echo str_repeat('☆', $emptyStars); 
+                                    
+                    ?>
+                </span>
                 <span class="rating-count">(<?= number_format($card['rating_count']) ?>)</span>
             </div>
             <p class="card-description"><?= $card['type'] ?> · <span class="open-status"><?= $card['status'] ?></span></p>
