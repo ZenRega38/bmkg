@@ -41,7 +41,7 @@
                             <a class="dropdown-link" href="cuaca.php">Cuaca Wilayah</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="wisata-tarakan.php">Cuaca Tempat Wisata</a>
+                            <a class="dropdown-link" href="wisata.php">Cuaca Tempat Wisata</a>
                         </li>
                        </ul>
                       </div>
