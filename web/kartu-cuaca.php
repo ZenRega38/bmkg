@@ -27,34 +27,39 @@
 
         .row {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 20px;
             overflow: hidden;
-            padding-bottom: 20px;
             position: relative;
             transition: transform 0.5s ease-in-out;
         }
 
-        .cuaca-col {
-            height: 150px;
-            flex:auto;
-            align-items: center;
-            width: 10rem;
+         .cuaca-col {
+            flex: auto;
+             width: 10rem;
             border-radius: 10px;
-            margin-bottom: 5%;
-            text-align: left;
+             /* margin-bottom: 5%; */
+           text-align: left;
             background-color: #f4f7fc;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+             display: flex;
+             flex-direction: column;
+             align-items: center; /* Center items horizontally */
         }
 
         .cuaca-col img {
-            width: 100%;
+            width: 80%; /* Reduced image width */
             border-radius: 10px;
+            /* margin-bottom: 10px; */
+             align-self: center; /* center image in their own container */
         }
 
+
+
         .cuaca-col h3 {
-            margin-top: 16px;
-            margin-bottom: 10px;
+            margin-top: 0;
+            /* margin-bottom: 10px; */
             color: #1976d2;
             font-size: 1.2em;
         }
@@ -65,134 +70,10 @@
             margin: 5px 0;
         }
 
-        .arrow-button {
-            background-color: #1976d2;
-            color: white;
-            border: none;
-            padding: 15px;
-            font-size: 1em;
-            cursor: pointer;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            transform: translateY(10%);
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .arrow-left {
-            left: -40px;
-        }
-
-        .arrow-right {
-            right: -40px;
-        }
-
-        @media (max-width: 768px) {
-            .arrow-button {
-                padding: 10px;
-                font-size: 1.2em;
-            }
-
-            .arrow-left {
-                left: -20px;
-            }
-
-            .arrow-right {
-                right: -20px;
-            }
-        }
     </style>
 </head>
 <body>
-    <section class="cuaca">
-        <h1>Cuaca Terkini di Kelurahan Tarakan</h1>
-        <p>Periksa cuaca terkini di setiap kelurahan.</p>
-
-        <button class="arrow-button arrow-left" onclick="scrollLeft()">
-            <i class="fa-solid fa-arrow-left"></i>
-        </button>
-            <div class="row" id="cuacaRow">
-            <div class="cuaca-col">
-                <h3>Kelurahan A</h3>
-                <p>Suhu: 30°C</p>
-                <p>Kecepatan Angin: 15 km/jam</p>
-                <p>Kelembapan: 80%</p>
-                <p>Kondisi Cuaca: Cerah</p> 
-            </div>
-             <div class="cuaca-col">
-                <h3>Kelurahan B</h3>
-                <p>Suhu: 28°C</p>
-                <p>Kecepatan Angin: 12 km/jam</p>
-                <p>Kelembapan: 85%</p>
-                <p>Kondisi Cuaca: Berawan</p>
-            </div>
-            <div class="cuaca-col">
-                 <h3>Kelurahan C</h3>
-                <p>Suhu: 32°C</p>
-                <p>Kecepatan Angin: 10 km/jam</p>
-                <p>Kelembapan: 75%</p>
-                <p>Kondisi Cuaca: Panas</p>
-            </div>
-            <div class="cuaca-col">
-                <h3>Kelurahan D</h3>
-                <p>Suhu: 29°C</p>
-                <p>Kecepatan Angin: 18 km/jam</p>
-                <p>Kelembapan: 70%</p>
-                <p>Kondisi Cuaca: Hujan</p>
-                </div>
-
-            </div>
-        <button class="arrow-button arrow-right" onclick="scrollRight()">
-            <i class="fa-solid fa-arrow-right"></i>
-        </button>
+    <section class="cuaca" id="kartu-cuaca">
     </section>
-
-    <script>
-        const row = document.getElementById('cuacaRow');
-        const cardWidth = document.querySelector('.cuaca-col').offsetWidth + 20; // Lebar kartu + gap
-        let position = 0;
-        let isScrolling = false;
-
-        function scrollLeft() {
-            if (isScrolling) return;
-            isScrolling = true;
-
-            position += cardWidth;
-            row.style.transition = 'transform 0.5s ease-in-out';
-            row.style.transform = `translateX(${position}px)`;
-
-            setTimeout(() => {
-                const cards = document.querySelectorAll('.cuaca-col');
-                const lastCard = cards[cards.length - 1];
-                row.style.transition = 'none';
-                row.insertBefore(lastCard, cards[0]);
-                position -= cardWidth;
-                row.style.transform = `translateX(${position}px)`;
-                isScrolling = false;
-            }, 500);
-        }
-
-        function scrollRight() {
-            if (isScrolling) return;
-            isScrolling = true;
-
-            position -= cardWidth;
-            row.style.transition = 'transform 0.5s ease-in-out';
-            row.style.transform = `translateX(${position}px)`;
-
-            setTimeout(() => {
-                const cards = document.querySelectorAll('.cuaca-col');
-                const firstCard = cards[0];
-                row.style.transition = 'none';
-                row.appendChild(firstCard);
-                position += cardWidth;
-                row.style.transform = `translateX(${position}px)`;
-                isScrolling = false;
-            }, 500);
-        }
-    </script>
 </body>
 </html>

@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
+    font-family: 'Poppins', sans-serif; /* Menggunakan font Poppins */
+}
+
+/* Mengimpor font Poppins dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.card-item {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image .image-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+   height: 100%;
+}
+
+.card-image .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+     flex-shrink: 0;
+}
+
+.map-container {
+    width: 100%;
+    height: 150px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.map-container #map {
+     width: 100%;
+     height: 100%;
+    position: absolute;
+     top: 0;
+     left: 0;
+}
+.card-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-title {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.card-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.rating-stars {
+    color: #ffc107;
+    margin-right: 5px;
+}
+
+.card-description {
+    font-size: 0.95em;
+    color: #555;
+    flex: 1;
+    margin-bottom: 10px;
+}
+
+.card-weather {
+    margin-bottom: 10px;
+}
+
+.weather-temp {
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.weather-temp img {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+ .weather-temp span {
+     display: inline-block;
+}
+
+
+.weather-desc {
+    font-size: 1em;
+    color: #777;
+   display: flex; /* Use flex to get weather desc to align to the bottom */
+  align-items: flex-end;
+}
+
+.weather-advice {
+    margin-top: 12px;
+    font-size: 1em;
+}
+
+.open-status {
+    color: green;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.card-actions a {
+    display: flex;
+    justify-content: center;
+    align-items: right;
+    width: 50px;
+    height: 50px;
+}
+
+
+.navigation-button,
+.save-button {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex; /* Added this line*/
+    justify-content: center; /* Added this line*/
+    align-items: center; /* Added this line*/
+
+}
+
+
+.navigation-button img { /* Modified this line*/
+  width: 28px;
+  height: 28px;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}

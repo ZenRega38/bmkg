@@ -259,19 +259,17 @@
 .gempa {
     padding: 20px;
     background-color: #f9f9f9;
-    text-align: center;
+    text-align: left;
     border: 1px solid #ddd;
     border-radius: 8px;
 }
 
-.gempa p {
-    font-size: 1em;
-    color: #666;
-    margin-bottom: 20px;
-}
-
 .kegiatan-bmkg {
-    padding: 20px;
+    max-width: 100%;
+    padding-top: 40px;
+    padding-left: 130px;
+    padding-right: 130px;
+    justify-content: center;
     background-color: #f9f9f9;
     text-align: center;
     border: 1px solid #ddd;
@@ -287,6 +285,16 @@
     font-size: 1em;
     color: #666;
     margin-bottom: 20px;
+}
+
+.row{
+    /* display: flex; */
+    align-items: flex-start;
+    row-gap: 0px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    position: relative;
+    transition: transform 0.5s ease-in-out;
 }
 
 .news-item {

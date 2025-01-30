@@ -7,17 +7,12 @@
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     overflow-x: hidden;
 }
 
 #background-video {
-    position: absolute;
-    top: 40%;
+    position: fixed;
+    top: 0;
     left: 0;
     width: 105%; 
     height: auto; 
@@ -27,7 +22,7 @@ body {
 }
 
 #overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -38,7 +33,7 @@ body {
         rgba(0, 0, 0, 0.5) 60%,            
         /*rgba(117, 117, 117, 0.605) 80%,*/     
         rgba(255, 255, 255, 1) 90%);
-    z-index: -1; /
+    z-index: -1;
 }
 
 header {
@@ -47,10 +42,8 @@ header {
     position: relative;
 }
 
+
 .judul-layanan {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
     margin: 40px auto; 
     width: 100%;
     max-width: 1200px; 
@@ -89,18 +82,24 @@ header {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+section { /* Add this */
+    display: flex; /* Add this */
+    justify-content: center; /* Add this */
+    align-items: center; /* Add this */
+}
+
 .box {
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap; 
     margin: 50px 0 50px 0;
     padding: 20px;
-    max-width: 1200px; 
+    max-width: 1200px;
     background-color: rgba(249, 249, 249, 1);
     border-radius: 10px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+}
 
 .container-pelpub {
     display: grid;
