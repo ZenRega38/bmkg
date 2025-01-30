@@ -46,7 +46,6 @@
                     <br>
                 </p>
             </div>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/uep9J0hvjVo?si=In2E7tbpOMjGKVT9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
 
         </section>
 
