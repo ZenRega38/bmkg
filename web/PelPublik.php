@@ -55,7 +55,7 @@
                 </div>
                 <div class="card-content">
                     <h2 class="card-title">PTSP</h2>
-                    <p class="card-description">Apabila ada pengaduan silahkan ajukan disini</p>
+                    <p class="card-description">Pelayanan Terpadu Satu Pintu</p>
                     <button class="card-button">Klik disini</button>
                 </div>
             </div>
