@@ -793,7 +793,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         "Hujan mungkin berlanjut, pertimbangkan untuk menunda kunjungan!";
                 } else if(rainyHours.length) {
                     const rainTime = new Date(rainyHours[0].local_datetime);
-                    advice += `Membawa payung disarankan sekitar jam ${rainTime.toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit'})}!`;
+                    advice += `Membawa payung disarankan, kemungkinan hujan sekitar jam ${rainTime.toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit'})}!`;
                 } else {
                     advice += "Nikmati aktivitas Anda!";
                 }
