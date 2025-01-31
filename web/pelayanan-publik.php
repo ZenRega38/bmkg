@@ -13,6 +13,7 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
+
     <video autoplay muted loop id="background-video">
         <source src="assets/video/bmkgvid.mp4" type="video/mp4">
         Your browser does not support the video tag.
