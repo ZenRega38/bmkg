@@ -19,7 +19,7 @@
 </header>
 
 <header id="nav-menu" aria-label="navigation bar">
-    <div class="container">
+    <div class="container" >
         <nav class="menu">
             <ul class="menu-bar">
                 <li><a class="nav-link" href="index.php">Beranda</a></li>
