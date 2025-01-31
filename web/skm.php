@@ -24,7 +24,8 @@ $satelitUrl = "http://satelit.bmkg.go.id/IMAGE/ANIMASI/H08_EH_Region3_m18.gif";
             border: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            margin: 20px auto;
+            margin: 0 auto;
+            margin-top: -25px;
             max-width: 500px;
         }
 
@@ -33,7 +34,7 @@ $satelitUrl = "http://satelit.bmkg.go.id/IMAGE/ANIMASI/H08_EH_Region3_m18.gif";
             max-width: 80%;
             cursor: pointer;
             display: block;
-            margin: 10px auto;
+            margin: 0 auto;
         }
 
         .card-body {
@@ -45,10 +46,6 @@ $satelitUrl = "http://satelit.bmkg.go.id/IMAGE/ANIMASI/H08_EH_Region3_m18.gif";
     <div class="container my-5">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">
-                    <i class="fa-solid fa-satellite-dish"></i> Citra Satelit
-                </h5>
-                <hr>
                 <?php if (@get_headers($satelitUrl)): ?>
                     <img src="<?= $satelitUrl; ?>" class="img-fluid" alt="Citra Satelit" data-bs-toggle="modal" data-bs-target="#modalSatelit">
                 <?php else: ?>

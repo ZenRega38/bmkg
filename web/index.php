@@ -14,6 +14,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+      <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript">
@@ -25,47 +30,111 @@
             }
         })
     </script>
-     <style>
+    <style>
         .clock-container {
-            width: 92%; /* Adjusted to 100% */
+            width: 92%;
             display: flex;
             justify-content: right;
             align-items: center;
-            margin-bottom: 10px; /* Tambahkan margin jika perlu */
-            padding: 0 20px; /* Add some horizontal padding */
+            margin-bottom: 10px;
+            padding: 0 20px;
         }
         .clock {
             align-items: right ;
-            margin: 5px; /* Mengurangi margin di antara jam */
+            margin: 5px;
             font-size: 1em;
-            color: #333; /* Warna teks default */
+            color: #333;
             font-weight: bold;
-           white-space: nowrap; /* Prevent line break */
-           text-align: right; /* Make sure time is right-aligned */
+           white-space: nowrap;
+           text-align: right;
         }
         .date-day {
              font-size: 1em;
             color: #555;
-            white-space: nowrap; /* Prevent line break */
-            text-align: left; /* Make sure date/day is left-aligned */
+            white-space: nowrap;
+            text-align: left;
         }
          .images-section #map {
             height: 400px;
             width: 100%;
+            border-radius : 15px;
         }
         .images-section iframe {
              border-radius : 15px;
+        }
+        .images-section {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        /* Set fixed height for both map and satellite containers */
+        #map,
+        #citraSatelitContainer .card {
+            height: 400px;
+        }
+
+        #changeMapButton {
+            margin-top: 20px; /* Space between map/satellite and button */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: auto;
+            align-self: flex-end; /* Right alignment */
+            position: relative; /* Remove absolute positioning */
+            z-index: 1000;
+        }
+
+        #changeMapButton:hover {
+            background-color: #0056b3;
+        }
+
+        #changeMapButton:hover {
+            background-color: #0056b3;
+        }
+        /* Styles for citra satelit */
+        .card {
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin: 0 auto;
+            margin-top: -25px;
+           max-width: 100%;
+           height: 400px;
+        }
+
+        .card img {
+            border-radius: 8px;
+            max-width: 80%;
+            max-height: 80%;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+         .card-body {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+             align-items: center;
+             height: 100%;
         }
     </style>
 </head>
 <body>
     <?php include 'header.php'; ?>
-    <script src="assets/script/nav.js"></script>
     <div class="clock-container">
         <div class="date-day" id="dateDay"></div>
         <div class="clock" id="utcClock">UTC: <span id="utcTime"></span></div>
         <div class="clock" id="witaClock">WITA: <span id="witaTime"></span></div>
     </div>
+    <script src="assets/script/nav.js"></script>
+
     <section class="Cuacaterkini" id="Cuacaterkini">
     <div class="row">
         <!-- Bagian Konten Cuaca Terkini -->
@@ -105,7 +174,41 @@
         <!-- Bagian Gambar -->
         <div class="images-section">
             <div id="map"></div>
+             <!-- Satelite Image Card-->
+             <div id="citraSatelitContainer" style="display:none">
+                 <div class="card">
+                    <div class="card-body">
+                         <?php
+                            $satelitUrl = "http://satelit.bmkg.go.id/IMAGE/ANIMASI/H08_EH_Region3_m18.gif";
+                             if (@get_headers($satelitUrl)): ?>
+                                <img src="<?= $satelitUrl; ?>" class="img-fluid" alt="Citra Satelit" data-bs-toggle="modal" data-bs-target="#modalSatelit">
+                             <?php else: ?>
+                                <p class="text-danger">Citra satelit tidak dapat dimuat. Silakan coba lagi nanti.</p>
+                            <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+             <button id="changeMapButton">Change Map View</button>
+
+             <!-- Modal untuk Citra Satelit -->
+             <div class="modal fade" id="modalSatelit" tabindex="-1" aria-labelledby="modalSatelitLabel" aria-hidden="true">
+                 <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                         <div class="modal-header">
+                            <h5 class="modal-title" id="modalSatelitLabel">Citra Satelit</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="<?= $satelitUrl; ?>" class="img-fluid" alt="Citra Satelit">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                 </div>
+            </div>
         </div>
+        
     </div>
 </section>
     <?php include 'kartu-cuaca.php'; ?>
@@ -114,7 +217,7 @@
         <p>Baca Majalah Cuaca Terkini di W'Mag.</p>
         <div class="imgBox">
                 <div class="swiper-container">
-                    <img class="swiper-button-prev" src="assets/image/prev_btn.png"> <!-- Added -->
+                    <img class="swiper-button-prev" src="assets/image/prev_btn.png">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="magazine_january_2025/viewer.html">
@@ -152,7 +255,7 @@
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                     </div>
-                    <img class="swiper-button-next" src="assets/image/next_btn.png"> <!-- Added -->
+                    <img class="swiper-button-next" src="assets/image/next_btn.png">
                 </div>
             </div>
         </div>
@@ -184,7 +287,7 @@
         }
 
          setInterval(updateClocks, 1000);
-        updateClocks(); // Initialize immediately
+        updateClocks();
 
         function kartuCuacaHTML(){
           return `
@@ -374,6 +477,8 @@
     </section>
     <?php include 'footer.php'; ?>
       <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+       <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
          var map = L.map('map').setView([3.353339, 117.582684], 13);
 
@@ -388,6 +493,20 @@
               maxZoom : 19
          }).addTo(map);
 
+    </script>
+    <script>
+        document.getElementById('changeMapButton').addEventListener('click', function() {
+            var mapContainer = document.getElementById('map');
+            var citraSatelitContainer = document.getElementById('citraSatelitContainer');
+
+             if (mapContainer.style.display !== 'none') {
+                 mapContainer.style.display = 'none';
+                  citraSatelitContainer.style.display = 'block';
+               } else {
+                    mapContainer.style.display = 'block';
+                    citraSatelitContainer.style.display = 'none';
+               }
+           });
     </script>
 </body>
 </html>
