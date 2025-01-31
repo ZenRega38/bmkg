@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+     <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
       <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -60,7 +61,7 @@
             border-radius : 15px;
         }
         .images-section iframe {
-             border-radius : 15px;
+            border-radius : 15px;
         }
         .images-section {
             position: relative;
@@ -86,7 +87,7 @@
             width: auto;
             align-self: flex-end; /* Right alignment */
             position: relative; /* Remove absolute positioning */
-            z-index: 1000;
+            z-index: 1;
         }
 
         #changeMapButton:hover {
@@ -123,6 +124,20 @@
             justify-content: center;
              align-items: center;
              height: 100%;
+        }
+        ul {
+            margin-bottom: 0rem;
+        }
+        .satellite-image {
+            cursor: move;
+            transition: transform 0.1s;
+            max-width: none !important;
+        }
+
+        #satellite-container {
+            width: 100%;
+            height: 70vh;
+            overflow: auto;
         }
     </style>
 </head>
@@ -173,7 +188,7 @@
     
         <!-- Bagian Gambar -->
         <div class="images-section">
-            <div id="map"></div>
+            <div id="map" style="z-index: 0;"></div>
              <!-- Satelite Image Card-->
              <div id="citraSatelitContainer" style="display:none">
                  <div class="card">
@@ -198,8 +213,14 @@
                             <h5 class="modal-title" id="modalSatelitLabel">Citra Satelit</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                            <img src="<?= $satelitUrl; ?>" class="img-fluid" alt="Citra Satelit">
+                        <div class="modal-body" style="overflow: hidden; position: relative;">
+                            <div id="satellite-container" style="overflow: hidden;">
+                                <img src="<?= $satelitUrl; ?>" class="img-fluid satellite-image" alt="Citra Satelit">
+                            </div>
+                            <div class="zoom-controls" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
+                                <button class="btn btn-primary btn-sm zoom-in"><i class="fas fa-search-plus"></i></button>
+                                <button class="btn btn-primary btn-sm zoom-out mt-1"><i class="fas fa-search-minus"></i></button>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -507,6 +528,38 @@
                     citraSatelitContainer.style.display = 'none';
                }
            });
+    </script>
+    <script>
+        // Initialize Panzoom when modal is shown
+        const modalSatelit = document.getElementById('modalSatelit');
+        let panzoomInstance = null;
+
+        modalSatelit.addEventListener('show.bs.modal', function (event) {
+            const image = document.querySelector('.satellite-image');
+            const container = document.getElementById('satellite-container');
+            
+            // Initialize Panzoom
+            panzoomInstance = Panzoom(image, {
+                contain: 'outside',
+                maxScale: 5,
+                canvas: true
+            });
+            
+            // Enable wheel zoom
+            container.addEventListener('wheel', panzoomInstance.zoomWithWheel);
+            
+            // Button controls
+            document.querySelector('.zoom-in').addEventListener('click', () => panzoomInstance.zoomIn());
+            document.querySelector('.zoom-out').addEventListener('click', () => panzoomInstance.zoomOut());
+        });
+
+        // Cleanup when modal is hidden
+        modalSatelit.addEventListener('hidden.bs.modal', function (event) {
+            if (panzoomInstance) {
+                panzoomInstance.dispose();
+                panzoomInstance = null;
+            }
+        });
     </script>
 </body>
 </html>
