@@ -36,13 +36,6 @@ body {
     z-index: -1;
 }
 
-header {
-    background-color: #fff; 
-    z-index: 1; 
-    position: relative;
-}
-
-
 .judul-layanan {
     margin: 40px auto; 
     width: 100%;
