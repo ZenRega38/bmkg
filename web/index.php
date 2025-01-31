@@ -30,7 +30,7 @@
             }
         })
     </script>
-     <style>
+    <style>
         .clock-container {
             width: 92%;
             display: flex;
@@ -63,40 +63,40 @@
              border-radius : 15px;
         }
         .images-section {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
 
-/* Set fixed height for both map and satellite containers */
-#map,
-#citraSatelitContainer .card {
-    height: 400px;
-}
+        /* Set fixed height for both map and satellite containers */
+        #map,
+        #citraSatelitContainer .card {
+            height: 400px;
+        }
 
-#changeMapButton {
-    margin-top: 20px; /* Space between map/satellite and button */
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: auto;
-    align-self: flex-end; /* Right alignment */
-    position: relative; /* Remove absolute positioning */
-    z-index: 1000;
-}
-
-#changeMapButton:hover {
-    background-color: #0056b3;
-}
+        #changeMapButton {
+            margin-top: 20px; /* Space between map/satellite and button */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: auto;
+            align-self: flex-end; /* Right alignment */
+            position: relative; /* Remove absolute positioning */
+            z-index: 1000;
+        }
 
         #changeMapButton:hover {
             background-color: #0056b3;
         }
-    /* Styles for citra satelit */
+
+        #changeMapButton:hover {
+            background-color: #0056b3;
+        }
+        /* Styles for citra satelit */
         .card {
             border: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -124,17 +124,17 @@
              align-items: center;
              height: 100%;
         }
-
     </style>
 </head>
 <body>
     <?php include 'header.php'; ?>
-    <script src="assets/script/nav.js"></script>
     <div class="clock-container">
         <div class="date-day" id="dateDay"></div>
         <div class="clock" id="utcClock">UTC: <span id="utcTime"></span></div>
         <div class="clock" id="witaClock">WITA: <span id="witaTime"></span></div>
     </div>
+    <script src="assets/script/nav.js"></script>
+
     <section class="Cuacaterkini" id="Cuacaterkini">
     <div class="row">
         <!-- Bagian Konten Cuaca Terkini -->
