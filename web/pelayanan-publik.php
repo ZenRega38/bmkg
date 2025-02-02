@@ -45,7 +45,7 @@
                     <i class="fa fa-phone"></i>
                 </div>
                 <div class="card-content">
-                    <h2 class="card-title">Call Center</h2>
+                    <h2 class="card-title">Caldssdl Center</h2>
                     <p class="card-description">Butuh bantuan atau informasi lebih lanjut? Tim kami siap membantu Anda dengan segala pertanyaan atau permasalahan yang Anda hadapi.</p>
                     <a class="card-button" href="https://wa.me/6281241416409" style="text-decoration: none;">Contact Center</a>
                 </div>            
