@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    text-align: justify;
 }
 
 .section-content {
@@ -13,13 +14,18 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
 .section-content.content-flex{
     display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
     gap: 20px; /* Spasi antar elemen */
 }
+
 .section-content-inner {
     flex: 1;
+    min-width: 300px; /* Minimum width for each content area */
 }
+
 .section-content h2 {
     color: #0056b3;
     border-bottom: 2px solid #eee;
@@ -33,18 +39,24 @@ body {
 /* Sejarah dan Video Container */
 #sejarah-video .content-sejarah-video {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping for small screens */
     align-items: flex-start;
     gap: 20px;
 }
 .text-sejarah {
+    text-align: justify;
     flex: 2;
+    min-width: 300px; /* Minimum width for text */
 }
+
 .text-sejarah p {
-   text-align: justify; /* Menambahkan ini */
+    text-align: justify;
 }
+
 .video-sejarah {
     flex: 1;
     margin-top: 20px;
+    min-width: 200px; /* Minimum width for video container */
 }
 /* Video Container */
 .video-container {
@@ -56,35 +68,85 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+.video-container iframe,
+.video-container video {
+    width: 100%;
+    max-width: 700px; /* Ensure video doesn't exceed container width */
+    /* height: auto; Removed for keeping initial height */
+    display: block; /* Remove extra space below video */
+}
 /* Struktur Container */
 .struktural-container {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 20px;
+    margin-top: 1%;
+    text-align: justify;
 }
 
 .struktural-container p {
     flex: 2;
     line-height: 1.6;
+    min-width: 300px;
 }
+
 .struktural-container ul {
    flex: 1;
    list-style-type: disc;
    padding-left: 20px;
+   min-width: 200px;
 }
 /*Gallery */
 .gallery {
-   display: flex;
-   justify-content: center;
-   gap: 10px;
-   flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 1%;
 }
 
 .gallery img {
-    width: 250px;
-    height: 200px;
+    width: 100%; /* Make the images responsive to the container */
+    max-width: 250px; /* Max width for each image */
+    /* height: auto; Removed for keeping initial height*/
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* Media query untuk layar kecil (misal: mobile) */
+@media (max-width: 768px) {
+    .section-content {
+        margin: 10px;
+        padding: 10px; /* Kurangi padding untuk layar kecil */
+    }
+
+    .section-content.content-flex,
+    #sejarah-video .content-sejarah-video,
+    .struktural-container {
+        flex-direction: column; /* Mengubah layout ke kolom pada layar kecil */
+        align-items: stretch; /* agar elemen meregang sepanjang container */
+    }
+
+    .section-content-inner,
+    .text-sejarah,
+     .video-sejarah,
+     .struktural-container p,
+    .struktural-container ul {
+        min-width: auto; /* Remove minimum widths on smaller screens */
+    }
+
+    .video-sejarah {
+        margin-top: 10px; /* Kurangi margin atas video pada layar kecil */
+    }
+
+    .video-container iframe,
+    .video-container video {
+        height: auto; /* Maintain aspect ratio */
+    }
+    .gallery img {
+        height: auto;
+    }
+}
