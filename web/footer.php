@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footer-section" style="padding-right: 30px;">
             <h4>Tentang BMKG</h4>
-            <p>Badan Meteorologi, Klimatologi, dan Geofisika menyediakan informasi terkini tentang cuaca, iklim, dan kegempaan di Indonesia.</p>
+            <p>Badan Meteorologi, Klimatologi, dan Geofisika Juwata Tarakan menyediakan informasi terkini tentang cuaca, iklim, dan kegempaan di kawasan Kalimantan Utara.</p>
         </div>
 
         <div class="footer-section">

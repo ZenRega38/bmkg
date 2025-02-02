@@ -18,11 +18,14 @@
     <main>
        <section class="section-content content-flex" style="text-align: justify;">
             <div class="section-content-inner" id="sejarah">
-                <h2>Sejarah BMKG</h2>
+                <h2>Sejarah BMKG Juwata Tarakan</h2>
                 <p>
-                    Sejarah pengamatan meteorologi dan geofisika di Indonesia – dimulai pada tahun 1841. diawali dengan pengamatan yang dilakukan secara perorangan oleh Dr. Onnen, Kepala Rumah Sakit di Bogor. Tahun demi tahun kegiatannya berkembang sesuai dengan semakin diperlukannya data hasil pengamatan cuaca dan geofisika.
-                    Pada tahun 1866, kegiatan pengamatan perorangan tersebut oleh Pemerintah Hindia Belanda diresmikan menjadi instansi pemerintah dengan nama Magnetisch en Meteorologisch Observatorium atau Observatorium Magnetik dan Meteorologi dipimpin oleh Dr. Bergsma. Pada tahun 1879 dibangun jaringan penakar hujan sebanyak 74 stasiun pengamatan di Jawa. Pada tahun 1902 pengamatan medan magnet bumi dipindahkan dari Jakarta ke Bogor. Pengamatan gempa bumi dimulai pada tahun 1908 dengan pemasangan komponen horisontal seismograf Wiechert di Jakarta, sedangkan pemasangan komponen vertikal dilaksanakan pada tahun 1928. Pada tahun 1912 dilakukan reorganisasi pengamatan meteorologi dengan menambah jaringan sekunder. Sedangkan jasa meteorologi mulai digunakan untuk penerangan pada tahun 1930. Pada masa pendudukan Jepang antara tahun 1942 sampai dengan 1945, nama instansi meteorologi dan geofisika diganti menjadi Kisho Kauso Kusho. 
-                </p>
+
+                    Stasiun Meteorologi Juwata Tarakan merupakan salah satu unit pelaksana teknis di bawah naungan Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) yang bertugas dalam melakukan pengamatan, analisis, serta penyebarluasan informasi meteorologi, klimatologi, dan geofisika. Stasiun ini memiliki peran penting dalam mendukung berbagai sektor, termasuk penerbangan, perikanan, pertanian, serta mitigasi bencana di wilayah Kalimantan Utara.
+
+                    Sebagai bagian dari jaringan stasiun meteorologi di Indonesia, Stasiun Meteorologi Juwata Tarakan menjalankan berbagai tugas utama, seperti melakukan pengamatan cuaca secara berkala, menganalisis data klimatologi, serta memberikan peringatan dini terhadap potensi cuaca ekstrem. Informasi yang dihasilkan tidak hanya bermanfaat bagi dunia penerbangan, tetapi juga bagi masyarakat umum, terutama dalam menghadapi perubahan iklim dan potensi bencana alam seperti badai, banjir, atau gelombang tinggi.
+
+                    Dengan perannya yang semakin krusial, Stasiun Meteorologi Juwata Tarakan terus berupaya meningkatkan kualitas layanan melalui modernisasi peralatan serta penguatan sumber daya manusia. Kolaborasi dengan berbagai instansi pemerintah, akademisi, dan masyarakat juga menjadi bagian dari strategi dalam meningkatkan akurasi serta kecepatan penyampaian informasi meteorologi dan klimatologi.                </p>
             </div>
 
              <div class="section-content-inner" id="video" style="text-align: justify;">
@@ -34,19 +37,18 @@
        </section>
 
         <section class="section-content" id="struktural">
-            <h2>Struktur Organisasi BMKG</h2>
-            <div class="struktural-container">
-                <img src="assets/image/diagram-struktural.png" alt="Galeri struktural">
-                <p>
-                    Sejarah pengamatan meteorologi dan geofisika di Indonesia – dimulai pada tahun 1841. diawali dengan pengamatan yang dilakukan secara perorangan oleh Dr. Onnen, Kepala Rumah Sakit di Bogor. Tahun demi tahun kegiatannya berkembang sesuai dengan semakin diperlukannya data hasil pengamatan cuaca dan geofisika. 
-                    <br>
+            <h2>Struktur Organisasi BMKG Juwata Tarakan</h2>
+            <div class="struktural-container" style="margin-top: 1%; text-align: justify;">
+                <img src="assets/image/diagram-struktural.png" alt="Galeri struktural" style="max-width: 50%; height: auto; display: block; margin: 0 auto;">
+                <p>    
+                    Stasiun Meteorologi Juwata Tarakan merupakan unit pelaksana teknis di bawah Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) yang berada pada tingkat 3 dalam struktur organisasi BMKG. Ini berarti bahwa Stasiun Meteorologi Juwata Tarakan termasuk dalam kategori stasiun meteorologi kelas II, yang memiliki tugas utama dalam melakukan pengamatan, analisis, dan penyebarluasan informasi meteorologi, klimatologi, dan geofisika di wilayahnya. Struktur organisasi tingkat 3 dalam BMKG umumnya mencakup kepala stasiun sebagai pimpinan, yang dibantu oleh beberapa kepala seksi atau sub-koordinator yang menangani bidang operasional seperti meteorologi penerbangan, klimatologi, dan pelayanan informasi cuaca. Selain itu, terdapat staf teknis dan administratif yang bertanggung jawab dalam mendukung kegiatan operasional stasiun. Dengan struktur ini, Stasiun Meteorologi Juwata Tarakan berperan penting dalam menyediakan data dan informasi cuaca yang akurat, terutama bagi penerbangan serta kepentingan masyarakat di wilayah Kalimantan Utara.
                 </p>
             </div>
 
         </section>
 
         <section class="section-content" id="galeri">
-            <h2>Galeri BMKG</h2>
+            <h2>Galeri BMKG Juwata Tarakan</h2>
             <div class="gallery">
                 <img src="assets/image/diagram-struktural.jpg" alt="Galeri 1">
                 <img src="assets/image/galeri2.jpg" alt="Galeri 2">
