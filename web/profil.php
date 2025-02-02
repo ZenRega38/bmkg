@@ -16,7 +16,7 @@
     <?php include 'header.php'; ?>
 
     <main>
-       <section class="section-content content-flex" style="text-align: justify;">
+       <section class="section-content content-flex">
             <div class="section-content-inner" id="sejarah">
                 <h2>Sejarah BMKG Juwata Tarakan</h2>
                 <p>
@@ -38,7 +38,7 @@
 
         <section class="section-content" id="struktural">
             <h2>Struktur Organisasi BMKG Juwata Tarakan</h2>
-            <div class="struktural-container" style="margin-top: 1%; text-align: justify;">
+            <div class="struktural-container">
                 <img src="assets/image/diagram-struktural.png" alt="Galeri struktural" style="max-width: 50%; height: auto; display: block; margin: 0 auto;">
                 <p>    
                     Stasiun Meteorologi Juwata Tarakan merupakan unit pelaksana teknis di bawah Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) yang berada pada tingkat 3 dalam struktur organisasi BMKG. Ini berarti bahwa Stasiun Meteorologi Juwata Tarakan termasuk dalam kategori stasiun meteorologi kelas II, yang memiliki tugas utama dalam melakukan pengamatan, analisis, dan penyebarluasan informasi meteorologi, klimatologi, dan geofisika di wilayahnya. Struktur organisasi tingkat 3 dalam BMKG umumnya mencakup kepala stasiun sebagai pimpinan, yang dibantu oleh beberapa kepala seksi atau sub-koordinator yang menangani bidang operasional seperti meteorologi penerbangan, klimatologi, dan pelayanan informasi cuaca. Selain itu, terdapat staf teknis dan administratif yang bertanggung jawab dalam mendukung kegiatan operasional stasiun. Dengan struktur ini, Stasiun Meteorologi Juwata Tarakan berperan penting dalam menyediakan data dan informasi cuaca yang akurat, terutama bagi penerbangan serta kepentingan masyarakat di wilayah Kalimantan Utara.
@@ -49,7 +49,7 @@
 
         <section class="section-content" id="galeri">
             <h2>Galeri BMKG Juwata Tarakan</h2>
-            <div class="gallery">
+            <div class="gallery" >
                 <img src="assets/image/diagram-struktural.jpg" alt="Galeri 1">
                 <img src="assets/image/galeri2.jpg" alt="Galeri 2">
                 <img src="assets/image/galeri3.jpg" alt="Galeri 3">
