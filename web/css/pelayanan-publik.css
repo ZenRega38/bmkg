@@ -12,7 +12,7 @@ body {
 
 #background-video {
     position: absolute;
-    top: 0;
+    top: 40%;
     left: 0;
     width: 105%; 
     height: auto; 
@@ -33,7 +33,7 @@ body {
         rgba(0, 0, 0, 0.5) 60%,            
         /*rgba(117, 117, 117, 0.605) 80%,*/     
         rgba(255, 255, 255, 1) 90%);
-    z-index: -1;
+    z-index: -1; /
 }
 
 .judul-layanan {
@@ -73,6 +73,73 @@ body {
     font-weight: normal;
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.counter {
+    width: 100%;;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Header */
+.counter h1 {
+    font-size: 2em;
+    color: #333;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* Kontainer untuk chart dan metrik */
+.content {
+    display: flex;
+    gap: 40px;
+}
+
+/* Chart di sebelah kiri */
+.chart-container {
+    flex: 2;
+}
+
+.chart-container h2{
+    font-size: 1em;  /* Mengubah ukuran font p jika diperlukan */
+    font-weight: bold;
+}
+
+/* Metrics di sebelah kanan */
+.metrics {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    flex: 1;
+}
+
+/* Kotak Metrik */
+.metric {
+    display: flex;                  /* Menggunakan Flexbox */
+    align-items: center;            /* Menyejajarkan secara vertikal */
+    justify-content: space-between; /* Memberikan jarak antara h3 dan p */
+    margin-bottom: 10px;            /* Menambahkan jarak antar metrik */
+    padding-bottom: 10px;           /* Memberikan ruang di bawah isi sebelum garis bawah */
+    border-bottom: 2px solid #ccc;    /* Menambahkan jarak bawah antar metric */
+}
+
+.metric h3 {
+    margin-right: 10px;
+    font-size: 1em;  /* Memberi jarak antara h3 dan p */
+}
+
+.metric p {
+    font-size: 1.2em;  /* Mengubah ukuran font p jika diperlukan */
+    font-weight: bold; /* Membuat teks lebih tebal, sesuaikan dengan gaya */
+}
+
+#visitsChart {
+    max-width: 100%;
+    height: auto;
 }
 
 section { /* Add this */
