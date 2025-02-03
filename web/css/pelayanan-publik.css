@@ -14,26 +14,29 @@ body {
     position: absolute;
     top: 40%;
     left: 0;
-    width: 105%; 
-    height: auto; 
+    width: 100vw; /* Video menutupi lebar viewport */
+    height: 120vh; /* Video menutupi tinggi viewport */
     object-fit: cover; 
+   
     z-index: -2; 
     filter: brightness(0.7);
 }
 
 #overlay {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
-    width: 100%;
-    min-height: 180%;
+    width: 100vw;
+    height: 120vh;
     background: linear-gradient(
         to bottom, 
-        rgba(33, 33, 33, 0.68) 40%,       
-        rgba(0, 0, 0, 0.5) 60%,            
-        /*rgba(117, 117, 117, 0.605) 80%,*/     
-        rgba(255, 255, 255, 1) 90%);
-    z-index: -1; /
+        rgba(33, 33, 33, 0.68) 10%,       
+        rgba(0, 0, 0, 0.4) 60%,            
+        rgba(255, 255, 255, 0.9) 90%
+    );
+    z-index: -1;
+    pointer-events: none;
+   
 }
 
 .judul-layanan {
@@ -77,9 +80,9 @@ body {
 
 .counter {
     width: 100%;;
-    max-width: 1000px;
+    max-width: 800px;
     margin: 20px auto;
-    padding: 40px;
+    padding: 20px;
     background: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -87,8 +90,8 @@ body {
 
 /* Header */
 .counter h1 {
-    font-size: 2em;
-    color: #333;
+    font-size: 1.5em;
+    color: #000000;
     text-align: left;
     margin-bottom: 20px;
 }
@@ -96,24 +99,33 @@ body {
 /* Kontainer untuk chart dan metrik */
 .content {
     display: flex;
-    gap: 40px;
+    gap: 20px;
 }
 
 /* Chart di sebelah kiri */
 .chart-container {
-    flex: 2;
+    flex: 1;
 }
 
 .chart-container h2{
-    font-size: 1em;  /* Mengubah ukuran font p jika diperlukan */
-    font-weight: bold;
+    font-size: 0.8em;  /* Mengubah ukuran font p jika diperlukan */
+    font-weight: normal;
+    color: #757575;
+    margin-left: -10px;
+    
+}
+
+.content-icon {
+    font-size: 1em; 
+    color: #757575; 
+  
 }
 
 /* Metrics di sebelah kanan */
 .metrics {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 10px;
     flex: 1;
 }
 
@@ -122,14 +134,15 @@ body {
     display: flex;                  /* Menggunakan Flexbox */
     align-items: center;            /* Menyejajarkan secara vertikal */
     justify-content: space-between; /* Memberikan jarak antara h3 dan p */
-    margin-bottom: 10px;            /* Menambahkan jarak antar metrik */
-    padding-bottom: 10px;           /* Memberikan ruang di bawah isi sebelum garis bawah */
+    margin-bottom: 5px;            /* Menambahkan jarak antar metrik */
+    padding-bottom: 5px;           /* Memberikan ruang di bawah isi sebelum garis bawah */
     border-bottom: 2px solid #ccc;    /* Menambahkan jarak bawah antar metric */
 }
 
 .metric h3 {
     margin-right: 10px;
-    font-size: 1em;  /* Memberi jarak antara h3 dan p */
+    font-size: 1em;
+    font-weight: normal;  /* Memberi jarak antara h3 dan p */
 }
 
 .metric p {
@@ -140,6 +153,7 @@ body {
 #visitsChart {
     max-width: 100%;
     height: auto;
+    margin-left: -40px;
 }
 
 section { /* Add this */

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const chartData = {
                 labels: months, // Menampilkan bulan yang sudah terbalik
                 datasets: [{
-                    label: 'Jumlah Kunjungan',
+                    
                     data: visitsData,  // Data kunjungan sesuai urutan bulan
                     fill: true,  // Mengisi area di bawah garis
                     borderColor: 'rgb(75, 192, 192)', // Warna garis
