@@ -14,30 +14,14 @@ body {
     position: absolute;
     top: 40%;
     left: 0;
-    width: 100vw; /* Video menutupi lebar viewport */
-    height: 120vh; /* Video menutupi tinggi viewport */
+    width: 100vw; 
+    height: auto; 
     object-fit: cover; 
-   
     z-index: -2; 
-    filter: brightness(0.7);
 }
 
-#overlay {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100vw;
-    height: 120vh;
-    background: linear-gradient(
-        to bottom, 
-        rgba(33, 33, 33, 0.68) 10%,       
-        rgba(0, 0, 0, 0.4) 60%,            
-        rgba(255, 255, 255, 0.9) 90%
-    );
-    z-index: -1;
-    pointer-events: none;
-   
-}
+
+
 
 .judul-layanan {
     margin: 40px auto; 
@@ -108,7 +92,7 @@ body {
 }
 
 .chart-container h2{
-    font-size: 0.8em;  /* Mengubah ukuran font p jika diperlukan */
+    font-size: 0.8em;  
     font-weight: normal;
     color: #757575;
     margin-left: -10px;
@@ -131,23 +115,23 @@ body {
 
 /* Kotak Metrik */
 .metric {
-    display: flex;                  /* Menggunakan Flexbox */
-    align-items: center;            /* Menyejajarkan secara vertikal */
-    justify-content: space-between; /* Memberikan jarak antara h3 dan p */
-    margin-bottom: 5px;            /* Menambahkan jarak antar metrik */
-    padding-bottom: 5px;           /* Memberikan ruang di bawah isi sebelum garis bawah */
-    border-bottom: 2px solid #ccc;    /* Menambahkan jarak bawah antar metric */
+    display: flex;                  
+    align-items: center;            
+    justify-content: space-between; 
+    margin-bottom: 5px;            
+    padding-bottom: 5px;           
+    border-bottom: 2px solid #ccc;    
 }
 
 .metric h3 {
     margin-right: 10px;
     font-size: 1em;
-    font-weight: normal;  /* Memberi jarak antara h3 dan p */
+    font-weight: normal;  
 }
 
 .metric p {
-    font-size: 1.2em;  /* Mengubah ukuran font p jika diperlukan */
-    font-weight: bold; /* Membuat teks lebih tebal, sesuaikan dengan gaya */
+    font-size: 1.2em; 
+    font-weight: bold; 
 }
 
 #visitsChart {
@@ -156,10 +140,10 @@ body {
     margin-left: -40px;
 }
 
-section { /* Add this */
-    display: flex; /* Add this */
-    justify-content: center; /* Add this */
-    align-items: center; /* Add this */
+section { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
 
 .box {
@@ -255,4 +239,41 @@ section { /* Add this */
 
 .card-button:hover {
     background-color: #757575;
+}
+
+@media screen and (max-width: 768px) {
+    .box {
+        background: transparent; /* Hilangkan warna background */
+        box-shadow: none; /* Hilangkan bayangan */
+    }
+
+    .container-pelpub {
+        grid-template-columns: 1fr; /* Menjadi satu kolom di HP */
+    }
+
+    #background-video {
+        height: 100vh; /* Pastikan video memenuhi layar */
+        top: 40%; /* Posisi top video di atur ke 0 */
+    }
+
+    .judul-container h1 {
+        font-size: 24px; /* Ukuran teks responsif */
+    }
+
+    .judul-container h2 {
+        max-width: 90%; 
+        font-size: 14px;
+    }
+
+    .content {
+        flex-direction: column; /* Menjadikan chart dan metrics vertikal */
+    }
+
+    .chart-container {
+        margin-left: 0; /* Menyesuaikan margin */
+    }
+
+    .metrics {
+        margin-top: 20px; /* Menambahkan jarak antara chart dan metrics */
+    }
 }

@@ -16,10 +16,10 @@
     <?php include 'header.php'; ?>
 
     <video autoplay muted loop id="background-video">
-        <source src="assets/video/bmkgvid.mp4" type="video/mp4">
+        <source src="assets/video/bg.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <div id="overlay"></div>
+    
     <section class="judul-layanan">
         <div class="judul-container">
         <h1>Layanan Publik BMKG</h1>
