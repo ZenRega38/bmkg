@@ -7,6 +7,7 @@
     <title>Pelayanan Publik - BMKG Tarakan</title>
     <link rel="stylesheet" href="css/pelayanan-publik.css">
     <link rel="stylesheet" href="css/outer.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -15,10 +16,10 @@
     <?php include 'header.php'; ?>
 
     <video autoplay muted loop id="background-video">
-        <source src="assets/video/bmkgvid.mp4" type="video/mp4">
+        <source src="assets/video/bg.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <div id="overlay"></div>
+    
     <section class="judul-layanan">
         <div class="judul-container">
         <h1>Layanan Publik BMKG</h1>
@@ -45,7 +46,7 @@
                     <i class="fa fa-phone"></i>
                 </div>
                 <div class="card-content">
-                    <h2 class="card-title">Call Center</h2>
+                    <h2 class="card-title">Caldssdl Center</h2>
                     <p class="card-description">Butuh bantuan atau informasi lebih lanjut? Tim kami siap membantu Anda dengan segala pertanyaan atau permasalahan yang Anda hadapi.</p>
                     <a class="card-button" href="https://wa.me/6281241416409" style="text-decoration: none;">Contact Center</a>
                 </div>            
@@ -98,6 +99,110 @@
             </div>
         </div>
     </section>
+
+    <section>
+        <div class="counter">
+            <h1>Counter Visitor</h1>
+            <div class="content">
+                <div class="content-icon">
+                        <j class="fa fa-laptop"></j>
+                    </div>
+                <div class="chart-container">
+                    <h2>Grafik Kunjungan 6 Bulan Terakhir</h2>
+                    <canvas id="visitsChart" width="400" height="200"></canvas>
+                </div>
+                <div class="metrics">
+                    <div class="metric">
+                        <h3>Kunjungan Hari Ini</h3>
+                        <p id="todayVisits">Loading...</p>
+                    </div>
+                    <div class="metric">
+                        <h3>Kunjungan Bulan Ini</h3>
+                        <p id="monthVisits">Loading...</p>
+                    </div>
+                    <div class="metric">
+                        <h3>Total Kunjungan</h3>
+                        <p id="totalVisits">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                fetch("Counterr.php")
+                    .then(response => response.json())
+                    .then(data => {
+                        // Menampilkan data kunjungan
+                        document.getElementById("todayVisits").textContent = data.today;
+                        document.getElementById("monthVisits").textContent = data.month;
+                        document.getElementById("totalVisits").textContent = data.total;
+
+                        // Menyiapkan data untuk grafik
+                        const months = Object.keys(data.monthly);  // Kunci bulan (YYYY-MM)
+                        const visitsData = months.map(month => data.monthly[month] || 0);  // Kunjungan per bulan
+
+                        // Mengurutkan bulan dari yang paling lama ke yang paling baru
+                        months.reverse();  // Mengurutkan bulan dari yang paling lama ke yang paling baru
+                        visitsData.reverse(); // Mengurutkan data sesuai bulan
+
+                        const chartData = {
+                            labels: months, // Menampilkan bulan yang sudah terbalik
+                            datasets: [{
+                                label: 'Jumlah Kunjungan',
+                                data: visitsData,  // Data kunjungan sesuai urutan bulan
+                                fill: true,  // Mengisi area di bawah garis
+                                borderColor: 'rgb(75, 192, 192)', // Warna garis
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Warna area di bawah garis (transparan)
+                                tension: 0.1 
+                            }]
+                        };
+
+                        const config = {
+                            type: 'line',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'Bulan-Tahun'
+                                        },
+                                        ticks: {
+                                            // Mengatur urutan bulan
+                                            reverse: false,  // Membuat bulan terbaru berada di sebelah kanan
+                                        }
+                                    },
+                                    y: {
+                                        title: {
+                                            display: true,
+                                            text: 'Jumlah Kunjungan'
+                                        },
+                                        min: 0,
+                                        ticks: {
+                                            beginAtZero: true,  // Memulai sumbu Y dari 0
+                                            stepSize: 50,       // Langkah antara angka (0, 50, 100, 150, 200)
+                                            max: 200,           // Nilai maksimum skala (200)
+                                            min: 0,             // Nilai minimum skala (0)
+                                            callback: function(value) {
+                                                if (value % 50 === 0) {
+                                                    return value;
+                                                }
+                                                return '';  // Tidak menampilkan angka lain selain kelipatan 50
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        };
+
+                        new Chart(document.getElementById('visitsChart'), config);
+                    })
+                    .catch(error => console.error("Error fetching visitor data:", error));
+            });
+        </script>
+    </section>
+
     <script src="assets/script/nav.js"></script>
     <?php include 'footer.php'; ?>
 </body>
