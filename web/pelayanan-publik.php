@@ -36,7 +36,7 @@
                 </div>
                 <div class="card-content">
                     <h2 class="card-title">W'Mag</h2>
-                    <p class="card-description">Weather Magazine: publikasi meteorologi yang menyajikan prakiraan cuaca, analisis iklim, dan wawasan ilmiah dari Stasiun Meteorologi Juwata Tarakan.</p>
+                    <p class="card-description">Weather Magazine: Majalah cuaca dan iklim terbaru untuk Anda!</p>
                     <a class="card-button" href="wmagz.php" style="text-decoration: none;">Klik disini</a>
                 </div>
             </div>
@@ -46,8 +46,8 @@
                     <i class="fa fa-phone"></i>
                 </div>
                 <div class="card-content">
-                    <h2 class="card-title">Caldssdl Center</h2>
-                    <p class="card-description">Butuh bantuan atau informasi lebih lanjut? Tim kami siap membantu Anda dengan segala pertanyaan atau permasalahan yang Anda hadapi.</p>
+                    <h2 class="card-title">Call Center</h2>
+                    <p class="card-description">Butuh bantuan? Kami siap menjawab pertanyaan Anda!</p>
                     <a class="card-button" href="https://wa.me/6281241416409" style="text-decoration: none;">Contact Center</a>
                 </div>            
             </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="card-content">
                     <h2 class="card-title">Pengaduan</h2>
-                    <p class="card-description">Apabila ada pengaduan silahkan ajukan disini</p>
+                    <p class="card-description"> Laporkan masalah Anda, kami siap membantu!</p>
                     <a class="card-button" href="aduan.php" style="text-decoration: none;">Form Pengaduan</a>
                 </div>
             </div>
@@ -80,8 +80,8 @@
                 </div>
                 <div class="card-content">
                     <h2 class="card-title">Permintaan Data</h2>
-                    <p class="card-description">Apabila ada pengaduan silahkan ajukan disini</p>
-                    <button class="card-button">Klik disini</button>   
+                    <p class="card-description"> Ajukan permintaan informasi yang Anda butuhkan!</p>
+                    <a class="card-button" href="PermohonanData.php" style="text-decoration: none;">Klik disini</a>   
                 </div>
             </div>
 
@@ -91,7 +91,7 @@
                 </div>
                 <div class="card-content">
                     <h2 class="card-title">Kritik dan Saran</h2>
-                    <p class="card-description">Ajukan kritik dan Saran</p>
+                    <p class="card-description">Bantu kami berkembang dengan masukan Anda!</p>
                     <a class="card-button" href="kritik-saran.php" style="text-decoration: none;">Form Kritik & Saran</a>
                 </div>
             </div>
