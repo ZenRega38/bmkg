@@ -70,7 +70,7 @@
                 <div class="card-content">
                     <h2 class="card-title">Pengaduan</h2>
                     <p class="card-description"> Laporkan masalah Anda, kami siap membantu!</p>
-                    <a class="card-button" href="aduan.php" style="text-decoration: none;">Form Pengaduan</a>
+                    <a class="card-button" href="https://docs.google.com/forms/d/e/1FAIpQLSeqtT0nVNiYFSNPYz8yeu0M97aORXdoovfeZxXpUcHiXqWh0g/viewform?usp=sharing" style="text-decoration: none;">Form Pengaduan</a>
                 </div>
             </div>
 
