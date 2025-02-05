@@ -19,7 +19,7 @@
         <source src="assets/video/bg.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    
+
     <section class="judul-layanan">
         <div class="judul-container">
         <h1>Layanan Publik BMKG</h1>
@@ -182,7 +182,7 @@
                                         ticks: {
                                             beginAtZero: true,  // Memulai sumbu Y dari 0
                                             stepSize: 50,       // Langkah antara angka (0, 50, 100, 150, 200)
-                                            max: 200,           // Nilai maksimum skala (200)
+                                            max: 1000,           // Nilai maksimum skala (200)
                                             min: 0,             // Nilai minimum skala (0)
                                             callback: function(value) {
                                                 if (value % 50 === 0) {

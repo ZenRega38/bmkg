@@ -33,32 +33,22 @@ $data["daily"][$today]++;
 // Tambahkan total kunjungan
 $data["total"]++;
 
-// Menghitung kunjungan bulanan (untuk bulan ini)
-$monthVisits = 0;
-foreach ($data["daily"] as $date => $count) {
-    $month = date("Y-m", strtotime($date));
-    if ($month == $currentMonth) {
-        $monthVisits += $count;
-    }
-}
-
-// Menghitung kunjungan bulanan untuk 6 bulan terakhir
+// Menghitung kunjungan bulanan dari data harian
 $months = [];
 for ($i = 5; $i >= 0; $i--) {
-    $month = date("Y-m", strtotime("-$i month")); // Menentukan bulan ke-i terakhir
+    $month = date("Y-m", strtotime("-$i month"));
     $months[] = $month;
-    if (!isset($data["monthly"][$month])) {
-        $data["monthly"][$month] = 0;
+}
+
+$monthlyVisits = array_fill_keys($months, 0);
+foreach ($data["daily"] as $date => $count) {
+    $month = date("Y-m", strtotime($date));
+    if (isset($monthlyVisits[$month])) {
+        $monthlyVisits[$month] += $count;
     }
 }
 
-// Hitung kunjungan untuk 6 bulan terakhir
-foreach ($data["daily"] as $date => $count) {
-    $month = date("Y-m", strtotime($date));
-    if (in_array($month, $months)) {
-        $data["monthly"][$month] += $count;
-    }
-}
+$data["monthly"] = $monthlyVisits;
 
 // Urutkan bulan dari yang paling kecil (terakhir) ke yang lebih besar (awal)
 krsort($data["monthly"]);
@@ -74,7 +64,7 @@ header("Pragma: no-cache");
 
 echo json_encode([
     "today" => $data["daily"][$today],  // Kunjungan hari ini
-    "month" => $monthVisits,             // Kunjungan bulan ini
+    "month" => $monthlyVisits[$currentMonth] ?? 0, // Kunjungan bulan ini
     "total" => $data["total"],           // Total kunjungan
     "monthly" => $data["monthly"],       // Kunjungan per bulan untuk 6 bulan terakhir
 ]);
