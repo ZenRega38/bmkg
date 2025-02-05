@@ -221,8 +221,7 @@ button {
 #nav-menu {
   border-bottom: var(--border);
   background-color: #377BC9;
-    padding: 1%;
-
+  padding: 0.5% 1% ;
 }
 
 .menu {
@@ -352,6 +351,7 @@ button {
   .nav-menu {
     margin-left: 0;
     margin-top: 10px;
+    padding: 1% 0; /* reduce padding to 1% */
   }
   .nav-menu ul {
     flex-direction: column;
@@ -461,10 +461,12 @@ button {
   }
   .nav-menu {
     margin-top: 0;
+     padding: 0.5% 1%; /* Added padding to nav menu on desktop to ensure consistent padding*/
   }
 
   .nav-menu ul {
     flex-direction: row;
+        padding: 1rem;
   }
 }
 

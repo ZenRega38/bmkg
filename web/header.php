@@ -1,23 +1,18 @@
 <header class="bmkg-header-bottom">
-    <div class="container-header">
-        <div class="dashboard">
-        <div class="logo">
-            <img src="assets/image/LOGO.png" alt="BMKG Logo" />
-        </div>
-        <div class="text-content">
-            <p style="font-size: 64px">BMKG Tarakan</p>
-            <p style="font-size: 24px">
-            Badan Meteorologi, Klimatologi, dan Geofisika
-            </p>
-            <div class="solid-line"></div>
-            <p style="font-size: 34px">
-            Cepat, Tepat, Akurat, Luas, dan Mudah Dipahami
-            </p>
-        </div>
-        </div>
+  <div class="container-header">
+    <div class="dashboard">
+      <div class="logo">
+        <img src="assets/image/LOGO.png" alt="BMKG Logo" />
+      </div>
+      <div class="text-content">
+        <p style="font-size: 64px">BMKG Tarakan</p>
+        <p style="font-size: 24px">Badan Meteorologi, Klimatologi, dan Geofisika</p>
+        <div class="solid-line"></div>
+        <p style="font-size: 34px">Cepat, Tepat, Akurat, Luas, dan Mudah Dipahami</p>
+      </div>
     </div>
+  </div>
 </header>
-
 <header id="nav-menu" aria-label="navigation bar">
     <div class="container" >
         <nav class="menu">
