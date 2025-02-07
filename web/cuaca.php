@@ -64,8 +64,8 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     <link rel="stylesheet" href="css/outer.css">
     <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
-          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/all.css' rel='stylesheet'>
     <style>
@@ -74,7 +74,14 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            touch-action: pan-y; /* Allow only vertical touch scrolling */
         }
+
+        * {
+            touch-action: pan-y;  /* Ensure the above rule is applied broadly */
+        }
+
         section {
             position: relative;
             padding: 100px;
@@ -169,8 +176,11 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         /* Mobile Styles */
         @media (max-width: 768px) {
             .weather-table { display: none; width: inherit;}
-            /* Day heading stays fixed outside horizontal scroll */
-            .day-container { margin-bottom: 15px; }
+            .day-container {
+                margin-bottom: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
             .day-heading {
                 text-align: center;
                 font-weight: bold;
@@ -178,17 +188,24 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                 margin-bottom: 5px;
                 padding: 5px;
             }
-            /* Use a simple horizontally scrollable container for cards */
-            .cards-container {
+
+            /* Swiper Styles for Mobile Cards */
+            .mobile-swiper-container {
                 width: 100%;
-                overflow-x: scroll;
-                -webkit-overflow-scrolling: touch;
+                overflow: hidden;
             }
-            .cards-wrapper {
+           .mobile-swiper-container .swiper-wrapper {
                 display: flex;
-                gap: 10px;
-                padding: 5px;
+                flex-direction: row; /* Corrected this */
             }
+
+            .mobile-swiper-slide {
+                width: auto;
+                padding: 0;
+                box-sizing: border-box;
+                flex-shrink: 0;
+            }
+
             .weather-card {
                 flex: 0 0 auto;
                 min-width: 150px;
@@ -205,6 +222,12 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             .current-weather-humidity { font-size: 12px !important; }
             .swiper-container { padding: 10px; }
             .swiper-slide { font-size: 16px; padding: 5px 10px; }
+        }
+
+        /* Apply width and box-sizing to potentially overflowing elements */
+        .day-container, .cards-container, .cards-wrapper, .weather-card, img {
+            max-width: 100vw;
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -244,7 +267,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             'Berawan' => '<span class="weather-icon">☁️</span>',
             'Hujan Ringan' => '<span class="weather-icon">🌦️</span>',
             'Hujan Sedang' => '<span class="weather-icon">🌧️</span>',
-            'Hujan Lebat' => '<span class="weather-icon">🌧️</span>',
+            'Hujan Lebat' => '<span class="weather-icon">⛈️</span>',
             'Hujan Petir' => '<span class="weather-icon">⛈️</span>',
             'Cerah Berawan' => '<span class="weather-icon">🌤️</span>',
             'Awan Tebal' => '<span class="weather-icon">🌥️</span>',
@@ -257,8 +280,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             'Cloudy' => '<span class="weather-icon">☁️</span>',
             'Light Rain' => '<span class="weather-icon">🌦️</span>',
             'Moderate Rain' => '<span class="weather-icon">🌧️</span>',
-            'Heavy Rain' => '<span class="weather-icon">🌧️</span>',
-            'Thunderstorm' => '<span class="weather-icon">⛈️</span>',
+            'Heavy Rain' => '<span class="weather-icon">⛈️</span>',
             'Clear' => '<span class="weather-icon">☀️</span>',
             'Partly Cloudy' => '<span class="weather-icon">🌤️</span>',
             'Fog' => '<span class="weather-icon">🌫️</span>',
@@ -270,7 +292,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             'Heavy Snow' => '<span class="weather-icon">🌨️</span>',
             'Snow' => '<span class="weather-icon">🌨️</span>',
             'Sleet' => '<span class="weather-icon">🌧️</span>',
-            'Freezing Rain' => '<span class="weather-icon">🌧️</span>',
+            'Freezing Rain' => '<span class="weather-icon">🌦️</span>',
             'Drizzle' => '<span class="weather-icon">🌦️</span>',
             'Rain' => '<span class="weather-icon">🌧️</span>',
             'Thunder' => '<span class="weather-icon">⛈️</span>',
@@ -340,8 +362,8 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         </select>
     </div>
     <!-- Desktop Table Forecast -->
-    <div class="weather-table-container">
-        <table class="weather-table" id="weatherTable">
+    <div class="weather-table-container" id="weatherTable">
+        <table class="weather-table">
             <thead>
                 <tr>
                     <th>Suhu</th>
@@ -466,12 +488,13 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         }
     }
     ?>
-    <!-- Mobile Forecast Cards -->
+
+    <!-- Mobile Forecast Cards with Swiper -->
     <?php foreach ($dailyForecasts as $dayName => $forecasts): ?>
         <div class="day-container">
             <div class="day-heading"><?= $dayName ?></div>
-            <div class="cards-container">
-                <div class="cards-wrapper">
+            <div class="mobile-swiper-container swiper">
+                <div class="swiper-wrapper">
                     <?php foreach ($forecasts as $forecast):
                         $weather_desc = isset($forecast['weather_desc']) ? $forecast['weather_desc'] : 'Unknown';
                         $icon_html = isset($icon_mapping[$weather_desc]) ? $icon_mapping[$weather_desc] : '';
@@ -484,11 +507,13 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                             } catch (Exception $e) { }
                         }
                         ?>
-                        <div class="weather-card">
-                            <div class="weather-card-title"><?= $formatted_time ?></div>
-                            <div class="weather-card-detail">Suhu: <?= (isset($forecast['t']) ? $forecast['t'] : 'N/A') ?> °C</div>
-                            <div class="weather-card-detail">Cuaca: <?= $icon_html ?></div>
-                            <div class="weather-card-detail"><?= $weather_desc ?></div>
+                        <div class="swiper-slide mobile-swiper-slide">
+                            <div class="weather-card">
+                                <div class="weather-card-title"><?= $formatted_time ?></div>
+                                <div class="weather-card-detail">Suhu: <?= (isset($forecast['t']) ? $forecast['t'] : 'N/A') ?> °C</div>
+                                <div class="weather-card-detail">Cuaca: <?= $icon_html ?></div>
+                                <div class="weather-card-detail"><?= $weather_desc ?></div>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -517,7 +542,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     updateClock();
 
     function filterTable(filter) {
-        const table = document.getElementById('weatherTable');
+        const table = document.getElementById('weatherTable'); // corrected id
         const rows = table.getElementsByTagName('tr');
         const today = new Date();
         const tomorrow = new Date(today);
@@ -542,6 +567,21 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         event.preventDefault();
         window.location.href = event.currentTarget.getAttribute('href');
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const dayContainers = document.querySelectorAll('.day-container');
+    dayContainers.forEach(container => {
+        const swiperContainer = container.querySelector('.mobile-swiper-container');
+        const swiper = new Swiper(swiperContainer, {
+            slidesPerView: 'auto',
+            spaceBetween: 10,
+            freeMode: true,
+           loop: false, // Disable looping
+            freeModeMomentum: false, // Disable momentum
+           resistanceRatio: 0.5,
+        });
+    });
+});
 </script>
 </body>
 </html>
