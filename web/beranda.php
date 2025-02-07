@@ -1,3 +1,15 @@
+<?php
+// Read data from JSON file
+$jsonData = file_get_contents('assets/json/data-berita.json');
+
+// Decode the JSON data into a PHP array
+$newsItems = json_decode($jsonData, true);
+
+// Check for errors during JSON decoding
+if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
+    die('Error decoding JSON: ' . json_last_error_msg()); // Handle the error appropriately
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +44,9 @@
         })
     </script>
     <style>
+        body {
+            overflow-x: hidden;
+        }
         .clock-container {
             width: 92%;
             display: flex;
@@ -400,11 +415,11 @@
                    const imagePath = closestData.image;
 
                      cuacaCol.innerHTML = `
-                         <a href="#"><img src="${imagePath}" alt="${kecamatanName}"></a>
+                        <a href="#"><img src="${imagePath}" alt="${kecamatanName}"></a>
                         <h3>${kecamatanName}</h3>
-                         <p>${closestData.weather_desc}</p>
+                        <p>${closestData.weather_desc}</p>
                         <p>Suhu: ${closestData.t}°C</p>
-                        <p>Kecepatan Angin: ${closestData.ws} km/jam</p>
+                        <p>Angin: ${closestData.ws} km/jam</p>
                         <p>Kelembapan: ${closestData.hu}%</p>
                     `;
                    cuacaRow.appendChild(cuacaCol);
@@ -419,7 +434,7 @@
          });
     </script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-     <script>
+    <script>
         var swiper = new Swiper('.swiper-container', {
             effect: 'coverflow',
             grabCursor: true,
@@ -457,44 +472,11 @@
             },
         });
     </script>
-    <!-- <section class="SKM">
-        <h1>Visualisasi Citra Satelit</h1>
-        <p>Isi Deskripsi disini</p>
-    </section> -->
     <section class="gempa">
-       <?php include 'tes-gempa.php'; ?>
+       <?php include 'gempa.php'; ?>
     </section>
     <section class="kegiatan-bmkg">
-        <h1>Kegiatan Stasiun Meterologi JUWATA</h1>
-        <p>Berita Terbaru Stasiun Meterologi Juwata Tarakan</p>
-         <main class="row">
-            <div class="news-item">
-                 <img src="gambar1.jpg" alt="Ravalnas 2024">
-                <div class="news-content">
-                     <p class="date">22 Januari 2025</p>
-                    <h3>Ravalnas 2024, Transformasi BMKG Menuju Indonesia Emas 2045</h3>
-                    <p>Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) menyelenggarakan Rapat Evaluasi Nasional (Ravalnas) Tahun 2024 sebagai bentuk reformasi birokrasi dalam transformasi BMKG menuju Indonesia Emas 2045.</p>
-                    <a href="#">Baca selengkapnya →</a>
-                </div>
-            </div>
-            <div class="news-item">
-               <img src="gambar2.jpg" alt="Rekonsiliasi Laporan Keuangan">
-                 <div class="news-content">
-                    <p class="date">18 Januari 2025</p>
-                    <h3>Balai Besar MKG Wilayah IV Makassar Adakan Rekonsiliasi Laporan Keuangan Semester II Tahun Anggaran 2024</h3>
-                    <a href="#">Baca selengkapnya →</a>
-                </div>
-           </div>
-            <div class="news-item">
-                <img src="gambar3.jpg" alt="Natal Oikumene">
-               <div class="news-content">
-                    <p class="date">18 Januari 2025</p>
-                     <h3>BMKG Gelar Perayaan Natal Oikumene dengan Penuh Kehangatan dan Sukacita</h3>
-                    <a href="#">Baca selengkapnya →</a>
-                </div>
-            </div>
-            <!-- Tambahkan lebih banyak news-item di sini -->
-        </main>
+    <?php include 'berita.php'; ?>
     </section>
     <section class="cuacabandara">
     </section>
