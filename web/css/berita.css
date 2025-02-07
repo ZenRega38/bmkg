@@ -12,9 +12,10 @@ body {
     margin: auto;
 }
 
-.news-row {
+.row-berita {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .news-item {
@@ -67,7 +68,7 @@ body {
 
 /* Responsive Layout */
 @media (max-width: 768px) {
-    .news-row {
+    .row-berita {
         flex-direction: column;
     }
 

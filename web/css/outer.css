@@ -75,6 +75,7 @@ button {
   align-items: center;
   justify-content: space-between;
   column-gap: 2rem;
+   box-sizing: border-box; /* Ensure padding and border are included in width */
 }
 
 .container-header {

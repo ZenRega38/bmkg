@@ -17,21 +17,20 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
     <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
     <title>BMKG Tarakan - Stasiun Meteorologi JUWATA</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/outer.css">  <!-- IMPORTANT: Load outer.css first -->
     <link rel="stylesheet" href="css/beranda.css">
-    <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="css/berita.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-     <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
-      <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript">
@@ -47,6 +46,37 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
         body {
             overflow-x: hidden;
         }
+
+        /* **IMPORTANT:** Override styles from outer.css if needed */
+        .container {
+            width: 100%; /* Ensure it fills the available space */
+            max-width: 1200px; /* Limit its maximum width if desired */
+            margin: 0 auto; /* Center the container */
+            padding-left: 5%; /* Adjust padding as needed */
+            padding-right: 5%; /* Adjust padding as needed */
+            box-sizing: border-box; /* Ensure padding doesn't add to the width */
+        }
+        /* Reset margin on elements */
+        .gempa,
+        .kegiatan-bmkg {
+            margin: 0; /* Reset any default margins */
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            box-sizing: border-box;
+           width:100%;
+        }
+
+        /* Add this to ensure beranda code isn't overflowing, especially for container-gempa */
+        .container-gempa { width: 100% !important; box-sizing: border-box;}
+
+        /* Ensure map takes full width */
+        .images-section #map {
+            height: 400px;
+            width: 100%;
+            border-radius : 15px;
+        }
+        /* The following were already here and look OK: */
         .clock-container {
             width: 92%;
             display: flex;
@@ -69,11 +99,6 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
             color: #555;
             white-space: nowrap;
             text-align: left;
-        }
-         .images-section #map {
-            height: 400px;
-            width: 100%;
-            border-radius : 15px;
         }
         .images-section iframe {
             border-radius : 15px;
@@ -155,11 +180,9 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
             overflow: auto;
         }
     </style>
-
-    
 </head>
 <body>
-    <?php include 'header.php'; ?>
+<?php include 'header.php'; ?>
     <div class="clock-container">
         <div class="date-day" id="dateDay"></div>
         <div class="clock" id="utcClock">UTC: <span id="utcTime"></span></div>
@@ -202,7 +225,7 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
             </div>
         </div>
     </div>
-    
+
         <!-- Bagian Gambar -->
         <div class="images-section">
             <div id="map" style="z-index: 0;"></div>
@@ -246,7 +269,7 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
                  </div>
             </div>
         </div>
-        
+
     </div>
 </section>
     <?php include 'kartu-cuaca.php'; ?>
@@ -465,7 +488,7 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
                      slide.querySelector('p').style.opacity = '1';
                    } else {
                     slide.querySelector('h2').style.opacity = '0';
-                    slide.querySelector('p').style.opacity = '0';
+                    slide.querySelector('p').                                style.opacity = '0';
                    }
                 }
               },
@@ -521,17 +544,17 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
         modalSatelit.addEventListener('show.bs.modal', function (event) {
             const image = document.querySelector('.satellite-image');
             const container = document.getElementById('satellite-container');
-            
+
             // Initialize Panzoom
             panzoomInstance = Panzoom(image, {
                 contain: 'outside',
                 maxScale: 5,
                 canvas: true
             });
-            
+
             // Enable wheel zoom
             container.addEventListener('wheel', panzoomInstance.zoomWithWheel);
-            
+
             // Button controls
             document.querySelector('.zoom-in').addEventListener('click', () => panzoomInstance.zoomIn());
             document.querySelector('.zoom-out').addEventListener('click', () => panzoomInstance.zoomOut());
@@ -545,6 +568,6 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
             }
         });
     </script>
-    
+
 </body>
 </html>
