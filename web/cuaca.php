@@ -3,10 +3,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Konfigurasi
+// Configuration
 $url = 'https://api.bmkg.go.id/publik/prakiraan-cuaca?adm1=65';
 
-// Fungsi untuk mengambil data JSON
+// Function to fetch JSON data
 function ambilDataCuaca($url)
 {
     $json_data = @file_get_contents($url);
@@ -20,14 +20,14 @@ function ambilDataCuaca($url)
     return $data;
 }
 
-// Mengambil data cuaca
+// Fetch weather data
 $dataCuaca = ambilDataCuaca($url);
 if ($dataCuaca === null || !isset($dataCuaca['data'])) {
-    echo '<p class="error">Gagal mengambil data cuaca.</p>';
+    echo '<p class="error">Failed to fetch weather data.</p>';
     exit;
 }
 
-// Mempersiapkan array asosiatif data kota
+// Prepare associative array of city data
 $citiesData = [];
 foreach ($dataCuaca['data'] as $location_data) {
     $adm2 = isset($location_data['lokasi']['adm2']) ? $location_data['lokasi']['adm2'] : 'N/A';
@@ -61,14 +61,17 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     <meta charset="UTF-8">
     <title>Cuaca - BMKG Tarakan</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/outer.css">
     <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
+    <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
           integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/all.css' rel='stylesheet'>
     <style>
+        /* ===PASTE THE ENTIRE MOBILE CARD SWIPER CSS FROM tes_scroll_cuaca.php HERE=== */
+
         /* Global Styles & Background */
         body {
             font-family: Arial, sans-serif;
@@ -171,50 +174,93 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             border-radius: 8px;
             margin: 5px;
         }
+        .day-container {
+            display: none;
+        }
+
         .swiper-button-next, .swiper-button-prev { all: unset; }
         .swiper, .swiper-wrapper, .swiper-slide { all: unset; }
+
         /* Mobile Styles */
         @media (max-width: 768px) {
-            .weather-table { display: none; width: inherit;}
+            .current-weather-container {
+                padding-left: 20%;
+                padding-right: 20%;
+            }
             .day-container {
+                display: block;
                 margin-bottom: 15px;
                 width: 100%;
                 box-sizing: border-box;
             }
+
             .day-heading {
                 text-align: center;
                 font-weight: bold;
                 font-size: 1.2em;
                 margin-bottom: 5px;
                 padding: 5px;
+                color: white;
             }
 
-            /* Swiper Styles for Mobile Cards */
             .mobile-swiper-container {
                 width: 100%;
                 overflow: hidden;
+                padding: 0 5px;
             }
-           .mobile-swiper-container .swiper-wrapper {
+
+            .mobile-swiper-container .swiper-wrapper {
                 display: flex;
-                flex-direction: row; /* Corrected this */
+                margin:  0 -5px;
+                width: 100%;
             }
 
             .mobile-swiper-slide {
-                width: auto;
-                padding: 0;
-                box-sizing: border-box;
+                width: 60%;
                 flex-shrink: 0;
+                padding: 0 5px;
             }
 
             .weather-card {
                 flex: 0 0 auto;
-                min-width: 150px;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                text-align: center;
-                background-color: rgba(255,255,255,0.9);
+                min-width: 100%;
+                padding: 15px;
+                border: none;
+                border-radius: 15px;
+                text-align: left;
+                background-color: rgba(55, 123, 201, 0.69);
+                color: white;
                 box-sizing: border-box;
+            }
+
+            .weather-card-title {
+                font-weight: bold;
+                font-size: 1.1em;
+                color: #f0ad4e;
+                margin-bottom: 10px;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+                text-align: center;
+            }
+
+            .weather-icon {
+                display: block;
+                margin: 0 auto 10px;
+                font-size: 5em;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+                text-align: center;
+            }
+
+            .weather-card-detail {
+                margin-bottom: 8px;
+                display: flex;
+                align-items: center;
+            }
+
+            .filter-container, .weather-table {
+                display: none;
+            }
+            section {
+                padding: 0;
             }
             .current-weather { width: 100% !important; max-width: 100%; }
             .current-weather-temp { font-size: 20px !important; }
@@ -309,8 +355,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             'Sand' => '<span class="weather-icon">🏜️</span>',
             'Dust' => '<span class="weather-icon">🌫️</span>',
             'Squall' => '<span class="weather-icon">🌪️</span>',
-            'Tornado' => '<span class="weather-icon">🌪️</span>',
-            'Volcanic Ash' => '<span class="weather-icon">🌋</span>',
+            'Tornado' => '<span class="weather-icon">🌋</span>',
             'Sandstorm' => '<span class="weather-icon">🏜️</span>',
             'Duststorm' => '<span class="weather-icon">🌫️</span>',
             'Funnel Cloud' => '<span class="weather-icon">🌪️</span>',
@@ -391,7 +436,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                             $dayName = 'N/A';
                             if ($local_datetime) {
                                 try {
-                                   $date = new DateTime($local_datetime);
+                                   $date = new DateTime($local_datetime, new DateTimeZone($timezone));
                                    $formatted_time = $date->format('H:i');
                                    $formatted_date = $date->format('Y-m-d');
                                    $dayName = $date->format('D');
@@ -441,48 +486,52 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     <?php
     // Group forecasts by day for mobile cards
     if (isset($selectedCityData['cuaca'])) {
-        $dayCount = 0;
-        $displayedDates = [];
-        $stopLoops = false;
         $dailyForecasts = [];
+        $timezone = $selectedCityData['timezone'] ?? 'Asia/Jakarta';
+
+        $today = new DateTime('now', new DateTimeZone($timezone));
+        $today_date = $today->format('Y-m-d');
+
+        $tomorrow = (new DateTime('now', new DateTimeZone($timezone)))->modify('+1 day');
+        $tomorrow_date = $tomorrow->format('Y-m-d');
+
+        $after_tomorrow = (new DateTime('now', new DateTimeZone($timezone)))->modify('+2 days');
+        $after_tomorrow_date = $after_tomorrow->format('Y-m-d');
+
+        $dayAfterTomorrowName = $after_tomorrow->format('D');
+        $dayAfterTomorrowName = match ($dayAfterTomorrowName) {
+            'Mon' => 'Senin',
+            'Tue' => 'Selasa',
+            'Wed' => 'Rabu',
+            'Thu' => 'Kamis',
+            'Fri' => 'Jumat',
+            'Sat' => 'Sabtu',
+            'Sun' => 'Minggu',
+            default => 'Unknown',
+        };
+
+        // Initialize empty arrays for each day
+        $dailyForecasts['Today'] = [];
+        $dailyForecasts['Tomorrow'] = [];
+        $dailyForecasts[$dayAfterTomorrowName] = [];  // Use the actual day name
+
         foreach ($selectedCityData['cuaca'] as $forecast_set) {
-            if ($stopLoops) break;
             foreach ($forecast_set as $forecast) {
-                if ($stopLoops) break;
                 $local_datetime = isset($forecast['local_datetime']) ? $forecast['local_datetime'] : null;
                 if ($local_datetime) {
                     try {
-                        $date = new DateTime($local_datetime);
-                        $formatted_date = $date->format('Y-m-d');
-                        $dayName = $date->format('D');
-                        $dayName = match ($dayName) {
-                            'Mon' => 'Senin',
-                            'Tue' => 'Selasa',
-                            'Wed' => 'Rabu',
-                            'Thu' => 'Kamis',
-                            'Fri' => 'Jumat',
-                            'Sat' => 'Sabtu',
-                            'Sun' => 'Minggu',
-                            default => 'Unknown',
-                        };
-                        $today = new DateTime('now', new DateTimeZone($selectedCityData['timezone']));
-                        $tomorrow = (new DateTime('now', new DateTimeZone($selectedCityData['timezone'])))->modify('+1 day');
-                        if ($date->format('Y-m-d') == $today->format('Y-m-d')) {
-                            $dayName = 'Today';
-                        } elseif ($date->format('Y-m-d') == $tomorrow->format('Y-m-d')) {
-                            $dayName = 'Tomorrow';
+                        $date = new DateTime($local_datetime, new DateTimeZone($timezone));
+                        $date_string = $date->format('Y-m-d');
+                        if ($date_string == $today_date) {
+                            $dailyForecasts['Today'][] = $forecast;
+                        } elseif ($date_string == $tomorrow_date) {
+                            $dailyForecasts['Tomorrow'][] = $forecast;
+                        } elseif ($date_string == $after_tomorrow_date) {
+                            $dailyForecasts[$dayAfterTomorrowName][] = $forecast; // Use the actual day name
                         }
-                        if (!in_array($formatted_date, $displayedDates)) {
-                            if ($dayCount >= 3) {
-                                $stopLoops = true;
-                                break;
-                            }
-                            $displayedDates[] = $formatted_date;
-                            $dayCount++;
-                            $dailyForecasts[$dayName] = [];
-                        }
-                        $dailyForecasts[$dayName][] = $forecast;
-                    } catch (Exception $e) { }
+                    } catch (Exception $e) {
+                        echo "Error processing datetime: " . $e->getMessage() . "<br>"; // Debugging
+                    }
                 }
             }
         }
@@ -490,32 +539,58 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     ?>
 
     <!-- Mobile Forecast Cards with Swiper -->
-    <?php foreach ($dailyForecasts as $dayName => $forecasts): ?>
+    <?php
+    // Explicitly define the order of days
+    $dayOrder = ['Today', 'Tomorrow', $dayAfterTomorrowName]; // Use the actual day name
+    ?>
+
+    <?php foreach ($dayOrder as $dayName): ?>
         <div class="day-container">
             <div class="day-heading"><?= $dayName ?></div>
-            <div class="mobile-swiper-container swiper">
+            <div class="mobile-swiper-container swiper-mobile">
                 <div class="swiper-wrapper">
-                    <?php foreach ($forecasts as $forecast):
-                        $weather_desc = isset($forecast['weather_desc']) ? $forecast['weather_desc'] : 'Unknown';
-                        $icon_html = isset($icon_mapping[$weather_desc]) ? $icon_mapping[$weather_desc] : '';
-                        $local_datetime = isset($forecast['local_datetime']) ? $forecast['local_datetime'] : null;
-                        $formatted_time = 'N/A';
-                        if ($local_datetime) {
-                            try {
-                                $date = new DateTime($local_datetime);
-                                $formatted_time = $date->format('H:i');
-                            } catch (Exception $e) { }
-                        }
-                        ?>
+                    <?php if (isset($dailyForecasts[$dayName]) && !empty($dailyForecasts[$dayName])): ?>
+                        <?php foreach ($dailyForecasts[$dayName] as $forecast):
+                            $weather_desc = isset($forecast['weather_desc']) ? $forecast['weather_desc'] : 'Unknown';
+                            $icon_html = isset($icon_mapping[$weather_desc]) ? $icon_html : '';
+                            $local_datetime = isset($forecast['local_datetime']) ? $forecast['local_datetime'] : null;
+                            $formatted_time = 'N/A';
+                            if ($local_datetime) {
+                                try {
+                                    $date = new DateTime($local_datetime, new DateTimeZone($timezone));
+                                    $formatted_time = $date->format('H:i');
+                                } catch (Exception $e) { }
+                            }
+                            ?>
+                            <div class="swiper-slide mobile-swiper-slide">
+                                <div class="weather-card">
+                                    <div class="weather-card-title"><?= $formatted_time ?></div>
+                                    <div style="text-align: center; color:white; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);"><?=$icon_html?></div>
+                                    <div class="weather-card-detail">
+                                        Suhu: <?= (isset($forecast['t']) ? $forecast['t'] : 'N/A') ?> °C
+                                    </div>
+                                    <div class="weather-card-detail">
+                                         <?= $weather_desc ?>
+                                    </div>
+                                    <div class="weather-card-detail">
+                                           Kecepatan Angin: <?= (isset($forecast['ws']) ? $forecast['ws'] : 'N/A') ?> km/jam
+                                    </div>
+                                    <div class="weather-card-detail">
+                                          Kelembapan: <?= (isset($forecast['hu']) ? $forecast['hu'] : 'N/A') ?>%
+                                     </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <div class="swiper-slide mobile-swiper-slide">
                             <div class="weather-card">
-                                <div class="weather-card-title"><?= $formatted_time ?></div>
-                                <div class="weather-card-detail">Suhu: <?= (isset($forecast['t']) ? $forecast['t'] : 'N/A') ?> °C</div>
-                                <div class="weather-card-detail">Cuaca: <?= $icon_html ?></div>
-                                <div class="weather-card-detail"><?= $weather_desc ?></div>
+                                <div class="weather-card-title">No Data Available</div>
+                                <div class="weather-card-detail">
+                                    No forecast data for <?= $dayName ?>.
+                                </div>
                             </div>
                         </div>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -523,65 +598,72 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
 </section>
 <?php include 'footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-    // Initialize top navigation Swiper only
-    const swiperNav = new Swiper('.swiper', {
-        direction: 'horizontal',
-        loop: false,
-    });
-
-    function updateClock() {
-        const clockElement = document.getElementById('realtime-clock');
-        const timezone = '<?php echo $selectedCityData['timezone']; ?>';
-        const date = new Date();
-        const options = { timeZone: timezone, hour: '2-digit', minute: '2-digit' };
-        const formattedTime = date.toLocaleTimeString(undefined, options);
-        clockElement.textContent = formattedTime + ' WITA';
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    function filterTable(filter) {
-        const table = document.getElementById('weatherTable'); // corrected id
-        const rows = table.getElementsByTagName('tr');
-        const today = new Date();
-        const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
-        for (let i = 1; i < rows.length; i++) {
-            const row = rows[i];
-            const rowDate = new Date(row.getAttribute('data-date'));
-            let showRow = false;
-            if (filter === 'all') {
-                showRow = true;
-            } else if (filter === 'today' && rowDate.toDateString() === today.toDateString()) {
-                showRow = true;
-            } else if (filter === 'tomorrow' && rowDate.toDateString() === tomorrow.toDateString()) {
-                showRow = true;
-            } else if (filter === 'today-tomorrow' && (rowDate.toDateString() === today.toDateString() || rowDate.toDateString() === tomorrow.toDateString())) {
-                showRow = true;
-            }
-            row.style.display = showRow ? '' : 'none';
-        }
-    }
-    function reloadPage(event) {
-        event.preventDefault();
-        window.location.href = event.currentTarget.getAttribute('href');
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-    const dayContainers = document.querySelectorAll('.day-container');
-    dayContainers.forEach(container => {
-        const swiperContainer = container.querySelector('.mobile-swiper-container');
-        const swiper = new Swiper(swiperContainer, {
-            slidesPerView: 'auto',
-            spaceBetween: 10,
-            freeMode: true,
-           loop: false, // Disable looping
-            freeModeMomentum: false, // Disable momentum
-           resistanceRatio: 0.5,
+        // Initialize top navigation Swiper only
+        const swiperNav = new Swiper('.swiper', {
+            direction: 'horizontal',
+            loop: true,
         });
-    });
-});
-</script>
+
+        function updateClock() {
+            const clockElement = document.getElementById('realtime-clock');
+            const timezone = '<?php echo $selectedCityData['timezone']; ?>';
+            const date = new Date();
+            const options = { timeZone: timezone, hour: '2-digit', minute: '2-digit' };
+            const formattedTime = date.toLocaleTimeString(undefined, options);
+            clockElement.textContent = formattedTime + ' WITA';
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        function filterTable(filter) {
+            const table = document.getElementById('weatherTable'); // corrected id
+            const rows = table.getElementsByTagName('tr');
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const rowDate = new Date(row.getAttribute('data-date'));
+                let showRow = false;
+                if (filter === 'all') {
+                    showRow = true;
+                } else if (filter === 'today' && rowDate.toDateString() === today.toDateString()) {
+                    showRow = true;
+                } else if (filter === 'tomorrow' && rowDate.toDateString() === tomorrow.toDateString()) {
+                    showRow = true;
+                } else if (filter === 'today-tomorrow' && (rowDate.toDateString() === today.toDateString() || rowDate.toDateString() === tomorrow.toDateString())) {
+                    showRow = true;
+                }
+                row.style.display = showRow ? '' : 'none';
+            }
+        }
+        function reloadPage(event) {
+            event.preventDefault();
+            window.location.href = event.currentTarget.getAttribute('href');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const swiperContainers = document.querySelectorAll('.swiper-mobile'); // Target mobile swipers specifically
+
+            swiperContainers.forEach(function (container) {
+                const swiper = new Swiper(container, { // Initialize for each mobile swiper
+                    effect: 'coverflow',
+                    grabCursor: true,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    coverflowEffect: {
+                        rotate: 50,
+                        stretch: 0,
+                        depth: 200,
+                        modifier: 1,
+                        slideShadows: false,
+                    },
+                    loop: true,
+                });
+            });
+        });
+    </script>
 </body>
 </html>
