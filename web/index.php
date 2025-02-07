@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading...</title>
     <style>
@@ -84,17 +85,7 @@
                 setTimeout(simulateProgress, delay);
              }else {
                     clearInterval(gifInterval); // stop gif change
-                  fetch('beranda.php')
-                      .then(response => response.text())
-                      .then(html => {
-                          document.open();
-                           document.write(html);
-                             document.close();
-                    })
-                      .catch(error => {
-                         console.error('Failed to load main page', error);
-                        window.location.href = 'beranda.php'; // redirect anyway if fetch fail
-                        });
+                    window.location.href = 'beranda.php';
                 }
            };
 
