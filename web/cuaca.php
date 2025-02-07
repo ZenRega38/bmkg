@@ -73,6 +73,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         section {
             position: relative;
@@ -260,6 +261,86 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         .swiper-slide{
             all: unset;
         }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .weather-table {
+                display: none; /* Hide the regular table */
+            }
+
+            .day-container {
+                overflow-x: auto;
+                margin-bottom: 15px;
+            }
+
+            .day-heading {
+                text-align: center;
+                font-weight: bold;
+                font-size: 1.2em;
+                margin-bottom: 5px;
+            }
+
+            .weather-cards {
+                display: flex;
+                flex-wrap: nowrap;
+                padding: 10px;
+                background-color: rgba(255, 255, 255, 0.9);
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            .weather-card {
+                flex: 0 0 auto;
+                width: 150px; /* Adjust card width as needed */
+                margin-right: 10px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                text-align: center;
+            }
+
+            .weather-card:last-child {
+                margin-right: 0;
+            }
+
+            .weather-card-title {
+                font-size: 1em;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .weather-card-detail {
+                font-size: 0.9em;
+                margin: 5px 0;
+            }
+
+            .current-weather {
+                max-width: 90%; /* Make the weather info wider */
+            }
+
+            .swiper-container {
+              padding: 10px; /* Reduce padding on smaller screens */
+            }
+
+            .swiper-slide {
+                font-size: 16px; /* Smaller font size for swiper */
+                padding: 5px 10px; /* Reduce padding */
+            }
+           .current-weather{
+               width: 100% !important;
+               max-width: 100%;
+           }
+            .current-weather-temp{
+                font-size: 20px !important;
+            }
+            .current-weather-icon{
+                font-size: 16px !important;
+            }
+            .current-weather-humidity{
+                font-size: 12px !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -417,7 +498,10 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             <tbody>
                 <?php
                 if (isset($selectedCityData['cuaca'])){
-                   foreach ($selectedCityData['cuaca'] as $forecast_set) {
+                   $dayCount = 0; // Counter for the number of days displayed
+                   $displayedDates = []; // Array to keep track of displayed dates
+
+                    foreach ($selectedCityData['cuaca'] as $forecast_set) {
                         foreach ($forecast_set as $forecast) {
                           $weather_desc = isset($forecast['weather_desc']) ? $forecast['weather_desc'] : 'Unknown';
                             $icon_html = isset($icon_mapping[$weather_desc]) ? $icon_mapping[$weather_desc] : '';
@@ -425,16 +509,46 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                             $local_datetime = isset($forecast['local_datetime']) ? $forecast['local_datetime'] : null;
                            $formatted_time = 'N/A';
                           $formatted_date = 'N/A';
+                           $dayName = 'N/A';
 
                             if ($local_datetime) {
                                 try {
                                    $date = new DateTime($local_datetime);
                                      $formatted_time = $date->format('H:i');
                                    $formatted_date = $date->format('Y-m-d');
+                                   $dayName = $date->format('D');
+                                   $dayName = match ($dayName) {
+                                       'Mon' => 'Senin',
+                                       'Tue' => 'Selasa',
+                                       'Wed' => 'Rabu',
+                                       'Thu' => 'Kamis',
+                                       'Fri' => 'Jumat',
+                                       'Sat' => 'Sabtu',
+                                       'Sun' => 'Minggu',
+                                       default => 'Unknown',
+                                   };
+                                   // Display "Today" and "Tomorrow" instead of day names
+                                  $today = new DateTime('now', new DateTimeZone($selectedCityData['timezone']));
+                                   $tomorrow = (new DateTime('now', new DateTimeZone($selectedCityData['timezone'])))->modify('+1 day');
+
+                                  if ($date->format('Y-m-d') == $today->format('Y-m-d')) {
+                                       $dayName = 'Today';
+                                   } elseif ($date->format('Y-m-d') == $tomorrow->format('Y-m-d')) {
+                                       $dayName = 'Tomorrow';
+                                   }
                                 } catch (Exception $e) {
                                      // Handle invalid date format
                                }
                            }
+                          if (!in_array($formatted_date, $displayedDates)) {
+                              if ($dayCount >= 3) {
+                                  break 2; // Break out of both loops
+                              }
+
+                              $displayedDates[] = $formatted_date;
+                              $dayCount++;
+                          }
+
 
                             echo '<tr data-date="' . $formatted_date . '">';
                            echo '<td>' . (isset($forecast['t']) ? $forecast['t'] : 'N/A') . ' °C</td>';
@@ -444,7 +558,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                            echo '<td>' . (isset($forecast['hu']) ? $forecast['hu'] : 'N/A') . ' %</td>';
                            echo '<td>' . (isset($forecast['vs_text']) ? $forecast['vs_text'] : 'N/A') . '</td>';
                             echo '<td>' . $formatted_time . '</td>';
-                           echo '<td>' . $formatted_date . '</td>';
+                           echo '<td>' . $dayName . '</td>';
                            echo '</tr>';
                        }
                     }
@@ -454,6 +568,99 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             </tbody>
         </table>
     </div>
+
+   <?php
+    if (isset($selectedCityData['cuaca'])) {
+        $dayCount = 0;
+        $displayedDates = [];
+
+        $dailyForecasts = []; // Store forecasts grouped by day
+
+        foreach ($selectedCityData['cuaca'] as $forecast_set) {
+            foreach ($forecast_set as $forecast) {
+                $local_datetime = isset($forecast['local_datetime']) ? $forecast['local_datetime'] : null;
+
+                if ($local_datetime) {
+                    try {
+                        $date = new DateTime($local_datetime);
+                        $formatted_date = $date->format('Y-m-d');
+                        $dayName = $date->format('D');
+
+                        $dayName = match ($dayName) {
+                            'Mon' => 'Senin',
+                            'Tue' => 'Selasa',
+                            'Wed' => 'Rabu',
+                            'Thu' => 'Kamis',
+                            'Fri' => 'Jumat',
+                            'Sat' => 'Sabtu',
+                            'Sun' => 'Minggu',
+                            default => 'Unknown',
+                        };
+
+                        // Display "Today" and "Tomorrow" instead of day names
+                        $today = new DateTime('now', new DateTimeZone($selectedCityData['timezone']));
+                        $tomorrow = (new DateTime('now', new DateTimeZone($selectedCityData['timezone'])))->modify('+1 day');
+
+                        if ($date->format('Y-m-d') == $today->format('Y-m-d')) {
+                            $dayName = 'Today';
+                        } elseif ($date->format('Y-m-d') == $tomorrow->format('Y-m-d')) {
+                            $dayName = 'Tomorrow';
+                        }
+
+                        if (!in_array($formatted_date, $displayedDates)) {
+                            if ($dayCount >= 3) {
+                                break 3; // Break out of all loops
+                            }
+
+                            $displayedDates[] = $formatted_date;
+                            $dayCount++;
+                            $dailyForecasts[$dayName] = []; // Initialize the array for this day
+                        }
+
+                        $dailyForecasts[$dayName][] = $forecast; // Add the forecast to the corresponding day
+                    } catch (Exception $e) {
+                        // Handle invalid date format
+                    }
+                }
+            }
+        }
+
+        // Output the weather cards, grouped by day
+        foreach ($dailyForecasts as $dayName => $forecasts) {
+            echo '<div class="day-container">';
+            echo '<div class="day-heading">' . $dayName . '</div>';
+            echo '<div class="weather-cards">';
+
+            foreach ($forecasts as $forecast) {
+                $weather_desc = isset($forecast['weather_desc']) ? $forecast['weather_desc'] : 'Unknown';
+                $icon_html = isset($icon_mapping[$weather_desc]) ? $icon_mapping[$weather_desc] : '';
+                $local_datetime = isset($forecast['local_datetime']) ? $forecast['local_datetime'] : null;
+                $formatted_time = 'N/A';
+
+                if ($local_datetime) {
+                    try {
+                        $date = new DateTime($local_datetime);
+                        $formatted_time = $date->format('H:i');
+                    } catch (Exception $e) {
+                        // Handle invalid date format
+                    }
+                }
+
+                echo '<div class="weather-card">';
+                echo '<div class="weather-card-title">' . $formatted_time . '</div>'; // Display time instead of day
+                echo '<div class="weather-card-detail">Suhu: ' . (isset($forecast['t']) ? $forecast['t'] : 'N/A') . ' °C</div>';
+                echo '<div class="weather-card-detail">Cuaca: ' . $icon_html . '</div>';
+                echo '<div class="weather-card-detail">' . $weather_desc . '</div>';
+
+                echo '</div>';
+            }
+
+            echo '</div>'; // Close .weather-cards
+            echo '</div>'; // Close .day-container
+        }
+    }
+    ?>
+
 </section>
 <?php include 'footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -515,9 +722,9 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                     row.style.display = ''; // Show all if filter is 'all'
                 }
             }
-       }
+        }
 
-   function reloadPage(event) {
+    function reloadPage(event) {
         event.preventDefault();
        window.location.href = event.currentTarget.getAttribute('href');
    }
