@@ -27,23 +27,27 @@ $magazinesByYear = $magazinesData['magazines'];
     <meta charset="utf-8">
     <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
     <title>BMKG Tarakan - Stasiun Meteorologi JUWATA</title>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="css/outer.css">  <!-- IMPORTANT: Load outer.css first -->
+    
+    <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="css/beranda.css">
     <link rel="stylesheet" href="css/berita.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
-     <!-- Bootstrap CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
     <script type="text/javascript">
         $(window).on('scroll', function(){
             if ($(window).scrollTop()) {
@@ -320,13 +324,13 @@ $magazinesByYear = $magazinesData['magazines'];
     </style>
 </head>
 <body>
-<?php include 'header.php'; ?>
+    <script src="assets/script/nav.js"></script>
+    <?php include 'header.php'; ?>
     <div class="clock-container">
         <div class="date-day" id="dateDay"></div>
         <div class="clock" id="utcClock">UTC: <span id="utcTime"></span></div>
         <div class="clock" id="witaClock">WITA: <span id="witaTime"></span></div>
     </div>
-    <script src="assets/script/nav.js"></script>
 
     <section class="Cuacaterkini" id="Cuacaterkini" style="background: none">
     <div class="row">

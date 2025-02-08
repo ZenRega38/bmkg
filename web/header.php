@@ -5,7 +5,7 @@
         <img src="assets/image/LOGO.png" alt="BMKG Logo" />
       </div>
       <div class="text-content">
-        <p style="font-size: 64px">BMKG Tarakan</p>
+        <p style="font-size: 64px; margin-bottom: 0;">BMKG Tarakan</p>
         <p style="font-size: 24px">Badan Meteorologi, Klimatologi, dan Geofisika</p>
         <div class="solid-line"></div>
         <p style="font-size: 34px">Cepat, Tepat, Akurat, Luas, dan Mudah Dipahami</p>
@@ -55,22 +55,25 @@
                     <div id="dropdown2" class="dropdown">
                         <ul role="menu">
                         <li role="menuitem">
-                            <a class="dropdown-link" href="#">Permintaan Data</a>
+                            <a class="dropdown-link" href="assets/loading/load_permohonan-data.php">Permohonan Data</a>
                         </li>
                         <li role="menuitem">
                             <a class="dropdown-link" href="assets/loading/load_wmagz.php">W'magazine</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="assets/loading/load_aduan.php">Aduan</a>
+                            <a class="dropdown-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeqtT0nVNiYFSNPYz8yeu0M97aORXdoovfeZxXpUcHiXqWh0g/viewform?usp=sharing">Aduan</a>
                         </li>
                         <li role="menuitem">
                             <a class="dropdown-link" href="assets/loading/load_kritik-saran.php">Kritik dan Saran</a>
                         </li>
                         <li role="menuitem">
+                            <a class="dropdown-link" href="https://eskm.bmkg.go.id/survey/437180/0/0/1/2025-02/0">Survei Kepuasan</a>
+                        </li>
+                        <li role="menuitem">
                             <a class="dropdown-link" href="https://ptsp.bmkg.go.id/">PTSP</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="#">Kontak</a>
+                            <a class="dropdown-link" href="https://wa.me/6281241416409/">Kontak</a>
                         </li>
                         <li role="menuitem">
                             <a class="dropdown-link" href="assets/loading/load_pelayanan-publik.php">Selengkapnya</a>
