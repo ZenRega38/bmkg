@@ -105,8 +105,8 @@
             <h1>Counter Visitor</h1>
             <div class="content">
                 <div class="content-icon">
-                        <j class="fa fa-laptop"></j>
-                    </div>
+                    <i class="fa fa-laptop"></i>
+                </div>
                 <div class="chart-container">
                     <h2>Grafik Kunjungan 6 Bulan Terakhir</h2>
                     <canvas id="visitsChart" width="400" height="200"></canvas>
