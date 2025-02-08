@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+     <link rel="stylesheet" href="../nav/assets-nav/css/styles.css">
       <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -142,7 +144,7 @@
     </style>
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <?php include '../nav/nav.php';?>
     <div class="clock-container">
         <div class="date-day" id="dateDay"></div>
         <div class="clock" id="utcClock">UTC: <span id="utcTime"></span></div>
@@ -561,5 +563,7 @@
             }
         });
     </script>
+    <script src="../nav/assets-nav/js/main.js"></script>
+
 </body>
 </html>

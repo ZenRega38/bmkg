@@ -65,6 +65,8 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../nav/assets-nav/css/styles.css">
     <style>
         section {
             position: relative;
@@ -196,7 +198,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     </style>
 </head>
 <body>
-<?php include 'header.php'; ?>
+<?php include '../nav/nav.php';?>
 <section>
     <h2 class="forecast-title">
         Prakiraan Cuaca <?= $selectedCity . ', ' . $selectedCityData['provinsi'] ?>
@@ -348,5 +350,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         allowTouchMove: false,
     });
 </script>
+<script src="../nav/assets-nav/js/main.js"></script>
+
 </body>
 </html>

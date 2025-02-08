@@ -72,6 +72,8 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../nav/assets-nav/css/styles.css">
     <meta charset="UTF-8">
     <style>
         section {
@@ -263,7 +265,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     </style>
 </head>
 <body>
-<?php include 'header.php'; ?>
+<?php include '../nav/nav.php';?>
 <script src="assets/script/nav.js"></script>
 
 <section>
@@ -522,5 +524,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
        window.location.href = event.currentTarget.getAttribute('href');
    }
 </script>
+<script src="../nav/assets-nav/js/main.js"></script>
+
 </body>
 </html>

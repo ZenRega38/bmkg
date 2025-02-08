@@ -5,12 +5,12 @@
             <img src="assets/image/LOGO.png" alt="BMKG Logo" />
         </div>
         <div class="text-content">
-            <p style="font-size: 64px">BMKG Tarakan</p>
-            <p style="font-size: 24px">
+            <p >BMKG Tarakan</p>
+            <p >
             Badan Meteorologi, Klimatologi, dan Geofisika
             </p>
             <div class="solid-line"></div>
-            <p style="font-size: 34px">
+            <p >
             Cepat, Tepat, Akurat, Luas, dan Mudah Dipahami
             </p>
         </div>

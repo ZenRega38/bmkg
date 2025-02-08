@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
     <title>Profil - BMKG Tarakan</title>
-    <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="css/profil.css">
+    <link rel="stylesheet" href="css/outer.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../nav/assets-nav/css/styles.css">
 
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
 <body>
-    <?php include 'header.php'; ?>
-
+    <?php
+        include '../nav/nav.php';
+    ?>
     <main>
        <section class="section-content content-flex">
             <div class="section-content-inner" id="sejarah">
@@ -50,15 +53,18 @@
         <section class="section-content" id="galeri">
             <h2>Galeri BMKG Juwata Tarakan</h2>
             <div class="gallery" >
-                <img src="assets/image/diagram-struktural.jpg" alt="Galeri 1">
-                <img src="assets/image/galeri2.jpg" alt="Galeri 2">
-                <img src="assets/image/galeri3.jpg" alt="Galeri 3">
-                
+                <img src="assets/image/gal/gal-1.jpg">
+                <img src="assets/image/gal/gal-2.jpg">
+                <img src="assets/image/gal/gal-3.jpg">
+                <img src="assets/image/gal/gal-2.jpg">
+                <img src="assets/image/gal/gal-3.jpg">                
             </div>
         </section>
     </main>
 
     <script src="assets/script/nav.js"></script>
+    <script src="../nav/assets-nav/js/main.js"></script>
+    
     <?php include 'footer.php'; ?>
 </body>
 </html>

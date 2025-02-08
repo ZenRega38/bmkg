@@ -38,56 +38,6 @@ body {
   letter-spacing: -0.4px;
 }
 
-ul {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  color: inherit;
-}
-
-.btn {
-  display: block;
-  background-color: var(--primary-color);
-  color: var(--white);
-  text-align: center;
-  padding: 0.6rem 1.4rem;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: 5px;
-}
-
-/* Container Umum */
-.container {
-  max-width: 100%;
-  margin: 0 auto;
-  padding-left: 5%;
-  padding-right: 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  column-gap: 2rem;
-}
-
-.container-header {
-  max-width: 100%;
-  margin: 0 auto;
-  padding-left: 0;
-  padding-right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  column-gap: 2rem;
-}
-
 /* Cuaca Terkini Section */
 .Cuacaterkini {
   width: 90%;
@@ -97,54 +47,6 @@ button {
 
 .content-section {
   width: 100%;
-}
-
-/* Header BMKG */
-.bmkg-header {
-  background-color: #377BC9;
-  color: #fff;
-  padding: 15px 20px !important;
-  width: 100%;
-}
-
-.bmkg-header .container {
-  margin: 0 auto;
-  width: 100%;
-}
-
-.bmkg-header-bottom {
-  background-color: #4da1a9;
-  color: #fff;
-  padding: 15px 20px;
-  width: 100%;
-}
-
-/* Dashboard Area */
-.dashboard {
-  display: flex;
-  align-items: center;
-  padding: 5px 0;
-}
-
-.logo img {
-  max-width: 120px;
-  height: auto;
-  margin-left: 2%;
-}
-
-.text-content {
-  text-align: left;
-  margin-top: -10px;
-  margin-left: 3%;
-}
-
-.solid-line {
-  border-bottom: 2px solid #fff;
-  margin: 8px 0;
-}
-
-.bmkg-header .logo img {
-  max-height: 40px;
 }
 
 
@@ -163,6 +65,9 @@ button {
   align-items: flex-start;
   padding-left: 5%;
   padding-right: 5%;
+
+  display: flex;         /* Aktifkan Flexbox */
+  flex-direction: column; /* Atur urutan item menjadi kolom */
 }
 
 .footer-section {
@@ -217,150 +122,17 @@ button {
   font-size: 12px;
 }
 
-/* Navigation Bar Tambahan */
-#nav-menu {
-  border-bottom: var(--border);
-  background-color: #377BC9;
-    padding: 1%;
-
-}
-
-.menu {
-  position: relative;
-  background: #377BC9;
-}
-
-.menu-bar li:first-child .dropdown {
-  flex-direction: initial;
-  min-width: 480px;
-}
-
-.menu-bar li:first-child ul:nth-child(1) {
-  border-right: var(--border);
-}
-
-.menu-bar li:nth-child(n + 2) ul:nth-child(1) {
-  border-bottom: var(--border);
-}
-
-
-.menu-bar .nav-link {
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: -0.6px;
-  padding: 0.3rem;
-  min-width: 60px;
-  margin: 0 0.6rem;
-}
-
-.nav-link:hover{
-  color: #ffd700;
-
-}
-
-.dropdown-link:hover {
-  color: #ffd700;
-}
-
-.nav-start,
-.nav-end,
-.menu-bar,
-.right-container,
-.right-container .search {
-  display: flex;
-  align-items: center;
-}
-
-.dropdown {
-  display: flex;
-  flex-direction: column;
-  min-width: 230px;
-  background-color: var(--white);
-  border-radius: 10px;
-  position: absolute;
-  top: 36px;
-  z-index: 1;
-  visibility: hidden;
-  opacity: 0;
-  transform: scale(0.97) translateX(-5px);
-  transition: 0.1s ease-in-out;
-  box-shadow: var(--shadow);
-}
-
-.dropdown.active {
-  visibility: visible;
-  opacity: 1;
-  transform: scale(1) translateX(5px);
-}
-
-.dropdown ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.2rem;
-  font-size: 0.95rem;
-}
-
-.dropdown-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.15rem;
-}
-
-.dropdown-link {
-  display: flex;
-  gap: 0.5rem;
-  padding: 0.5rem 0;
-  border-radius: 7px;
-  transition: 0.1s ease-in-out;
-}
-
-.dropdown-link p {
-  font-size: 0.8rem;
-  color: black;
-}
-
-#hamburger {
-    color: #ffffff;
-  display: none;
-  padding: 0.1rem;
-  margin-left: 1rem;
-  font-size: 1.9rem;
-}
-
-/* Media Queries */
 
 /* Untuk layar kecil (mobile) */
 @media (max-width: 768px) {
-  .Cuacaterkini {
-    padding: 20px 0;
-  }
   .content-section {
     width: 100%;
   }
-  .bmkg-header .container,
   .bmkg-footer .container {
     flex-direction: column;
     align-items: flex-start;
   }
-  .logo-section {
-    margin-bottom: 10px;
-  }
 
-  .nav-menu {
-    margin-left: 0;
-    margin-top: 10px;
-  }
-  .nav-menu ul {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .nav-menu ul li a {
-    font-size: 0.9rem;
-  }
   .bmkg-footer .container {
     padding-left: 5%;
     padding-right: 5%;
@@ -373,80 +145,6 @@ button {
     text-align: center;
   }
 
-  #hamburger {
-    display: block;
-  }
-
-  .container {
-    padding: 1.2rem;
-  }
-
-  .menu {
-    display: none;
-    position: absolute;
-    top: auto;
-    bottom: 0;
-    left: 0;
-    min-height: calc(100vh - 90px);
-    width: 100vw;
-    background-color: #377BC9;/* Tambahkan background color pada menu mobile */
-  }
-    .dropdown {
-        background-color: #ffffff;  /* Tambahkan background color pada dropdown mobile */
-    }
-  .menu-bar li:first-child ul:nth-child(1) {
-    border-right: none;
-    border-bottom: var(--border);
-  }
-
-  .dropdown {
-    display: none;
-    min-width: 100%;
-    border: none !important;
-    border-radius: 5px;
-    position: static;
-    top: 0;
-    left: 0;
-    visibility: visible;
-    opacity: 1;
-    transform: none;
-    box-shadow: none;
-  }
-
-  .menu.show,
-  .dropdown.active {
-    display: block;
-  }
-
-  .dropdown ul {
-    padding-left: 0.3rem;
-  }
-
-  .menu-bar {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    row-gap: 1rem;
-    padding: 1rem;
-  }
-
-  .menu-bar .nav-link {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    font-weight: 600;
-    font-size: 1.2rem;
-    margin: 0;
-  }
-
-  .menu-bar li:first-child .dropdown {
-    min-width: 100%;
-  }
-
-  .menu-bar > li:not(:last-child) {
-    padding-bottom: 0.5rem;
-    border-bottom: var(--border);
-  }
 }
 
 /* Untuk tablet landscape dan layar lebih besar */
@@ -472,15 +170,6 @@ button {
 @media (min-width: 1200px) {
   .Cuacaterkini {
     width: 80%;
-  }
-
-  .logo img {
-    max-width: 150px;
-    margin-right: 40px;
-    margin-left: 140px;
-  }
-  .nav-menu ul li a {
-    font-size: 1rem;
   }
   .footer-section h4 {
     font-size: 16px;
