@@ -18,10 +18,10 @@
     <?php include '../nav/nav.php';?>
 
     <video autoplay muted loop id="background-video">
-        <source src="assets/video/bmkgvid.mp4" type="video/mp4">
+        <source src="assets/video/bg.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <div id="overlay"></div>
+
     <section class="judul-layanan">
         <div class="judul-container">
         <h1>Layanan Publik BMKG</h1>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="card-content">
                     <h2 class="card-title">W'Mag</h2>
-                    <p class="card-description">Weather Magazine: publikasi meteorologi yang menyajikan prakiraan cuaca, analisis iklim, dan wawasan ilmiah dari Stasiun Meteorologi Juwata Tarakan.</p>
+                    <p class="card-description">Weather Magazine: Majalah cuaca dan iklim terbaru untuk Anda!</p>
                     <a class="card-button" href="wmagz.php" style="text-decoration: none;">Klik disini</a>
                 </div>
             </div>
@@ -48,8 +48,8 @@
                     <i class="fa fa-phone"></i>
                 </div>
                 <div class="card-content">
-                    <h2 class="card-title">Caldssdl Center</h2>
-                    <p class="card-description">Butuh bantuan atau informasi lebih lanjut? Tim kami siap membantu Anda dengan segala pertanyaan atau permasalahan yang Anda hadapi.</p>
+                    <h2 class="card-title">Call Center</h2>
+                    <p class="card-description">Butuh bantuan? Kami siap menjawab pertanyaan Anda!</p>
                     <a class="card-button" href="https://wa.me/6281241416409" style="text-decoration: none;">Contact Center</a>
                 </div>            
             </div>
@@ -71,8 +71,8 @@
                 </div>
                 <div class="card-content">
                     <h2 class="card-title">Pengaduan</h2>
-                    <p class="card-description">Apabila ada pengaduan silahkan ajukan disini</p>
-                    <a class="card-button" href="aduan.php" style="text-decoration: none;">Form Pengaduan</a>
+                    <p class="card-description"> Laporkan masalah Anda, kami siap membantu!</p>
+                    <a class="card-button" href="https://docs.google.com/forms/d/e/1FAIpQLSeqtT0nVNiYFSNPYz8yeu0M97aORXdoovfeZxXpUcHiXqWh0g/viewform?usp=sharing" style="text-decoration: none;">Form Pengaduan</a>
                 </div>
             </div>
 
@@ -82,8 +82,8 @@
                 </div>
                 <div class="card-content">
                     <h2 class="card-title">Permintaan Data</h2>
-                    <p class="card-description">Apabila ada pengaduan silahkan ajukan disini</p>
-                    <button class="card-button">Klik disini</button>   
+                    <p class="card-description"> Ajukan permintaan informasi yang Anda butuhkan!</p>
+                    <a class="card-button" href="PermohonanData.php" style="text-decoration: none;">Klik disini</a>   
                 </div>
             </div>
 
@@ -93,7 +93,7 @@
                 </div>
                 <div class="card-content">
                     <h2 class="card-title">Kritik dan Saran</h2>
-                    <p class="card-description">Ajukan kritik dan Saran</p>
+                    <p class="card-description">Bantu kami berkembang dengan masukan Anda!</p>
                     <a class="card-button" href="kritik-saran.php" style="text-decoration: none;">Form Kritik & Saran</a>
                 </div>
             </div>
@@ -107,8 +107,8 @@
             <h1>Counter Visitor</h1>
             <div class="content">
                 <div class="content-icon">
-                        <j class="fa fa-laptop"></j>
-                    </div>
+                    <i class="fa fa-laptop"></i>
+                </div>
                 <div class="chart-container">
                     <h2>Grafik Kunjungan 6 Bulan Terakhir</h2>
                     <canvas id="visitsChart" width="400" height="200"></canvas>
@@ -184,7 +184,7 @@
                                         ticks: {
                                             beginAtZero: true,  // Memulai sumbu Y dari 0
                                             stepSize: 50,       // Langkah antara angka (0, 50, 100, 150, 200)
-                                            max: 200,           // Nilai maksimum skala (200)
+                                            max: 1000,           // Nilai maksimum skala (200)
                                             min: 0,             // Nilai minimum skala (0)
                                             callback: function(value) {
                                                 if (value % 50 === 0) {

@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Redirecting...</title>
-  <meta http-equiv="refresh" content="0; url=web/index.php">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+        }
+        .redirect-text {
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-  <p>You are being redirected...</p>
+    <div class="redirect-text">
+       <p>Redirecting to main page...</p>
+    </div>
+    <script>
+        // set the path where to redirect
+        const targetPage = 'web/index.php';
+        // set the time before redirecting
+        const delay = 0; // 3 seconds delay
+    
+        setTimeout(() => {
+             window.location.href = targetPage;
+        }, delay);
+    </script>
 </body>
 </html>

@@ -7,7 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         .cuaca {
-            width: 90%;
+            width: 80%;
             margin: auto;
             text-align: center;
             padding-top: 20px;

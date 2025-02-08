@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
     <title>BMKG Tarakan - Stasiun Meteorologi JUWATA</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -15,8 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
      <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
-     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
-     <link rel="stylesheet" href="../nav/assets-nav/css/styles.css">
       <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -34,117 +32,48 @@
         })
     </script>
     <style>
-        .clock-container {
-            width: 92%;
-            display: flex;
-            justify-content: right;
-            align-items: center;
-            margin-bottom: 10px;
-            padding: 0 20px;
-        }
-        .clock {
-            align-items: right ;
-            margin: 5px;
-            font-size: 1em;
-            color: #333;
-            font-weight: bold;
-           white-space: nowrap;
-           text-align: right;
-        }
-        .date-day {
-             font-size: 1em;
-            color: #555;
-            white-space: nowrap;
-            text-align: left;
-        }
-         .images-section #map {
-            height: 400px;
-            width: 100%;
-            border-radius : 15px;
-        }
-        .images-section iframe {
-            border-radius : 15px;
-        }
-        .images-section {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-        }
-
-        /* Set fixed height for both map and satellite containers */
-        #map,
-        #citraSatelitContainer .card {
-            height: 400px;
-        }
-
-        #changeMapButton {
-            margin-top: 20px; /* Space between map/satellite and button */
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: auto;
-            align-self: flex-end; /* Right alignment */
-            position: relative; /* Remove absolute positioning */
-            z-index: 1;
-        }
-
-        #changeMapButton:hover {
-            background-color: #0056b3;
-        }
-
-        #changeMapButton:hover {
-            background-color: #0056b3;
-        }
-        /* Styles for citra satelit */
-        .card {
-            border: none;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin: 0 auto;
-            margin-top: -25px;
-           max-width: 100%;
-           height: 400px;
-        }
-
-        .card img {
-            border-radius: 8px;
-            max-width: 80%;
-            max-height: 80%;
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
-            object-fit: contain;
-        }
-
-         .card-body {
-            text-align: center;
+        body {
+            margin: 0;
             display: flex;
             justify-content: center;
-             align-items: center;
-             height: 100%;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff; /* Loading screen background */
+            font-family: sans-serif;
+            overflow: hidden;
         }
-        ul {
-            margin-bottom: 0rem;
-        }
-        .satellite-image {
-            cursor: move;
-            transition: transform 0.1s;
-            max-width: none !important;
+        .loading-container {
+          text-align: center;
         }
 
-        #satellite-container {
-            width: 100%;
-            height: 70vh;
-            overflow: auto;
+        .loading-gif {
+             width: 100px;
+             height: 100px;
+             margin-bottom: 20px;
+             object-fit: contain;
+         }
+
+
+        .loading-progress {
+            width: 200px;
+            height: 10px;
+            background-color: #ddd;
+            margin: 20px auto;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: #007bff;
+            transition: width 0.5s ease;
+             border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <?php include '../nav/nav.php';?>
+    <?php include 'header.php'; ?>
     <div class="clock-container">
         <div class="date-day" id="dateDay"></div>
         <div class="clock" id="utcClock">UTC: <span id="utcTime"></span></div>

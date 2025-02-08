@@ -5,25 +5,24 @@
             <img src="assets/image/LOGO.png" alt="BMKG Logo" />
         </div>
         <div class="text-content">
-            <p >BMKG Tarakan</p>
-            <p >
+            <p style="font-size: 64px">BMKG Tarakan</p>
+            <p style="font-size: 24px">
             Badan Meteorologi, Klimatologi, dan Geofisika
             </p>
             <div class="solid-line"></div>
-            <p >
+            <p style="font-size: 34px">
             Cepat, Tepat, Akurat, Luas, dan Mudah Dipahami
             </p>
         </div>
         </div>
     </div>
 </header>
-
 <header id="nav-menu" aria-label="navigation bar">
     <div class="container" >
         <nav class="menu">
             <ul class="menu-bar">
                 <li><a class="nav-link" href="index.php">Beranda</a></li>
-                <li><a class="nav-link" href="profil.php" >Profil</a></li>
+                <li><a class="nav-link" href="assets/loading/load_profil.php" >Profil</a></li>
                  <li>
                     <button
                         class="nav-link dropdown-btn"
@@ -38,10 +37,10 @@
                       <div id="dropdown3" class="dropdown">
                         <ul role="menu">
                         <li role="menuitem">
-                            <a class="dropdown-link" href="cuaca.php">Cuaca Wilayah</a>
+                            <a class="dropdown-link" href="assets/loading/load_cuaca.php">Cuaca Wilayah</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="wisata.php">Cuaca Tempat Wisata</a>
+                            <a class="dropdown-link" href="assets/loading/load_wisata.php">Cuaca Tempat Wisata</a>
                         </li>
                        </ul>
                       </div>
@@ -63,13 +62,13 @@
                             <a class="dropdown-link" href="#">Permintaan Data</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="wmagz.php">W'magazine</a>
+                            <a class="dropdown-link" href="assets/loading/load_wmagz.php">W'magazine</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="aduan.php">Aduan</a>
+                            <a class="dropdown-link" href="assets/loading/load_aduan.php">Aduan</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="kritik-saran.php">Kritik dan Saran</a>
+                            <a class="dropdown-link" href="assets/loading/load_kritik-saran.php">Kritik dan Saran</a>
                         </li>
                         <li role="menuitem">
                             <a class="dropdown-link" href="https://ptsp.bmkg.go.id/">PTSP</a>
@@ -78,7 +77,7 @@
                             <a class="dropdown-link" href="#">Kontak</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link" href="pelayanan-publik.php">Selengkapnya</a>
+                            <a class="dropdown-link" href="assets/loading/load_pelayanan-publik.php">Selengkapnya</a>
                         </li>
                         </ul>
                     </div>
