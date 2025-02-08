@@ -104,6 +104,7 @@ function generateUniqueId($title, $index) {
 </head>
 <body>
 <?php include 'header.php'; ?>
+<script src="assets/script/nav.js"></script>
 
 <div class="dataset-selector">
     <form id="datasetForm">
