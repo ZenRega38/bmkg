@@ -190,7 +190,7 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
     </div>
     <script src="assets/script/nav.js"></script>
 
-    <section class="Cuacaterkini" id="Cuacaterkini">
+    <section class="Cuacaterkini" id="Cuacaterkini" style="background: none">
     <div class="row">
         <!-- Bagian Konten Cuaca Terkini -->
         <div class="content-section">
@@ -222,6 +222,12 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
             </div>
             <div class="button">
                 <a href="cuaca.php" class="button-btn">Baca Selengkapnya</a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="weather-info">
+                <a href="https://metar-taf.com/WAQQ" id="metartaf-lNcdCBQc" class="metar">METAR Juwata</a>
+                <script async defer crossorigin="anonymous" src="https://metar-taf.com/embed-js/WAQQ?layout=landscape&qnh=hPa&rh=rh&target=lNcdCBQc"></script>
             </div>
         </div>
     </div>
@@ -372,7 +378,7 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
             }
         }
 
-         function updateWeatherDisplay(data) {
+        function updateWeatherDisplay(data) {
            const now = new Date();
            const localTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Makassar' }));
            const localHour = localTime.getHours();
@@ -399,12 +405,36 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
                document.getElementById('suhu').textContent = closestData.t + '°C';
               document.getElementById('cuaca').textContent = closestData.weather_desc;
                document.getElementById('kecepatan-angin').textContent = closestData.ws + ' km/h';
-                document.getElementById('arah-angin').textContent = closestData.wd;
-                document.getElementById('kelembaban').textContent = closestData.hu + '%';
+                 // Translate wind direction
+                const windDirection = translateWindDirection(closestData.wd);
+                document.getElementById('arah-angin').textContent = 'dari ' + windDirection;
+               document.getElementById('kelembaban').textContent = closestData.hu + '%';
             } else {
               console.log('Data cuaca tidak ditemukan untuk jam saat ini.');
             }
         }
+
+    function translateWindDirection(wd) {
+        switch (wd) {
+            case 'N': return 'Utara';
+            case 'NNE': return 'Utara-Timur Laut';
+            case 'NE': return 'Timur Laut';
+            case 'ENE': return 'Timur-Timur Laut';
+            case 'E': return 'Timur';
+            case 'ESE': return 'Timur-Tenggara';
+            case 'SE': return 'Tenggara';
+            case 'SSE': return 'Selatan-Tenggara';
+            case 'S': return 'Selatan';
+            case 'SSW': return 'Selatan-Barat Daya';
+            case 'SW': return 'Barat Daya';
+            case 'WSW': return 'Barat-Barat Daya';
+            case 'W': return 'Barat';
+            case 'WNW': return 'Barat-Barat Laut';
+            case 'NW': return 'Barat Laut';
+            case 'NNW': return 'Utara-Barat Laut';
+            default: return wd;  // Return original if not found
+        }
+    }
 
        function updateWeatherInfo(data) {
              const now = new Date();
