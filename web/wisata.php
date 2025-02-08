@@ -28,11 +28,22 @@ function generateUniqueId($title, $index) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
     <title>Wisata - BMKG Tarakan</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <link rel="stylesheet" href="css/wisata.css">
     <link rel="stylesheet" href="css/outer.css">
     <style>
@@ -58,11 +69,41 @@ function generateUniqueId($title, $index) {
         .dataset-selector select:hover {
              background-color: #5f9ea0;
         }
+
+        /* Styles for the popup */
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 80%; /* Adjust width as needed */
+            max-width: 800px;
+        }
+
+        .popup-container.active {
+            display: flex;
+        }
+
+        .blurred {
+            filter: blur(5px);
+        }
     </style>
 </head>
 <body>
 <?php include 'header.php'; ?>
-<script src="assets/script/nav.js"></script>
 
 <div class="dataset-selector">
     <form id="datasetForm">
@@ -80,7 +121,7 @@ function generateUniqueId($title, $index) {
     <?php foreach ($currentCards as $index => $card):
          $cardId = generateUniqueId($card['title'], $index);
      ?>
-    <div class="card-item">
+    <div class="card-item" data-card-id="<?= $cardId ?>">
         <div class="card-image">
             <div class="image-container">
                 <?php foreach ($card['images'] as $image): ?>
@@ -114,12 +155,18 @@ function generateUniqueId($title, $index) {
                 <a href="<?= $card['map_link'] ?>" class="navigation-button">
                     <img src="assets/image/direction.png" alt="Directions">
                 </a>
-                <a href="detail-wisata.php?dataset=<?= $selectedDataset ?>&id=<?= $cardId ?>" class="view-details-button">View Details</a>
             </div>
         </div>
     </div>
     <?php endforeach; ?>
 </section>
+
+<!-- Popup Container -->
+<div class="popup-container" id="popupContainer">
+    <div class="popup-content" id="popupContent">
+        <!-- Content will be dynamically inserted here -->
+    </div>
+</div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
@@ -213,6 +260,68 @@ document.addEventListener('DOMContentLoaded', function() {
             container.style.transform = 'translateX(0)';
         });
     });
+
+    // Mobile Card Click Functionality
+    const cardItems = document.querySelectorAll('.card-item');
+    const popupContainer = document.getElementById('popupContainer');
+    const popupContent = document.getElementById('popupContent');
+
+    cardItems.forEach(card => {
+        card.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                const cardId = card.dataset.cardId;
+                const cardData = currentCards.find((c, index) => generateUniqueId(c.title, index) === cardId);
+
+                if (cardData) {
+                    // Populate the popup with the full card content
+                    popupContent.innerHTML = `
+                        <div class="card-item">
+                            <div class="card-image">
+                                <div class="image-container">
+                                    ${cardData.images.map(image => `<img src="${image}" alt="${cardData.title}">`).join('')}
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h2 class="card-title">${cardData.title}</h2>
+                                <div class="card-rating">
+                                    <span class="rating-stars">
+                                        ${'★'.repeat(cardData.rating)}${'☆'.repeat(6 - cardData.rating)}
+                                    </span>
+                                    <span class="rating-count">(${Number(cardData.rating_count).toLocaleString()})</span>
+                                </div>
+                                <p class="card-description">${cardData.type} · <span class="open-status">${cardData.status}</span></p>
+                                <p class="card-description">${cardData.location}</p>
+                                <div class="card-actions">
+                                    <a href="${cardData.map_link}" class="navigation-button">
+                                        <img src="assets/image/direction.png" alt="Directions">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    // Show the popup
+                    popupContainer.classList.add('active');
+                    document.body.classList.add('blurred');
+
+                    // Close popup functionality
+                    popupContainer.addEventListener('click', function(event) {
+                        if (event.target === popupContainer) {
+                            popupContainer.classList.remove('active');
+                            document.body.classList.remove('blurred');
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    // Utility function to generate unique ID (same as PHP)
+    function generateUniqueId(title, index) {
+        const baseString = title.toLowerCase().trim();
+        const stringWithoutSpaces = baseString.replace(/\s+/g, '-');
+        return stringWithoutSpaces + '-' + index;
+    }
 });
 </script>
 

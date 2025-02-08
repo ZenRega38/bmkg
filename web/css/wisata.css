@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    cursor: pointer; /* Add cursor pointer to indicate clickability */
 }
 
 .card-image {
@@ -183,8 +184,36 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
-@media (max-width: 600px) {
+
+/* Mobile Styles */
+@media (max-width: 768px) {
     .card-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .card-item {
+        /* Styles for the simplified mobile card */
+        text-align: center;
+    }
+
+    .card-item .card-image {
+        height: 250px; /* Adjust image height for mobile */
+    }
+
+    .card-item .card-content {
+        padding: 10px;
+    }
+
+    .card-item .card-title {
+        font-size: 1.1em;
+    }
+
+    /* Hide elements not needed in the mobile view */
+    .card-item .card-rating,
+    .card-item .card-description,
+    .card-item .card-weather,
+    .card-item .card-actions,
+    .map-container {
+        display: none;
     }
 }
