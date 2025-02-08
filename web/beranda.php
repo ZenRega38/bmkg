@@ -72,7 +72,7 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
 
         /* Ensure map takes full width */
         .images-section #map {
-            height: 400px;
+            height: 500px;
             width: 100%;
             border-radius : 15px;
         }
@@ -113,7 +113,7 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
         /* Set fixed height for both map and satellite containers */
         #map,
         #citraSatelitContainer .card {
-            height: 400px;
+            height: 500px;
         }
 
         #changeMapButton {
@@ -145,7 +145,7 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
             margin: 0 auto;
             margin-top: -25px;
            max-width: 100%;
-           height: 400px;
+           height: 500px;
         }
 
         .card img {

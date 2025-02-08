@@ -108,10 +108,6 @@
     display:block;
 }
 
-.Cuacaterkini .images-section {
-    margin-top: -80px;
-}
-
 /* Responsif */
 @media (max-width: 768px) {
     .Cuacaterkini .row,
