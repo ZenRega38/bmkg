@@ -42,12 +42,14 @@
     width: 100%;
     font-size: 1.1em;
     color: #fff;
+    margin-bottom: 25px;
 }
 
 .weather-info {
     margin-top: 0;
     padding: 15px;
     background-color: #f4f4f4;
+    margin-bottom: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -25,12 +25,11 @@ $magazinesByYear = $magazinesData['magazines'];
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
-    <title>BMKG Tarakan - Stasiun Meteorologi JUWATA</title>
-    
     <link rel="stylesheet" href="css/outer.css">
     <link rel="stylesheet" href="css/beranda.css">
     <link rel="stylesheet" href="css/berita.css">
+    <link rel="icon" type="image/x-icon" href="assets/image/logo_noname.png">
+    <title>BMKG Tarakan - Stasiun Meteorologi JUWATA</title>
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
@@ -58,274 +57,276 @@ $magazinesByYear = $magazinesData['magazines'];
         })
     </script>
     <style>
-        body {
-            overflow-x: hidden;
-        }
+    body {
+        overflow-x: hidden;
+    }
 
-        /* **IMPORTANT:** Override styles from outer.css if needed */
-        .container {
-            width: 100%; /* Ensure it fills the available space */
-            max-width: 1200px; /* Limit its maximum width if desired */
-            margin: 0 auto; /* Center the container */
-            padding-left: 5%; /* Adjust padding as needed */
-            padding-right: 5%; /* Adjust padding as needed */
-            box-sizing: border-box; /* Ensure padding doesn't add to the width */
-        }
-        /* Reset margin on elements */
-        .gempa,
-        .kegiatan-bmkg {
-            margin: 0; /* Reset any default margins */
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-top: 10px;
-            box-sizing: border-box;
-           width:100%;
-        }
+    /* **IMPORTANT:** Override styles from outer.css if needed */
+    .container {
+        width: 100%; /* Ensure it fills the available space */
+        max-width: 1200px; /* Limit its maximum width if desired */
+        margin: 0 auto; /* Center the container */
+        padding-left: 5%; /* Adjust padding as needed */
+        padding-right: 5%; /* Adjust padding as needed */
+        box-sizing: border-box; /* Ensure padding doesn't add to the width */
+    }
+    /* Reset margin on elements */
+    .gempa,
+    .kegiatan-bmkg {
+        margin: 0 auto; /* Center the sections */
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        box-sizing: border-box;
+       width:90%;
+       max-width: 1200px;
+       border: none; /* Remove the border */
+    }
 
-        /* Add this to ensure beranda code isn't overflowing, especially for container-gempa */
-        .container-gempa { width: 100% !important; box-sizing: border-box;}
+    /* Add this to ensure beranda code isn't overflowing, especially for container-gempa */
+    .container-gempa { width: 100% !important; box-sizing: border-box;}
 
-        /* Ensure map takes full width */
-        .images-section #map {
-            height: 500px;
-            width: 100%;
-            border-radius : 15px;
-        }
-        /* The following were already here and look OK: */
-        .clock-container {
-            width: 92%;
-            display: flex;
-            justify-content: right;
-            align-items: center;
-            margin-bottom: 10px;
+    /* Ensure map takes full width */
+    .images-section #map {
+        height: 500px;
+        width: 100%;
+        border-radius : 15px;
+    }
+    /* The following were already here and look OK: */
+    .clock-container {
+        width: 92%;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .clock {
+        align-items: right ;
+        margin: 5px;
+        font-size: 1em;
+        color: #333;
+        font-weight: bold;
+       white-space: nowrap;
+       text-align: right;
+    }
+    .date-day {
+         font-size: 1em;
+        color: #555;
+        white-space: nowrap;
+        text-align: left;
+    }
+    .images-section iframe {
+        border-radius : 15px;
+    }
+    .images-section {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    /* Set fixed height for both map and satellite containers */
+    #map,
+    #citraSatelitContainer .card {
+        height: 500px;
+    }
+
+    #changeMapButton {
+        margin-top: 20px; /* Space between map/satellite and button */
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: auto;
+        align-self: flex-end; /* Right alignment */
+        position: relative; /* Remove absolute positioning */
+        z-index: 1;
+    }
+
+    #changeMapButton:hover {
+        background-color: #0056b3;
+    }
+
+    #changeMapButton:hover {
+        background-color: #0056b3;
+    }
+    /* Styles for citra satelit */
+    .card {
+        border: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin: 0 auto;
+        margin-top: -25px;
+       max-width: 100%;
+       height: 500px;
+    }
+
+    .card img {
+        border-radius: 8px;
+        max-width: 80%;
+        max-height: 80%;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+        object-fit: contain;
+    }
+
+     .card-body {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+         align-items: center;
+         height: 100%;
+    }
+    ul {
+        margin-bottom: 0rem;
+    }
+    .satellite-image {
+        cursor: move;
+        transition: transform 0.1s;
+        max-width: none !important;
+    }
+
+    #satellite-container {
+        width: 100%;
+        height: 70vh;
+        overflow: auto;
+    }
+
+    /* Styles for beranda */
+     .kegiatan-bmkg .row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .kegiatan-bmkg .news-item {
+        flex-basis: calc(33.33% - 20px); /* Two items per row on larger screens */
+        margin: 10px;
+        min-width: 250px; /* Minimum width for smaller screens */
+        box-sizing: border-box;
+    }
+
+    @media (max-width: 768px) {
+        .kegiatan-bmkg .news-item {
+            flex-basis: 100%; /* One item per row on smaller screens */
         }
         .clock {
-            align-items: right ;
-            margin: 5px;
-            font-size: 1em;
-            color: #333;
-            font-weight: bold;
-           white-space: nowrap;
-           text-align: right;
+            font-size: 0.8em;
         }
         .date-day {
-             font-size: 1em;
-            color: #555;
-            white-space: nowrap;
-            text-align: left;
+            font-size: 0.8em;
         }
-        .images-section iframe {
-            border-radius : 15px;
-        }
-        .images-section {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
+    }
+
+    /* The following additions ensure the correct number of items show  and look good on large and small screens */
+    .UMKM .swiper-container {
+        width: 100%;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden; /* Ensure slides don't overflow */
+    }
+
+    .UMKM .swiper-wrapper {
+        display: flex;
+    }
+
+    .UMKM .swiper-slide {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        width: 300px;
+        background: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(255, 253, 253, 0.726);
+        transition: transform 0.3s ease, opacity 0.5s ease;
+        box-sizing: border-box; /* Add this! */
+        margin: 10px;
+    }
+
+    .UMKM .swiper-slide img {
+        width: 100%;
+        display: block;
+        max-height: 500px;
+        object-fit: cover;
+    }
+
+    .UMKM .swiper-slide h2 {
+        margin: 10px 0;
+        font-size: 1.5em;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .UMKM .swiper-slide p {
+        font-size: 1.2em;
+        color: #777;
+        margin-bottom: 15px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .UMKM .swiper-slide.swiper-slide-active h2,
+    .UMKM .swiper-slide.swiper-slide-active p {
+        opacity: 1;
+    }
+
+    .UMKM .swiper-button-next,
+    .UMKM .swiper-button-prev {
+        position: absolute;
+        top: 50%;
+        transform: translateX(50%)translateY(-50%);
+        width: 16px;
+        height: 24px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .UMKM .swiper-button-next {
+        right: 10px;
+        background-image: url('assets/image/next_btn.png');
+    }
+
+    .UMKM .swiper-button-prev {
+        left: 10px;
+        background-image: url('assets/image/prev_btn.png');
+    }
+
+    /* Responsif */
+    @media (max-width: 768px) {
+        .UMKM h1 {
+            font-size: 2em;
         }
 
-        /* Set fixed height for both map and satellite containers */
-        #map,
-        #citraSatelitContainer .card {
-            height: 500px;
+        .UMKM p {
+            font-size: 1em;
         }
 
-        #changeMapButton {
-            margin-top: 20px; /* Space between map/satellite and button */
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: auto;
-            align-self: flex-end; /* Right alignment */
-            position: relative; /* Remove absolute positioning */
-            z-index: 1;
-        }
-
-        #changeMapButton:hover {
-            background-color: #0056b3;
-        }
-
-        #changeMapButton:hover {
-            background-color: #0056b3;
-        }
-        /* Styles for citra satelit */
-        .card {
-            border: none;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin: 0 auto;
-            margin-top: -25px;
-           max-width: 100%;
-           height: 500px;
-        }
-
-        .card img {
-            border-radius: 8px;
-            max-width: 80%;
-            max-height: 80%;
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
-            object-fit: contain;
-        }
-
-         .card-body {
-            text-align: center;
-            display: flex;
-            justify-content: center;
-             align-items: center;
-             height: 100%;
-        }
-        ul {
-            margin-bottom: 0rem;
-        }
-        .satellite-image {
-            cursor: move;
-            transition: transform 0.1s;
-            max-width: none !important;
-        }
-
-        #satellite-container {
-            width: 100%;
-            height: 70vh;
-            overflow: auto;
-        }
-
-        /* Styles for beranda */
-         .kegiatan-bmkg .row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-
-        .kegiatan-bmkg .news-item {
-            flex-basis: calc(50% - 20px); /* Two items per row on larger screens */
-            margin: 10px;
-            min-width: 250px; /* Minimum width for smaller screens */
-            box-sizing: border-box;
-
-        }
-
-        @media (max-width: 768px) {
-            .kegiatan-bmkg .news-item {
-                flex-basis: 100%; /* One item per row on smaller screens */
-            }
-            .clock {
-                font-size: 0.8em;
-            }
-            .date-day {
-                font-size: 0.8em;
-            }
-        }
-
-        /* The following additions ensure the correct number of items show  and look good on large and small screens */
-        .UMKM .swiper-container {
-            width: 100%;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            overflow: hidden; /* Ensure slides don't overflow */
-        }
-
-        .UMKM .swiper-wrapper {
-            display: flex;
-        }
-
-        .UMKM .swiper-slide {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-           
-            height: auto;
-            background: none;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(255, 253, 253, 0.726);
-            transition: transform 0.3s ease, opacity 0.5s ease;
-            box-sizing: border-box; /* Add this! */
-            margin: 10px;
-        }
-
-        .UMKM .swiper-slide img {
-            width: 100%;
-            display: block;
-            max-height: 300px;
-            object-fit: cover;
-        }
-
-        .UMKM .swiper-slide h2 {
-            margin: 10px 0;
-            font-size: 1.2em;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .UMKM .swiper-slide p {
-            font-size: 0.9em;
-            color: #777;
-            margin-bottom: 15px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .UMKM .swiper-slide.swiper-slide-active h2,
-        .UMKM .swiper-slide.swiper-slide-active p {
-            opacity: 1;
+       .UMKM .swiper-slide {
+            flex: 0 0 60%; /* 1 item, taking up 80% of the width for readability */
         }
 
         .UMKM .swiper-button-next,
         .UMKM .swiper-button-prev {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             width: 16px;
-            height: 24px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            cursor: pointer;
-            z-index: 10;
+            height: 20px;
         }
+    }
 
-        .UMKM .swiper-button-next {
-            right: 10px;
-            background-image: url('assets/image/next_btn.png');
-        }
-
-        .UMKM .swiper-button-prev {
-            left: 10px;
-            background-image: url('assets/image/prev_btn.png');
-        }
-
-        /* Responsif */
-        @media (max-width: 768px) {
-            .UMKM h1 {
-                font-size: 2em;
-            }
-
-            .UMKM p {
-                font-size: 1em;
-            }
-
-           .UMKM .swiper-slide {
-                flex: 0 0 60%; /* 1 item, taking up 80% of the width for readability */
-            }
-
-            .UMKM .swiper-button-next,
-            .UMKM .swiper-button-prev {
-                width: 16px;
-                height: 20px;
-            }
-        }
-
-    </style>
+</style>
 </head>
 <body>
-    <script src="assets/script/nav.js"></script>
     <?php include 'header.php'; ?>
+    <script src="assets/script/nav.js"></script>
     <div class="clock-container">
         <div class="date-day" id="dateDay"></div>
         <div class="clock" id="utcClock">UTC: <span id="utcTime"></span></div>
@@ -366,7 +367,7 @@ $magazinesByYear = $magazinesData['magazines'];
                 <a href="cuaca.php" class="button-btn">Baca Selengkapnya</a>
             </div>
         </div>
-        <div class="content">
+        <div class="content" style="margin-top: 25px">
             <div class="weather-info">
                 <a href="https://metar-taf.com/WAQQ" id="metartaf-lNcdCBQc" class="metar">METAR Juwata</a>
                 <script async defer crossorigin="anonymous" src="https://metar-taf.com/embed-js/WAQQ?layout=landscape&qnh=hPa&rh=rh&target=lNcdCBQc"></script>
