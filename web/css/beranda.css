@@ -110,6 +110,12 @@
 
 /* Responsif */
 @media (max-width: 768px) {
+    .clock {
+        font-size: 0.5em;
+    }
+    .date-day {
+        font-size: 0.5em;
+    }
     .Cuacaterkini .row,
     .UMKM .row,
     .berita .row {

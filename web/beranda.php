@@ -1,15 +1,26 @@
 <?php
-// Read data from JSON file
-$jsonData = file_get_contents('assets/json/data-berita.json');
+// Function to read and decode JSON data from a file
+function loadJsonData($filePath) {
+    $jsonData = file_get_contents($filePath);
+    $data = json_decode($jsonData, true);
 
-// Decode the JSON data into a PHP array
-$newsItems = json_decode($jsonData, true);
+    if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+        die('Error decoding JSON from ' . $filePath . ': ' . json_last_error_msg());
+    }
 
-// Check for errors during JSON decoding
-if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
-    die('Error decoding JSON: ' . json_last_error_msg()); // Handle the error appropriately
+    return $data;
 }
+
+// Load news items data
+$newsItems = loadJsonData('assets/json/data-berita.json');
+
+// Load wmagz data
+$magazinesData = loadJsonData('assets/json/data-wmagz.json');
+
+// Access the magazines array
+$magazinesByYear = $magazinesData['magazines'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,7 +94,6 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
             justify-content: right;
             align-items: center;
             margin-bottom: 10px;
-            padding: 0 20px;
         }
         .clock {
             align-items: right ;
@@ -179,6 +189,134 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
             height: 70vh;
             overflow: auto;
         }
+
+        /* Styles for beranda */
+         .kegiatan-bmkg .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .kegiatan-bmkg .news-item {
+            flex-basis: calc(50% - 20px); /* Two items per row on larger screens */
+            margin: 10px;
+            min-width: 250px; /* Minimum width for smaller screens */
+            box-sizing: border-box;
+
+        }
+
+        @media (max-width: 768px) {
+            .kegiatan-bmkg .news-item {
+                flex-basis: 100%; /* One item per row on smaller screens */
+            }
+            .clock {
+                font-size: 0.8em;
+            }
+            .date-day {
+                font-size: 0.8em;
+            }
+        }
+
+        /* The following additions ensure the correct number of items show  and look good on large and small screens */
+        .UMKM .swiper-container {
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden; /* Ensure slides don't overflow */
+        }
+
+        .UMKM .swiper-wrapper {
+            display: flex;
+        }
+
+        .UMKM .swiper-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+           
+            height: auto;
+            background: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(255, 253, 253, 0.726);
+            transition: transform 0.3s ease, opacity 0.5s ease;
+            box-sizing: border-box; /* Add this! */
+            margin: 10px;
+        }
+
+        .UMKM .swiper-slide img {
+            width: 100%;
+            display: block;
+            max-height: 300px;
+            object-fit: cover;
+        }
+
+        .UMKM .swiper-slide h2 {
+            margin: 10px 0;
+            font-size: 1.2em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .UMKM .swiper-slide p {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .UMKM .swiper-slide.swiper-slide-active h2,
+        .UMKM .swiper-slide.swiper-slide-active p {
+            opacity: 1;
+        }
+
+        .UMKM .swiper-button-next,
+        .UMKM .swiper-button-prev {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 24px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .UMKM .swiper-button-next {
+            right: 10px;
+            background-image: url('assets/image/next_btn.png');
+        }
+
+        .UMKM .swiper-button-prev {
+            left: 10px;
+            background-image: url('assets/image/prev_btn.png');
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .UMKM h1 {
+                font-size: 2em;
+            }
+
+            .UMKM p {
+                font-size: 1em;
+            }
+
+           .UMKM .swiper-slide {
+                flex: 0 0 60%; /* 1 item, taking up 80% of the width for readability */
+            }
+
+            .UMKM .swiper-button-next,
+            .UMKM .swiper-button-prev {
+                width: 16px;
+                height: 20px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -265,11 +403,7 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
                             </div>
                             <div class="zoom-controls" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
                                 <button class="btn btn-primary btn-sm zoom-in"><i class="fas fa-search-plus"></i></button>
-                                <button class="btn btn-primary btn-sm zoom-out mt-1"><i class="fas fa-search-minus"></i></button>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                      </div>
                  </div>
@@ -283,47 +417,22 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
         <h1>Weather Magazine</h1>
         <p>Baca Majalah Cuaca Terkini di W'Mag.</p>
         <div class="imgBox">
-                <div class="swiper-container">
-                    <img class="swiper-button-prev" src="assets/image/prev_btn.png">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.png">
-                            </a>
-                            <h2>W'Magz January 2025</h2>
-                            <p>Kilas Balik Desember 2024</p>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.png">
-                            </a>
-                            <h2>W'Magz January 2025</h2>
-                            <p>Kilas Balik Desember 2024</p>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.png">
-                            </a>
-                            <h2>W'Magz January 2025</h2>
-                            <p>Kilas Balik Desember 2024</p>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.png">
-                            </a>
-                            <h2>W'Magz January 2025</h2>
-                            <p>Kilas Balik Desember 2024</p>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.png">
-                            </a>
-                            <h2>W'Magz January 2025</h2>
-                            <p>Kilas Balik Desember 2024</p>
-                        </div>
-                    </div>
-                    <img class="swiper-button-next" src="assets/image/next_btn.png">
+            <div class="swiper-container">
+                <img class="swiper-button-prev" src="assets/image/prev_btn.png" alt="Previous">
+                <div class="swiper-wrapper">
+                    <?php foreach ($magazinesByYear as $year => $months): ?>
+                         <?php foreach ($months as $month => $magazine): ?>
+                                <div class="swiper-slide">
+                                    <a href="<?= htmlspecialchars($magazine['link']) ?>">
+                                        <img src="<?= htmlspecialchars($magazine['coverImage']) ?>" alt="<?= htmlspecialchars($magazine['title']) ?>">
+                                    </a>
+                                    <h2><?= htmlspecialchars($magazine['title']) ?></h2>
+                                    <p><?= htmlspecialchars($magazine['summary']) ?></h2>
+                                </div>
+                        <?php endforeach; ?>
+                 <?php endforeach; ?>
                 </div>
+                <img class="swiper-button-next" src="assets/image/next_btn.png" alt="Next">
             </div>
         </div>
     </section>
@@ -518,7 +627,7 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
                      slide.querySelector('p').style.opacity = '1';
                    } else {
                     slide.querySelector('h2').style.opacity = '0';
-                    slide.querySelector('p').                                style.opacity = '0';
+                    slide.querySelector('p').style.opacity = '0';
                    }
                 }
               },
@@ -529,9 +638,9 @@ if ($newsItems === null && json_last_error() !== JSON_ERROR_NONE) {
        <?php include 'gempa.php'; ?>
     </section>
     <section class="kegiatan-bmkg">
-    <?php include 'berita.php'; ?>
+        <?php include 'berita.php'; ?>
     </section>
-    <section class="cuacabandara">
+        <section class="cuacabandara">
     </section>
     <?php include 'footer.php'; ?>
       <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
