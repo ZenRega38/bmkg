@@ -5,6 +5,8 @@ body {
     background-color: #f4f4f4;
     color: #333;
     text-align: justify;
+    display: flow-root;
+    overflow-x: visible; /* Matikan overflow-x */
 }
 
 .section-content {

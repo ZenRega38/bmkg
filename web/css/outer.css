@@ -398,7 +398,7 @@ button {
 
   #nav-menu .hamburger { /* Increased specificity */
     display: block !important; /* !important to override other styles */
-    z-index: 999;
+    z-index: 1080;
     margin-top: -20px;
   }
 
@@ -418,7 +418,7 @@ button {
     align-items: center; /* Vertically center the menu items */
     justify-content: flex-start; /* Align items to the top */
     padding-top: 70px; /* Increased from 50px */
-    z-index: 1000;
+    z-index: 1090;
   }
 
   .dropdown {

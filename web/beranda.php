@@ -59,6 +59,7 @@ $magazinesByYear = $magazinesData['magazines'];
     <style>
     body {
         overflow-x: hidden;
+        
     }
 
     /* **IMPORTANT:** Override styles from outer.css if needed */
@@ -712,6 +713,8 @@ $magazinesByYear = $magazinesData['magazines'];
             }
         });
     </script>
+    <script src="assets/script/nav.js"></script>
+
 
 </body>
 </html>

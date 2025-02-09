@@ -69,6 +69,8 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
           integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/all.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     <style>
         /* ===PASTE THE ENTIRE MOBILE CARD SWIPER CSS FROM tes_scroll_cuaca.php HERE=== */
 
