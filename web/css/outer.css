@@ -344,12 +344,10 @@ button {
   .content-section {
     width: 100%;
   }
-  .bmkg-header .container{
+  .bmkg-header .container,
+  .bmkg-footer .container {
     flex-direction: column;
     align-items: center;
-  }
-  .bmkg-footer .container {
-    align-items: left;
   }
   .logo-section {
     padding-bottom: 30px;
@@ -486,9 +484,8 @@ button {
     right: 25px !important;
     font-size: 2.5rem;
     color: #fff;
-    overflow: visible !important;
     cursor: pointer;
-    z-index: 1007; /* Higher than nav-menu */
+    z-index: 1001; /* Higher than nav-menu */
     display: block;
     background: transparent;
     border: none;

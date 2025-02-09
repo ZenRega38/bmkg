@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const closeBtn = document.createElement('span');
   closeBtn.classList.add('close-btn');
   closeBtn.innerHTML = 'x';
+  closeBtn.setAttribute('aria-label', 'Close menu');
   document.body.appendChild(closeBtn); // Append to body instead of navMenu
 
   // Close button click event
