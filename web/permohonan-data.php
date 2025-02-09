@@ -13,7 +13,9 @@
 
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <?php
+        include '../nav/nav.php';
+    ?>
     <div class="iframe-container" style="display: flex; justify-content: center;">
       <iframe 
         src="https://docs.google.com/forms/d/e/1FAIpQLSfOdz_yh8MmSjXH9iNNMsIAH7ycJImTKoqsTOhYYk8CcVP-YA/viewform?embedded=true" 
@@ -27,6 +29,8 @@
       </iframe>
     </div>
     <script src="assets/script/nav.js"></script>
+    <script src="../nav/assets-nav/js/main.js"></script>
+
     <?php include 'footer.php'; ?>
 </body>
 </html>

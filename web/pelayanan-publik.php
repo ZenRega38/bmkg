@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="css/pelayanan-publik.css">
     <link rel="stylesheet" href="css/outer.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../nav/assets-nav/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <?php include '../nav/nav.php';?>
 
     <video autoplay muted loop id="background-video">
         <source src="assets/video/bg.mp4" type="video/mp4">
@@ -204,6 +206,8 @@
     </section>
 
     <script src="assets/script/nav.js"></script>
+    <script src="../nav/assets-nav/js/main.js"></script>
+
     <?php include 'footer.php'; ?>
 </body>
 </html>

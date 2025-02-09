@@ -76,7 +76,6 @@ button {
   align-items: center;
   justify-content: space-between;
   column-gap: 2rem;
-   box-sizing: border-box; /* Ensure padding and border are included in width */
 }
 
 .container-header {
@@ -101,54 +100,6 @@ button {
   width: 100%;
 }
 
-/* Header BMKG */
-.bmkg-header {
-  background-color: #377BC9;
-  color: #fff;
-  padding: 15px 20px !important;
-  width: 100%;
-}
-
-.bmkg-header .container {
-  margin: 0 auto;
-  width: 100%;
-}
-
-.bmkg-header-bottom {
-  background-color: #4da1a9;
-  color: #fff;
-  padding: 15px 20px;
-  width: 100%;
-}
-
-/* Dashboard Area */
-.dashboard {
-  display: flex;
-  align-items: center;
-  padding: 5px 0;
-}
-
-.logo img {
-  max-width: 120px;
-  height: auto;
-  margin-left: 2%;
-}
-
-.text-content {
-  text-align: left;
-  margin-top: -10px;
-  margin-left: 3%;
-}
-
-.solid-line {
-  border-bottom: 2px solid #fff;
-  margin: 8px 0;
-}
-
-.bmkg-header .logo img {
-  max-height: 40px;
-}
-
 
 /* Footer BMKG */
 .bmkg-footer {
@@ -165,6 +116,9 @@ button {
   align-items: flex-start;
   padding-left: 5%;
   padding-right: 5%;
+
+  display: flex;         /* Aktifkan Flexbox */
+  flex-direction: column; /* Atur urutan item menjadi kolom */
 }
 
 .footer-section {
@@ -338,9 +292,6 @@ button {
 
 /* Untuk layar kecil (mobile) */
 @media (max-width: 768px) {
-  .Cuacaterkini {
-    padding: 20px 0;
-  }
   .content-section {
     width: 100%;
   }
@@ -532,15 +483,6 @@ button {
 @media (min-width: 1200px) {
   .Cuacaterkini {
     width: 80%;
-  }
-
-  .logo img {
-    max-width: 150px;
-    margin-right: 40px;
-    margin-left: 140px;
-  }
-  .nav-menu ul li a {
-    font-size: 1rem;
   }
   .footer-section h4 {
     font-size: 16px;
