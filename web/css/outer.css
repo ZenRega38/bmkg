@@ -347,15 +347,33 @@ button {
   .bmkg-header .container,
   .bmkg-footer .container {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
   .logo-section {
-    margin-bottom: 10px;
+    padding-bottom: 30px;
+  }
+  .logo img {
+    height: 100px;
+    margin-bottom: 30px;
   }
 
+  .header1 .text-content1 .title1 {
+    font-size: 20px; /* Smaller title */
+    margin-bottom: 5px; /* Reduce space between title and subtitle */
+  }
+
+  .header1 .text-content1 .subtitle1 {
+    font-size: 10px; /* Smaller subtitle */
+    margin-bottom: 0px;
+  }
+
+  .header1 .text-content1 .slogan1 {
+    font-size: 15px; /* Smaller slogan */
+  }
   #nav-menu {
     margin-left: 0;
-    margin-top: 10px;
+    height: 50px;
+    margin-top: -20px;
     padding: 0.5% 1%; /* reduce padding to 1% */
   }
   .nav-menu ul {
@@ -378,10 +396,10 @@ button {
     text-align: center;
   }
 
-  /* Mobile Menu Styles */
-  .hamburger {
-    display: block; /* Show hamburger on mobile */
-    z-index: 1001; /* Ensure it's above the menu */
+  #nav-menu .hamburger { /* Increased specificity */
+    display: block !important; /* !important to override other styles */
+    z-index: 999;
+    margin-top: -20px;
   }
 
   .container {
@@ -396,11 +414,11 @@ button {
     height: 100vh; /* Full viewport height */
     width: 100vw; /* Full viewport width */
     background-color: #377BC9; /* Add background color */
-    padding-top: 50px; /* Add padding to the top */
-    z-index: 1000; /* Ensure it's above other content */
-    overflow-y: auto; /* Enable scrolling if content overflows */
+    overflow-y: hidden; /* Enable scrolling if content overflows */
     align-items: center; /* Vertically center the menu items */
     justify-content: flex-start; /* Align items to the top */
+    padding-top: 70px; /* Increased from 50px */
+    z-index: 1000;
   }
 
   .dropdown {
@@ -431,7 +449,7 @@ button {
   }
 
   .dropdown ul {
-    padding-left: 0.3rem;
+    padding-left: 1rem;
   }
 
   .menu-bar {
@@ -460,33 +478,19 @@ button {
     border-bottom: var(--border);
   }
 
-  /* Add close button styles */
   .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 2rem;
+    position: fixed; /* Changed from absolute */
+    top: 15px !important;
+    right: 25px !important;
+    font-size: 2.5rem;
     color: #fff;
     cursor: pointer;
-    z-index: 1002; /* Ensure it's above the menu */
-  }
-
-  /* Header Responsiveness */
-  .header1 .logo1 img {
-    max-width: 120px; /* Keep logo size the same as before */
-  }
-
-  .header1 .text-content1 .title1 {
-    font-size: 32px; /* Smaller title */
-    margin-bottom: 5px; /* Reduce space between title and subtitle */
-  }
-
-  .header1 .text-content1 .subtitle1 {
-    font-size: 16px; /* Smaller subtitle */
-  }
-
-  .header1 .text-content1 .slogan1 {
-    font-size: 18px; /* Smaller slogan */
+    z-index: 1001; /* Higher than nav-menu */
+    display: block;
+    background: transparent;
+    border: none;
+    padding: 0;
+    line-height: 1;
   }
 }
 
@@ -499,10 +503,6 @@ button {
   .bmkg-header .container,
   .bmkg-footer .container {
     flex-direction: row;
-  }
-  #nav-menu {
-    margin-top: 0;
-     padding: 0.5% 1%; /* Added padding to nav menu on desktop to ensure consistent padding*/
   }
 
   .nav-menu ul {

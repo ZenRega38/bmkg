@@ -1,18 +1,21 @@
-// nav.js (renamed to avoid confusion with other scripts)
-
 document.addEventListener('DOMContentLoaded', function() {
-  const dropdownBtn = document.querySelectorAll(".dropdown-btn2"); // Updated class
-  const dropdown = document.querySelectorAll(".dropdown2"); // Updated class
-  const hamburgerBtn = document.querySelector(".hamburger1"); // Updated class
-  const navMenu = document.querySelector(".menu2"); // Updated class
-  const links = document.querySelectorAll(".dropdown2 a"); // Updated class
-  const body = document.body; // Get the body element
+  console.log('nav.js is running!');
+
+  const dropdownBtn = document.querySelectorAll(".dropdown-btn2");
+  const dropdown = document.querySelectorAll(".dropdown2");
+  const hamburgerBtn = document.querySelector(".hamburger1");
+  const navMenu = document.querySelector(".menu2");
+  const links = document.querySelectorAll(".dropdown2 a");
+  const body = document.body;
+
+  console.log('Hamburger button found:', hamburgerBtn);
 
   // Function to toggle the menu and body overflow
   function toggleMenu() {
-      navMenu.classList.toggle('show');
-      body.classList.toggle('no-scroll'); // Toggle the class on the body
-  }
+    navMenu.classList.toggle('show');
+    body.classList.toggle('no-scroll');
+    closeBtn.style.display = navMenu.classList.contains('show') ? 'block' : 'none';
+}
 
   // Function to set aria-expanded to false for all dropdown buttons
   function setAriaExpandedFalse() {
@@ -23,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function closeDropdownMenu() {
       dropdown.forEach((drop) => {
           drop.classList.remove("active");
-          drop.removeEventListener("click", (e) => e.stopPropagation()); // Remove the event listener to avoid memory leaks
+          drop.removeEventListener("click", (e) => e.stopPropagation());
       });
   }
 
@@ -71,16 +74,18 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Hamburger click event
-  hamburgerBtn.addEventListener("click", function(e) {
-      e.preventDefault();
-      toggleMenu();
-  });
+  closeBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    toggleMenu();
+    this.style.display = 'none'; // Hide when menu closes
+});
 
   // Create close button
   const closeBtn = document.createElement('span');
   closeBtn.classList.add('close-btn');
-  closeBtn.innerHTML = '×'; // 'X' symbol
-  navMenu.appendChild(closeBtn);
+  closeBtn.innerHTML = 'x';
+  closeBtn.setAttribute('aria-label', 'Close menu');
+  document.body.appendChild(closeBtn); // Append to body instead of navMenu
 
   // Close button click event
   closeBtn.addEventListener('click', function(e) {

@@ -23,6 +23,7 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
+    <script src="assets/script/nav.js"></script>
     <section>
         <div class="content">
             <div class="textBox">
@@ -90,7 +91,7 @@
                 stretch: 0,
                 depth: 200,
                 modifier: 1,
-                slideShadows: true,
+                slideShadows: false,
             },
             navigation: {
              nextEl: ".swiper-button-next",

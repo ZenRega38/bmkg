@@ -59,7 +59,7 @@
                             <a class="dropdown-link dropdown-link2" href="assets/loading/load_permohonan-data.php">Permohonan Data</a>
                         </li>
                         <li role="menuitem">
-                            <a class="dropdown-link dropdown-link2" href="assets/loading/load_wmagz.php">W'magazine</a>
+                            <a class="dropdown-link dropdown-link2" href="assets/loading/load_wmagz.php">W'Magazine</a>
                         </li>
                         <li role="menuitem">
                             <a class="dropdown-link dropdown-link2" href="https://docs.google.com/forms/d/e/1FAIpQLSeqtT0nVNiYFSNPYz8yeu0M97aORXdoovfeZxXpUcHiXqWh0g/viewform?usp=sharing">Aduan</a>

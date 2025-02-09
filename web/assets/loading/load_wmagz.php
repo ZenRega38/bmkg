@@ -85,7 +85,7 @@
                 setTimeout(simulateProgress, delay);
              }else {
                     clearInterval(gifInterval); // stop gif change
-                    window.location.href = '../../wmagz.php';
+                    window.location.href = '../../wmagz-full.php';
                 }
            };
 

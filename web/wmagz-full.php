@@ -14,6 +14,7 @@
 </head>
 <body>
 <?php include 'header.php'; ?>
+<script src="assets/script/nav.js"></script>
     <div style="display: flex; justify-content: center;">
       <h2><a href="wmagz.php" style="color: #F4BE37;">W</a>'Magazine</h2>
     </div>
@@ -42,7 +43,6 @@
          <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 12"></a>
     </div>
 
-    <script src="assets/script/nav.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
