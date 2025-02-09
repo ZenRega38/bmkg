@@ -10,8 +10,8 @@ body {
 }
 
 .section-content {
-    padding: 20px;
-    margin: 20px;
+    padding: 60px;
+    margin: 60px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -146,9 +146,9 @@ body {
 
     .video-container iframe,
     .video-container video {
-        height: auto; /* Maintain aspect ratio */
+        max-height: 30%; /* Maintain aspect ratio */
     }
     .gallery img {
-        height: auto;
+        max-height: 40%;
     }
 }

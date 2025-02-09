@@ -93,11 +93,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    hamburgerBtn.addEventListener('click', function(e) {
-        e.preventDefault(); // Prevent default action (e.g., page refresh)
-        console.log('Hamburger button clicked');
-        toggleMenu();
-    });
+  // Hamburger click event
+  closeBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    toggleMenu();
+    this.style.display = 'none'; // Hide when menu closes
+});
+
+  // Create close button
+  const closeBtn = document.createElement('span');
+  closeBtn.classList.add('close-btn');
+  closeBtn.innerHTML = 'x';
+  closeBtn.setAttribute('aria-label', 'Close menu');
+  document.body.appendChild(closeBtn); // Append to body instead of navMenu
 
     // Close button click event
     closeBtn.addEventListener('click', function(e) {
