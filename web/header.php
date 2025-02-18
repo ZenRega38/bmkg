@@ -17,7 +17,7 @@
 <header id="nav-menu" class="nav-menu1" aria-label="navigation bar">
     <div class="container container2" >
         <nav class="menu menu2">
-            <ul class="menu-bar menu-bar2">
+            <ul class="menu-bar menu-bar2" style="margin-bottom: 0 !important;">
                 <li><a class="nav-link nav-link2" href="index.php">Beranda</a></li>
                 <li><a class="nav-link nav-link2" href="assets/loading/load_profil.php" >Profil</a></li>
                  <li>
