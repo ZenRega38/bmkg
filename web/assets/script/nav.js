@@ -8,14 +8,33 @@ document.addEventListener('DOMContentLoaded', function() {
   const links = document.querySelectorAll(".dropdown2 a");
   const body = document.body;
 
+  // Create close button
+  const closeBtn = document.createElement('span');
+  closeBtn.classList.add('close-btn');
+  closeBtn.innerHTML = 'x';
+  closeBtn.setAttribute('aria-label', 'Close menu');
+  document.body.appendChild(closeBtn); // Append to body instead of navMenu
+
   console.log('Hamburger button found:', hamburgerBtn);
 
   // Function to toggle the menu and body overflow
   function toggleMenu() {
-    navMenu.classList.toggle('show');
-    body.classList.toggle('no-scroll');
-    closeBtn.style.display = navMenu.classList.contains('show') ? 'block' : 'none';
-}
+      navMenu.classList.toggle('show');
+      body.classList.toggle('no-scroll');
+      closeBtn.style.display = navMenu.classList.contains('show') ? 'block' : 'none';
+  }
+
+  // Hamburger click event
+  hamburgerBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      toggleMenu();
+  });
+
+  // Close button click event
+  closeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      toggleMenu();
+  });
 
   // Function to set aria-expanded to false for all dropdown buttons
   function setAriaExpandedFalse() {
@@ -71,26 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
           closeDropdownMenu();
           setAriaExpandedFalse();
       }
-  });
-
-  // Hamburger click event
-  closeBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    toggleMenu();
-    this.style.display = 'none'; // Hide when menu closes
-});
-
-  // Create close button
-  const closeBtn = document.createElement('span');
-  closeBtn.classList.add('close-btn');
-  closeBtn.innerHTML = 'x';
-  closeBtn.setAttribute('aria-label', 'Close menu');
-  document.body.appendChild(closeBtn); // Append to body instead of navMenu
-
-  // Close button click event
-  closeBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      toggleMenu();
   });
 
   // Prevent scrolling when the menu is open
