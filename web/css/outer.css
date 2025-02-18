@@ -344,8 +344,11 @@ button {
   .content-section {
     width: 100%;
   }
-  .bmkg-header .container,
   .bmkg-footer .container {
+    flex-direction: column;
+    align-items: left;
+  }
+  .bmkg-header .container {
     flex-direction: column;
     align-items: center;
   }
