@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
 
 </head>
 <body>
-    <?php include 'header.php';?>
+    <?php include 'widget/header.php';?>
 
     <video autoplay muted loop id="background-video">
         <source src="assets/video/bg.mp4" type="video/mp4">
@@ -207,7 +207,8 @@
     <script src="assets/script/nav.js"></script>
     
 
-    <?php include 'footer.php'; ?>
+    <?php include 'widget/footer.php'; ?>
 </body>
 </html>
+
 

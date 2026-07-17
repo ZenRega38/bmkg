@@ -1,38 +1,48 @@
-{
+﻿{
     "magazines": {
       "2025": {
         "January": {
           "title": "W'Magz January 2025",
           "summary": "Kilas Balik Desember 2024",
-          "coverImage": "magazine_january_2025/pages/1.png",
-          "link": "magazine_january_2025/viewer.html"
+          "coverImage": "assets/wmagz/magazine_january_2025/pages/1.webp",
+          "link": "assets/wmagz/magazine_january_2025/viewer.html",
+          "pdfSource": "assets/pdf/wmagz/2025/wmagz_January.pdf",
+          "pages": 30
         },
         "February": {
           "title": "W'Magz February 2025",
           "summary": "Ringkasan Cuaca Januari 2025",
-          "coverImage": "magazine_january_2025/pages/1.png",
-          "link": "magazine_january_2025/viewer.html"
+          "coverImage": "assets/wmagz/magazine_january_2025/pages/1.webp",
+          "link": "assets/wmagz/magazine_january_2025/viewer.html",
+          "pdfSource": "",
+          "pages": 30
         },
         "March": {
           "title": "W'Magz March 2025",
           "summary": "Outlook Cuaca Musim Peralihan",
-          "coverImage": "magazine_january_2025/pages/1.png",
-          "link": "magazine_january_2025/viewer.html"
+          "coverImage": "assets/wmagz/magazine_january_2025/pages/1.webp",
+          "link": "assets/wmagz/magazine_january_2025/viewer.html",
+          "pdfSource": "",
+          "pages": 30
         },
         "April": {
           "title": "W'Magz April 2025",
           "summary": "Analisis Curah Hujan April",
-          "coverImage": "magazine_january_2025/pages/1.png",
-          "link": "magazine_january_2025/viewer.html"
+          "coverImage": "assets/wmagz/magazine_january_2025/pages/1.webp",
+          "link": "assets/wmagz/magazine_january_2025/viewer.html",
+          "pdfSource": "",
+          "pages": 30
         }
       },
-       "2024": {
-          "December": {
-            "title": "W'Magz December 2024",
-            "summary": "Preview Awal Januari 2025",
-            "coverImage": "magazine_january_2025/pages/1.png",
-            "link": "magazine_january_2025/viewer.html"
-          }
+      "2024": {
+        "December": {
+          "title": "W'Magz December 2024",
+          "summary": "Preview Awal Januari 2025",
+          "coverImage": "assets/wmagz/magazine_january_2025/pages/1.webp",
+          "link": "assets/wmagz/magazine_january_2025/viewer.html",
+          "pdfSource": "",
+          "pages": 30
         }
+      }
     }
 }

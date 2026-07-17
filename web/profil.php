@@ -12,7 +12,7 @@
 </head>
 <body>
     <?php
-        include 'header.php';
+        include 'widget/header.php';
     ?>
     <main>
        <section class="section-content content-flex">
@@ -60,7 +60,7 @@
 
     <script src="assets/script/nav.js"></script>
     
-    <?php include 'footer.php'; ?>
+    <?php include 'widget/footer.php'; ?>
 </body>
 </html>
 

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // Function to read and decode JSON data from a file
 function loadJsonData($filePath) {
     $jsonData = file_get_contents($filePath);
@@ -38,7 +38,7 @@ $magazinesByYear = $magazinesData['magazines'];
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <?php include 'widget/header.php'; ?>
     <script src="assets/script/nav.js"></script>
     <div class="clock-container">
         <div class="date-day" id="dateDay"></div>
@@ -80,9 +80,14 @@ $magazinesByYear = $magazinesData['magazines'];
                 <a href="cuaca.php" class="button-btn">Baca Selengkapnya</a>
             </div>
         </div>
-        <div class="content" style="margin-top: 25px">
-            <div class="weather-info">
-                <a href="https://metar-taf.com/WAQQ" id="metartaf-lNcdCBQc" class="metar">METAR Juwata</a>
+        <div class="content metar-section" style="margin-top: 25px">
+            <div class="metar-header">
+                <span class="metar-badge">METAR</span>
+                <h2>Data Cuaca Bandara</h2>
+                <p>Cuaca Penerbangan (METAR) Bandara Juwata Tarakan (WAQQ)</p>
+            </div>
+            <div class="metar-embed-wrapper">
+                <a href="https://metar-taf.com/WAQQ" id="metartaf-lNcdCBQc" class="metar-link">METAR Juwata International Airport / Suharnoko Harbani AFB</a>
                 <script async defer crossorigin="anonymous" src="https://metar-taf.com/embed-js/WAQQ?layout=landscape&qnh=hPa&rh=rh&target=lNcdCBQc"></script>
             </div>
         </div>
@@ -130,7 +135,7 @@ $magazinesByYear = $magazinesData['magazines'];
 
     </div>
 </section>
-    <?php include 'kartu-cuaca.php'; ?>
+    <?php include 'widget/kartu-cuaca.php'; ?>
     <section class="UMKM">
         <h1>Weather Magazine</h1>
         <p>Baca Majalah Cuaca Terkini di W'Mag.</p>
@@ -155,14 +160,14 @@ $magazinesByYear = $magazinesData['magazines'];
         </div>
     </section>
     <section class="gempa">
-       <?php include 'gempa.php'; ?>
+       <?php include 'widget/gempa.php'; ?>
     </section>
     <section class="kegiatan-bmkg">
-        <?php include 'berita.php'; ?>
+        <?php include 'widget/berita.php'; ?>
     </section>
         <section class="cuacabandara">
     </section>
-    <?php include 'footer.php'; ?>
+    <?php include 'widget/footer.php'; ?>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>

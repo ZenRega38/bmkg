@@ -168,20 +168,47 @@ function initWeatherFetch() {
     `;
 
     const fetchWeatherData = async () => {
+        const BMKG_URL = 'https://api.bmkg.go.id/publik/prakiraan-cuaca?adm2=65.71';
+        const PROXY_URL = 'proxy-cuaca.php?adm2=65.71';
+
+        let data = null;
+
+        // Coba fetch langsung dari browser ke BMKG (browser tidak diblok Cloudflare)
         try {
-            // BMKG Public Weather API for Tarakan (adm2: 65.71) via Proxy
-            const response = await fetch('proxy-cuaca.php?adm2=65.71');
-            const data = await response.json();
-            
-            updateWeatherInfo(data);
-            updateWeatherDisplay(data);
-        } catch (error) {
-            console.error('Error fetching weather data:', error);
-            const row = document.getElementById('cuacaRow');
-            if (row) {
-                row.innerHTML = '<p class="text-danger">Gagal memuat data cuaca. Silakan coba lagi nanti.</p>';
+            const response = await fetch(BMKG_URL, {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            const text = await response.text();
+            const parsed = JSON.parse(text.replace(/^\uFEFF/, ''));
+            if (parsed && parsed.data && parsed.data.length > 0) {
+                data = parsed;
+                console.log('[BMKG] ✅ Data realtime dari API BMKG langsung, total lokasi:', parsed.data.length);
+            }
+        } catch (e) {
+            console.warn('[BMKG] ⚠️ Fetch langsung gagal (mungkin CORS), mencoba proxy...', e.message);
+        }
+
+        // Fallback ke proxy PHP jika BMKG langsung gagal
+        if (!data) {
+            try {
+                const response = await fetch(PROXY_URL);
+                const text = await response.text();
+                data = JSON.parse(text.replace(/^\uFEFF/, ''));
+                console.log('[BMKG] 🔄 Data dari proxy-cuaca.php');
+            } catch (error) {
+                console.error('[BMKG] ❌ Semua sumber gagal:', error);
+                const row = document.getElementById('cuacaRow');
+                if (row) {
+                    row.innerHTML = '<p class="text-danger">Gagal memuat data cuaca. Silakan coba lagi nanti.</p>';
+                }
+                return;
             }
         }
+
+        updateWeatherInfo(data);
+        updateWeatherDisplay(data);
     };
 
     // Update the main dashboard weather widget (content-section)

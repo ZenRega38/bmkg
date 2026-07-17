@@ -103,7 +103,7 @@ function generateUniqueId($title, $index) {
     </style>
 </head>
 <body>
-<?php include 'header.php'; ?>
+<?php include 'widget/header.php'; ?>
 <script src="assets/script/nav.js"></script>
 
 <div class="dataset-selector">
@@ -326,6 +326,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<?php include 'footer.php'; ?>
+<?php include 'widget/footer.php'; ?>
 </body>
 </html>

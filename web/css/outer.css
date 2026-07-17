@@ -84,6 +84,15 @@ button {
 }
 
 /* =========================================================
+  /* Global Styles & Variables
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body, p, h1, h2, h3, h4, h5, h6, a, li, ul, div, span:not([class*="bx"]):not([class*="fa"]), input, button, select, textarea {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* =========================================================
    Container & Layout
    ========================================================= */
 .container {
@@ -188,6 +197,10 @@ button {
   display: none;
 }
 
+#hamburger i {
+  font-family: 'boxicons' !important;
+}
+
 .dropdown-btn {
   display: flex;
   align-items: center;
@@ -202,7 +215,12 @@ button {
 #hamburger {
   display: none;
   color: var(--white);
-  font-size: 1.8rem;
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 9999;
 }
 
 /* =========================================================
@@ -265,7 +283,7 @@ button {
   background-color: var(--bmkg-green);
   color: var(--white);
   padding: 4rem 0 2rem 0;
-  margin-top: 4rem;
+  margin-top: 0;
 }
 
 .bmkg-footer .container {
@@ -347,33 +365,79 @@ button {
 }
 
 @media (max-width: 768px) {
-  .container-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
+  .dashboard1 {
+    gap: 0.5rem;
   }
-  .text-content1 .solid-line1 { margin: 0.5rem auto; }
+  .logo1 img {
+    height: 45px !important;
+  }
+  .text-content1 .title1 {
+    font-size: 1.1rem !important;
+    white-space: nowrap;
+  }
+  .text-content1 .subtitle1 {
+    font-size: 0.6rem !important;
+    white-space: nowrap;
+  }
+  .text-content1 .slogan1 {
+    font-size: 0.5rem !important;
+    white-space: nowrap;
+  }
+  .text-content1 .solid-line1 {
+    margin: 3px 0;
+  }
+  .header1 {
+    padding: 0.8rem 0;
+  }
   
   #nav-menu {
     height: 60px;
   }
   
+  #nav-menu .container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+  }
+
   #hamburger {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: auto;
+    font-size: 2.5rem;
+    color: #ffffff;
   }
 
   .menu {
     position: fixed;
-    top: 60px;
+    top: 0;
     left: -100%;
-    width: 100%;
-    height: calc(100vh - 60px);
+    width: 100vw;
+    height: 100vh;
     background-color: var(--bmkg-blue);
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 2rem 5%;
     transition: var(--transition);
     overflow-y: auto;
+    z-index: 99999;
+  }
+  
+  .close-btn {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 3.5rem;
+    cursor: pointer;
+    z-index: 100000;
   }
 
   .menu.show {
@@ -381,21 +445,24 @@ button {
   }
 
   .menu-bar {
+    display: flex;
     flex-direction: column;
     width: 100%;
-    align-items: flex-start;
-    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
   }
 
   .menu-bar > li {
     width: 100%;
+    text-align: center;
   }
 
   .menu-bar .nav-link, .dropdown-btn {
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     padding: 1rem;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     border-radius: 0;
   }

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // Read data from JSON file
 $jsonData = file_get_contents('assets/json/data-berita.json');
 
@@ -117,7 +117,7 @@ if (!$selectedNewsItem) {
     </style>
 </head>
 <body>
-<?php include 'header.php'; ?>
+<?php include 'widget/header.php'; ?>
 <script src="assets/script/nav.js"></script>
 <main class="container">
     <div class="news-detail" style="margin-top: 50px; margin-bottom: 50px;">
@@ -128,6 +128,6 @@ if (!$selectedNewsItem) {
         <p><?= htmlspecialchars($selectedNewsItem['details']) ?></p>
     </div>
 </main>
-<?php include 'footer.php'; ?>
+<?php include 'widget/footer.php'; ?>
 </body>
 </html>

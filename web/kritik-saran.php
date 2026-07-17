@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     </head>
 <body>
-  <?php include 'header.php';?>
+  <?php include 'widget/header.php';?>
     <div class="iframe-container" style = "display: flex; justify-content: center; align-items: center;">
       <iframe 
         src="https://docs.google.com/forms/d/e/1FAIpQLSdpDuDCtVzCNlxM_Nqhf1_MgySYpJwSXmh-ZBs7wbfUbRBoIQ/viewform?embedded=true" 
@@ -26,7 +26,8 @@
     <script src="assets/script/nav.js"></script>
     
 
-    <?php include 'footer.php'; ?>
+    <?php include 'widget/footer.php'; ?>
 </body>
 </html>
+
 

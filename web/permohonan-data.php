@@ -14,7 +14,7 @@
 </head>
 <body>
     <?php
-        include 'header.php';
+        include 'widget/header.php';
     ?>
     <div class="iframe-container" style="display: flex; justify-content: center;">
       <iframe 
@@ -31,6 +31,6 @@
     <script src="assets/script/nav.js"></script>
     
 
-    <?php include 'footer.php'; ?>
+    <?php include 'widget/footer.php'; ?>
 </body>
 </html>

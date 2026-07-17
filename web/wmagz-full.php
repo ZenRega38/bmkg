@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<?php include 'header.php'; ?>
+<?php include 'widget/header.php'; ?>
 <script src="assets/script/nav.js"></script>
     <div style="display: flex; justify-content: center;">
       <h2><a href="wmagz.php" style="color: #F4BE37;">W</a>'Magazine</h2>
@@ -24,30 +24,31 @@
           <img id="nextYearBtn" class="swiper-button-next" src="assets/image/next_btn.png">
       </div>
     <div class="image-grid">
-       <a href="magazine_january_2025/viewer.html" class="featured"><img src="magazine_january_2025/pages/1.png" alt="Featured Image"></a>
+       <a href="assets/wmagz/magazine_january_2025/viewer.html" class="featured"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Featured Image"></a>
 
-        <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 1"></a>
-        <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 2"></a>
-         <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 3"></a>
+        <a href="assets/wmagz/magazine_january_2025/viewer.html"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Image 1"></a>
+        <a href="assets/wmagz/magazine_january_2025/viewer.html"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Image 2"></a>
+         <a href="assets/wmagz/magazine_january_2025/viewer.html"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Image 3"></a>
 
-          <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 4"></a>
-        <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 5"></a>
-        <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 6"></a>
+          <a href="assets/wmagz/magazine_january_2025/viewer.html"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Image 4"></a>
+        <a href="assets/wmagz/magazine_january_2025/viewer.html"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Image 5"></a>
+        <a href="assets/wmagz/magazine_january_2025/viewer.html"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Image 6"></a>
 
-         <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 7"></a>
-        <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 8"></a>
-         <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 9"></a>
+         <a href="assets/wmagz/magazine_january_2025/viewer.html"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Image 7"></a>
+        <a href="assets/wmagz/magazine_january_2025/viewer.html"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Image 8"></a>
+         <a href="assets/wmagz/magazine_january_2025/viewer.html"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Image 9"></a>
 
-          <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 10"></a>
-        <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 11"></a>
-         <a href="magazine_january_2025/viewer.html"><img src="magazine_january_2025/pages/1.png" alt="Image 12"></a>
+          <a href="assets/wmagz/magazine_january_2025/viewer.html"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Image 10"></a>
+        <a href="assets/wmagz/magazine_january_2025/viewer.html"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Image 11"></a>
+         <a href="assets/wmagz/magazine_january_2025/viewer.html"><img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="Image 12"></a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-    <?php include 'footer.php'; ?>
+    <?php include 'widget/footer.php'; ?>
   
   <script src="assets/script/wmagz_full.js"></script>
 </body>
 </html>
+

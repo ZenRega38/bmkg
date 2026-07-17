@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -31,7 +31,7 @@
 <body>
 
     <!-- Header & Navigation Menu -->
-    <?php include 'header.php'; ?>
+    <?php include 'widget/header.php'; ?>
 
     <!-- Real-Time Time clocks Banner -->
     <div class="clock-container">
@@ -52,7 +52,7 @@
                     <div class="weather-info">
                         <div class="info-item large">
                             <span class="label">Suhu</span>
-                            <span class="value" id="suhu">- °C</span>
+                            <span class="value" id="suhu">- Â°C</span>
                         </div>
                         <div class="info-item large">
                             <span class="label">Keadaan Cuaca</span>
@@ -129,7 +129,7 @@
     </section>
 
     <!-- Sub-District Weather Grid (Kecamatan Tarakan) -->
-    <?php include 'kartu-cuaca.php'; ?>
+    <?php include 'widget/kartu-cuaca.php'; ?>
 
     <!-- Weather Magazine Carousel Section -->
     <section class="UMKM">
@@ -139,22 +139,22 @@
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <a href="magazine_january_2025/viewer.html">
-                            <img src="magazine_january_2025/pages/1.png" alt="W'Magz January 2025 Page 1">
+                        <a href="assets/wmagz/magazine_january_2025/viewer.html">
+                            <img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="W'Magz January 2025 Page 1">
                         </a>
                         <h2>W'Magz January 2025</h2>
                         <p>Kilas Balik Desember 2024</p>
                     </div>
                     <div class="swiper-slide">
-                        <a href="magazine_january_2025/viewer.html">
-                            <img src="magazine_january_2025/pages/1.png" alt="W'Magz January 2025 Page 2">
+                        <a href="assets/wmagz/magazine_january_2025/viewer.html">
+                            <img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="W'Magz January 2025 Page 2">
                         </a>
                         <h2>W'Magz January 2025</h2>
                         <p>Kilas Balik Desember 2024</p>
                     </div>
                     <div class="swiper-slide">
-                        <a href="magazine_january_2025/viewer.html">
-                            <img src="magazine_january_2025/pages/1.png" alt="W'Magz January 2025 Page 3">
+                        <a href="assets/wmagz/magazine_january_2025/viewer.html">
+                            <img src="assets/wmagz/magazine_january_2025/pages/1.webp" alt="W'Magz January 2025 Page 3">
                         </a>
                         <h2>W'Magz January 2025</h2>
                         <p>Kilas Balik Desember 2024</p>
@@ -170,7 +170,7 @@
 
     <!-- Latest Earthquake Information -->
     <section class="gempa">
-       <?php include 'gempa.php'; ?>
+       <?php include 'widget/gempa.php'; ?>
     </section>
 
     <!-- News & Station Activities Section -->
@@ -209,7 +209,7 @@
     </section>
 
     <!-- Footer -->
-    <?php include 'footer.php'; ?>
+    <?php include 'widget/footer.php'; ?>
 
     <!-- Core Library Scripts -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -222,3 +222,5 @@
 </body>
 
 </html>
+
+

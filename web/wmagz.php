@@ -22,7 +22,7 @@
     </script>
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <?php include 'widget/header.php'; ?>
     <script src="assets/script/nav.js"></script>
     <section>
         <div class="content">
@@ -37,36 +37,36 @@
                     <img class="swiper-button-prev" src="assets/image/prev_btn.png"> <!-- Added -->
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.png">
+                            <a href="assets/wmagz/magazine_january_2025/viewer.html">
+                                <img src="assets/wmagz/magazine_january_2025/pages/1.webp">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
-                            <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.png">
+                            <a href="assets/wmagz/magazine_january_2025/viewer.html">
+                                <img src="assets/wmagz/magazine_january_2025/pages/1.webp">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
-                            <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.png">
+                            <a href="assets/wmagz/magazine_january_2025/viewer.html">
+                                <img src="assets/wmagz/magazine_january_2025/pages/1.webp">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
-                            <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.png">
+                            <a href="assets/wmagz/magazine_january_2025/viewer.html">
+                                <img src="assets/wmagz/magazine_january_2025/pages/1.webp">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
                         </div>
                         <div class="swiper-slide">
-                            <a href="magazine_january_2025/viewer.html">
-                                <img src="magazine_january_2025/pages/1.png">
+                            <a href="assets/wmagz/magazine_january_2025/viewer.html">
+                                <img src="assets/wmagz/magazine_january_2025/pages/1.webp">
                             </a>
                             <h2>W'Magz January 2025</h2>
                             <p>Kilas Balik Desember 2024</p>
@@ -119,6 +119,7 @@
         });
 
     </script>
-    <?php include 'footer.php'; ?>
+    <?php include 'widget/footer.php'; ?>
 </body>
 </html>
+
