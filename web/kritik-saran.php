@@ -8,11 +8,9 @@
     <link rel="stylesheet" href="css/outer.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="../nav/assets-nav/css/styles.css">
-
-</head>
+    </head>
 <body>
-  <?php include '../nav/nav.php';?>
+  <?php include 'header.php';?>
     <div class="iframe-container" style = "display: flex; justify-content: center; align-items: center;">
       <iframe 
         src="https://docs.google.com/forms/d/e/1FAIpQLSdpDuDCtVzCNlxM_Nqhf1_MgySYpJwSXmh-ZBs7wbfUbRBoIQ/viewform?embedded=true" 
@@ -26,8 +24,9 @@
     </div>
 
     <script src="assets/script/nav.js"></script>
-    <script src="../nav/assets-nav/js/main.js"></script>
+    
 
     <?php include 'footer.php'; ?>
 </body>
 </html>
+

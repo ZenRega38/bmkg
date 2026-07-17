@@ -1,0 +1,849 @@
+/* ==========================================================================
+   BMKG TARAKAN PORTAL - MODERN GLASSMORPHIC DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+    /* Color Palette - Premium Ocean/Navy Dark Theme */
+    --bmkg-bg-gradient: linear-gradient(135deg, #0b1120 0%, #111827 100%);
+    --bmkg-card-bg: rgba(17, 24, 39, 0.65);
+    --bmkg-glass-bg: rgba(30, 41, 59, 0.45);
+    --bmkg-glass-hover: rgba(51, 65, 85, 0.55);
+    --bmkg-border: rgba(255, 255, 255, 0.08);
+    --bmkg-border-glow: rgba(56, 189, 248, 0.25);
+    
+    /* Text Colors */
+    --bmkg-text-main: #f8fafc;
+    --bmkg-text-muted: #94a3b8;
+    --bmkg-accent: #38bdf8; /* Cyan weather accent */
+    --bmkg-accent-hover: #0ea5e9;
+    --bmkg-success: #10b981;
+    --bmkg-danger: #ef4444;
+    
+    /* Global Styles */
+    --bmkg-font: 'Poppins', 'Inter', -apple-system, sans-serif;
+    --bmkg-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --bmkg-radius: 16px;
+    --bmkg-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   1. Base & Global Styles Overrides
+   ========================================================================== */
+body.modern-theme {
+    background: var(--bmkg-bg-gradient) !important;
+    color: var(--bmkg-text-main) !important;
+    font-family: var(--bmkg-font) !important;
+    overflow-x: hidden;
+}
+
+body.modern-theme p, 
+body.modern-theme h1, 
+body.modern-theme h2, 
+body.modern-theme h3, 
+body.modern-theme h4 {
+    color: var(--bmkg-text-main);
+}
+
+/* Clock & Time Banner */
+.clock-container {
+    background: var(--bmkg-glass-bg) !important;
+    border: 1px solid var(--bmkg-border) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-radius: var(--bmkg-radius) !important;
+    padding: 15px 30px !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    max-width: 90% !important;
+    margin: 120px auto 30px auto !important; /* Adjusted top margin to push below fixed header */
+    box-shadow: var(--bmkg-shadow) !important;
+}
+
+.clock-container .clock {
+    font-size: 1.1rem !important;
+    color: var(--bmkg-text-main) !important;
+    font-weight: 600 !important;
+}
+
+.clock-container .clock span {
+    color: var(--bmkg-accent) !important;
+    font-family: monospace !important;
+}
+
+.clock-container .date-day {
+    font-size: 1.1rem !important;
+    color: var(--bmkg-text-muted) !important;
+    font-weight: 500 !important;
+}
+
+/* ==========================================================================
+   2. Main Weather Dashboard (Cuaca Saat Ini)
+   ========================================================================== */
+.Cuacaterkini {
+    padding: 40px 5% !important;
+}
+
+.Cuacaterkini .row {
+    display: flex !important;
+    gap: 30px !important;
+    flex-wrap: nowrap !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.content-section {
+    flex: 1.2 !important;
+    background: var(--bmkg-card-bg) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid var(--bmkg-border) !important;
+    border-radius: var(--bmkg-radius) !important;
+    padding: 30px !important;
+    box-shadow: var(--bmkg-shadow) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+.content-section .title h1 {
+    font-size: 2.2rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 25px !important;
+    background: linear-gradient(135deg, #ffffff 0%, #a5f3fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Weather details inside card */
+.weather-info {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid var(--bmkg-border) !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    box-shadow: none !important;
+    margin-bottom: 20px !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 15px !important;
+}
+
+.weather-info .info-item {
+    display: flex !important;
+    flex-direction: column !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    padding: 12px 15px !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.02) !important;
+    margin-bottom: 0 !important;
+}
+
+.weather-info .info-item.large {
+    grid-column: span 1 !important;
+}
+
+.weather-info .info-item.small {
+    grid-column: span 1 !important;
+}
+
+/* Specific styling for Temp and Desc */
+.weather-info .info-item:first-child {
+    grid-column: span 2 !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(30, 41, 59, 0.3) 100%) !important;
+    border: 1px solid rgba(56, 189, 248, 0.2) !important;
+}
+
+.weather-info .info-item .label {
+    font-size: 0.85rem !important;
+    color: var(--bmkg-text-muted) !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.weather-info .info-item .value {
+    font-size: 1.15rem !important;
+    color: var(--bmkg-text-main) !important;
+    font-weight: 600 !important;
+    margin-top: 5px !important;
+}
+
+/* Special styling for Big Temp */
+.weather-info .info-item:first-child .value {
+    font-size: 2.5rem !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.3) !important;
+    margin-top: 0 !important;
+}
+
+/* Button stylings */
+.Cuacaterkini .button {
+    margin-top: auto !important;
+}
+
+.Cuacaterkini .button-btn {
+    display: inline-block !important;
+    padding: 12px 25px !important;
+    background: linear-gradient(90deg, #0284c7 0%, #0ea5e9 100%) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    border-radius: 8px !important;
+    transition: var(--bmkg-transition) !important;
+    border: 1px solid var(--bmkg-accent) !important;
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.2) !important;
+}
+
+.Cuacaterkini .button-btn:hover {
+    background: transparent !important;
+    color: var(--bmkg-accent) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4) !important;
+}
+
+/* Visual Panel (Map & Radar & Satelit) */
+.images-section {
+    flex: 1.2 !important;
+    background: var(--bmkg-card-bg) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid var(--bmkg-border) !important;
+    border-radius: var(--bmkg-radius) !important;
+    padding: 20px !important;
+    box-shadow: var(--bmkg-shadow) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 480px !important; /* Fixed height for dashboard layout uniformity */
+    position: relative !important;
+}
+
+#map {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 12px !important;
+    border: 1px solid var(--bmkg-border) !important;
+    overflow: hidden !important;
+}
+
+#citraSatelitContainer {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+#citraSatelitContainer .card {
+    background: transparent !important;
+    border: none !important;
+    height: 100% !important;
+    margin: 0 !important;
+}
+
+#citraSatelitContainer .card-body {
+    padding: 0 !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#citraSatelitContainer img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    transition: var(--bmkg-transition) !important;
+}
+
+#citraSatelitContainer img:hover {
+    transform: scale(1.01) !important;
+}
+
+#changeMapButton {
+    position: absolute !important;
+    bottom: 35px !important;
+    right: 35px !important;
+    z-index: 1000 !important;
+    padding: 8px 16px !important;
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid var(--bmkg-border) !important;
+    color: var(--bmkg-text-main) !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    cursor: pointer !important;
+    transition: var(--bmkg-transition) !important;
+}
+
+#changeMapButton:hover {
+    background: var(--bmkg-accent) !important;
+    color: #000000 !important;
+    border-color: var(--bmkg-accent) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ==========================================================================
+   3. Kecamatan Weather Widget cards (kartu-cuaca)
+   ========================================================================== */
+.cuaca {
+    padding: 40px 5% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.cuaca h1 {
+    font-size: 2.2rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 8px !important;
+    text-align: center !important;
+}
+
+.cuaca p {
+    color: var(--bmkg-text-muted) !important;
+    text-align: center !important;
+    margin-bottom: 40px !important;
+}
+
+.cuaca .row {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+}
+
+.cuaca-col {
+    background: var(--bmkg-card-bg) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid var(--bmkg-border) !important;
+    border-radius: var(--bmkg-radius) !important;
+    padding: 24px 20px !important;
+    box-shadow: var(--bmkg-shadow) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    transition: var(--bmkg-transition) !important;
+    width: 100% !important;
+}
+
+.cuaca-col:hover {
+    transform: translateY(-5px) !important;
+    border-color: var(--bmkg-accent) !important;
+    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.15) !important;
+}
+
+.cuaca-col img {
+    width: 90px !important;
+    height: 90px !important;
+    object-fit: contain !important;
+    margin-bottom: 15px !important;
+}
+
+.cuaca-col h3 {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    color: var(--bmkg-text-main) !important;
+    margin-bottom: 12px !important;
+}
+
+.cuaca-col p {
+    font-size: 0.9rem !important;
+    color: var(--bmkg-text-muted) !important;
+    margin: 4px 0 !important;
+    text-align: center !important;
+}
+
+/* ==========================================================================
+   4. Earthquake Section (Info Gempa Terkini)
+   ========================================================================== */
+.gempa {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 40px 5% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.container-gempa {
+    background: var(--bmkg-card-bg) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid var(--bmkg-border) !important;
+    border-radius: var(--bmkg-radius) !important;
+    padding: 30px !important;
+    box-shadow: var(--bmkg-shadow) !important;
+    display: flex !important;
+    gap: 30px !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+}
+
+.shakemap {
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.shakemap img {
+    border-radius: 10px !important;
+    border: 1px solid var(--bmkg-border) !important;
+    width: 100% !important;
+    max-height: 380px !important;
+    object-fit: contain !important;
+}
+
+.gempa .info {
+    flex: 1.2 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+.gempa .info h2 {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 10px !important;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #ffffff 0%, #fda4af 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gempa .badge {
+    background-color: rgba(239, 68, 68, 0.2) !important;
+    color: var(--bmkg-danger) !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+    padding: 6px 14px !important;
+    border-radius: 20px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    display: inline-block !important;
+    margin-bottom: 20px !important;
+}
+
+.gempa .info p {
+    font-size: 1rem !important;
+    color: var(--bmkg-text-muted) !important;
+    margin: 10px 0 !important;
+}
+
+.gempa .info p strong {
+    color: var(--bmkg-text-main) !important;
+}
+
+/* Gempa Stats Widgets */
+.gempa .stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px !important;
+    margin-top: 25px !important;
+    margin-bottom: 25px !important;
+}
+
+.stat-box {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid var(--bmkg-border) !important;
+    padding: 20px 10px !important;
+    border-radius: 12px !important;
+    text-align: center !important;
+    box-shadow: none !important;
+    transition: var(--bmkg-transition) !important;
+}
+
+.stat-box:hover {
+    transform: translateY(-3px) !important;
+    border-color: var(--bmkg-accent) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.stat-box i {
+    font-size: 1.8rem !important;
+    margin-bottom: 12px !important;
+    color: var(--bmkg-accent) !important;
+}
+
+.stat-box strong {
+    display: block !important;
+    font-size: 1.4rem !important;
+    color: #ffffff !important;
+    margin-bottom: 4px !important;
+}
+
+.stat-box span {
+    font-size: 0.8rem !important;
+    color: var(--bmkg-text-muted) !important;
+    text-transform: uppercase;
+}
+
+.link-selengkapnya {
+    font-size: 0.95rem !important;
+    color: var(--bmkg-accent) !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+}
+
+.link-selengkapnya:hover {
+    color: var(--bmkg-accent-hover) !important;
+    text-decoration: underline !important;
+}
+
+/* ==========================================================================
+   5. Weather Magazine Slider (W'Magz)
+   ========================================================================== */
+.UMKM {
+    padding: 40px 5% !important;
+    max-width: 1200px !important;
+    margin: 40px auto !important;
+}
+
+.UMKM h1 {
+    font-size: 2.2rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 8px !important;
+}
+
+.UMKM p {
+    color: var(--bmkg-text-muted) !important;
+    margin-bottom: 30px !important;
+}
+
+.swiper-container {
+    padding: 20px 0 50px 0 !important;
+}
+
+.swiper-slide {
+    background: var(--bmkg-card-bg) !important;
+    border: 1px solid var(--bmkg-border) !important;
+    border-radius: var(--bmkg-radius) !important;
+    box-shadow: var(--bmkg-shadow) !important;
+    width: 240px !important;
+    height: auto !important;
+}
+
+.swiper-slide img {
+    width: 100% !important;
+    height: 310px !important;
+    object-fit: cover !important;
+}
+
+.swiper-slide h2 {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: var(--bmkg-text-main) !important;
+    margin: 15px 10px 5px 10px !important;
+}
+
+.swiper-slide p {
+    font-size: 0.85rem !important;
+    color: var(--bmkg-text-muted) !important;
+    margin: 0 10px 15px 10px !important;
+}
+
+/* ==========================================================================
+   6. News / Kegiatan Section
+   ========================================================================== */
+.kegiatan-bmkg {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 40px 5% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.kegiatan-bmkg h1 {
+    font-size: 2.2rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 8px !important;
+}
+
+.kegiatan-bmkg p {
+    color: var(--bmkg-text-muted) !important;
+    margin-bottom: 35px !important;
+}
+
+.kegiatan-bmkg .row {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+    gap: 30px !important;
+    width: 100% !important;
+    padding-bottom: 0 !important;
+}
+
+.news-item {
+    background: var(--bmkg-card-bg) !important;
+    border: 1px solid var(--bmkg-border) !important;
+    border-radius: var(--bmkg-radius) !important;
+    box-shadow: var(--bmkg-shadow) !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    width: 100% !important;
+    transition: var(--bmkg-transition) !important;
+}
+
+.news-item:hover {
+    transform: translateY(-5px) !important;
+    border-color: var(--bmkg-accent) !important;
+}
+
+.news-item img {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover !important;
+    border-bottom: 1px solid var(--bmkg-border) !important;
+}
+
+.news-content {
+    padding: 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.news-content .date {
+    font-size: 0.8rem !important;
+    color: var(--bmkg-accent) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 10px !important;
+}
+
+.news-content h3 {
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    margin-bottom: 12px !important;
+    color: var(--bmkg-text-main) !important;
+}
+
+.news-content p {
+    font-size: 0.9rem !important;
+    color: var(--bmkg-text-muted) !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+    text-align: justify !important;
+}
+
+.news-content a {
+    color: var(--bmkg-accent) !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+}
+
+.news-content a:hover {
+    color: var(--bmkg-accent-hover) !important;
+    text-decoration: underline !important;
+}
+
+/* ==========================================================================
+   7. Legacy Header & Navigation Redesign (Modern Translucency)
+   ========================================================================== */
+.bmkg-header-bottom {
+    background: #0f172a !important;
+    border-bottom: 1px solid var(--bmkg-border) !important;
+    padding: 15px 0 !important;
+}
+
+.container-header {
+    max-width: 1200px !important;
+    padding: 0 5% !important;
+}
+
+.bmkg-title {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+}
+
+.bmkg-subtitle {
+    color: var(--bmkg-text-muted) !important;
+    font-size: 0.85rem !important;
+}
+
+.bmkg-slogan {
+    color: var(--bmkg-accent) !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+}
+
+#nav-menu {
+    position: fixed !important;
+    top: 0 !important;
+    width: 100% !important;
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border-bottom: 1px solid var(--bmkg-border) !important;
+    z-index: 1001 !important;
+    height: 70px !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: var(--bmkg-transition) !important;
+}
+
+#nav-menu.nav-scrolled {
+    background: rgba(15, 23, 42, 0.95) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.15) !important;
+}
+
+#nav-menu .container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 5% !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.nav-link {
+    color: var(--bmkg-text-main) !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    transition: var(--bmkg-transition) !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.nav-link:hover {
+    color: var(--bmkg-accent) !important;
+}
+
+.dropdown-link {
+    color: var(--bmkg-text-muted) !important;
+    font-size: 0.9rem !important;
+    transition: var(--bmkg-transition) !important;
+}
+
+.dropdown-link:hover {
+    color: var(--bmkg-accent) !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ==========================================================================
+   8. Legacy Footer Redesign
+   ========================================================================== */
+.bmkg-footer {
+    background: #0f172a !important;
+    border-top: 1px solid var(--bmkg-border) !important;
+    padding: 60px 5% 30px 5% !important;
+}
+
+.bmkg-footer .container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 40px !important;
+}
+
+.footer-section h4 {
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 20px !important;
+    color: #ffffff !important;
+    border-left: 3px solid var(--bmkg-accent) !important;
+    padding-left: 10px !important;
+}
+
+.footer-section p {
+    color: var(--bmkg-text-muted) !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+}
+
+.footer-section a {
+    color: var(--bmkg-accent) !important;
+}
+
+.footer-section a:hover {
+    color: var(--bmkg-accent-hover) !important;
+}
+
+.social-media-list {
+    list-style: none !important;
+    padding: 0 !important;
+}
+
+.social-media-list li {
+    margin-bottom: 12px !important;
+}
+
+.social-media-list li a {
+    color: var(--bmkg-text-muted) !important;
+    font-size: 0.95rem !important;
+    transition: var(--bmkg-transition) !important;
+}
+
+.social-media-list li a:hover {
+    color: var(--bmkg-accent) !important;
+    padding-left: 5px !important;
+}
+
+.copyright-section {
+    text-align: center !important;
+    margin-top: 30px !important;
+    color: var(--bmkg-text-muted) !important;
+    font-size: 0.85rem !important;
+}
+
+/* ==========================================================================
+   9. Responsive Design Overrides
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .Cuacaterkini .row {
+        flex-direction: column !important;
+    }
+    
+    .content-section, .images-section {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+    }
+    
+    .images-section {
+        height: 400px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .container-gempa {
+        flex-direction: column !important;
+    }
+    
+    .shakemap, .gempa .info {
+        width: 100% !important;
+        flex: 1 1 100% !important;
+    }
+    
+    .gempa .stats {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .kegiatan-bmkg .row {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .clock-container {
+        flex-direction: column !important;
+        gap: 10px !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .gempa .stats {
+        grid-template-columns: 1fr !important;
+    }
+}

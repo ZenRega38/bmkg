@@ -36,7 +36,9 @@ if (!$selectedNewsItem) {
     <title><?= htmlspecialchars($selectedNewsItem['title']) ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/outer.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -115,8 +117,10 @@ if (!$selectedNewsItem) {
     </style>
 </head>
 <body>
+<?php include 'header.php'; ?>
+<script src="assets/script/nav.js"></script>
 <main class="container">
-    <div class="news-detail">
+    <div class="news-detail" style="margin-top: 50px; margin-bottom: 50px;">
         <img src="<?= htmlspecialchars($selectedNewsItem['image']) ?>" alt="<?= htmlspecialchars($selectedNewsItem['title']) ?>">
         <h1><?= htmlspecialchars($selectedNewsItem['title']) ?></h1>
         <p class="date"><?= htmlspecialchars($selectedNewsItem['date']) ?></p>
@@ -124,5 +128,6 @@ if (!$selectedNewsItem) {
         <p><?= htmlspecialchars($selectedNewsItem['details']) ?></p>
     </div>
 </main>
+<?php include 'footer.php'; ?>
 </body>
 </html>

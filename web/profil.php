@@ -8,15 +8,11 @@
     <link rel="stylesheet" href="css/profil.css">
     <link rel="stylesheet" href="css/outer.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="../nav/assets-nav/css/styles.css">
-
-
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
 </head>
 <body>
     <?php
-        include '../nav/nav.php';
+        include 'header.php';
     ?>
     <main>
        <section class="section-content content-flex">
@@ -63,7 +59,6 @@
     </main>
 
     <script src="assets/script/nav.js"></script>
-    <script src="../nav/assets-nav/js/main.js"></script>
     
     <?php include 'footer.php'; ?>
 </body>

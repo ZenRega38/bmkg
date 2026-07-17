@@ -14,7 +14,7 @@
 </head>
 <body>
     <?php
-        include '../nav/nav.php';
+        include 'header.php';
     ?>
     <div class="iframe-container" style="display: flex; justify-content: center;">
       <iframe 
@@ -29,7 +29,7 @@
       </iframe>
     </div>
     <script src="assets/script/nav.js"></script>
-    <script src="../nav/assets-nav/js/main.js"></script>
+    
 
     <?php include 'footer.php'; ?>
 </body>

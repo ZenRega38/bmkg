@@ -135,12 +135,12 @@ function generateUniqueId($title, $index) {
             <h2 class="card-title"><?= $card['title'] ?></h2>
             <div class="card-rating">
                 <span class="rating-stars">
-                    <?=
-                        $fullStars = ($card['rating']);
-                        $emptyStars = 6 - $fullStars;
+                    <?php
+                        $fullStars = (int)round($card['rating']);
+                        $emptyStars = 5 - $fullStars;
+                        if ($emptyStars < 0) $emptyStars = 0;
                         echo str_repeat('★', $fullStars);
                         echo str_repeat('☆', $emptyStars);
-
                     ?>
                 </span>
                 <span class="rating-count">(<?= number_format($card['rating_count']) ?>)</span>

@@ -8,11 +8,11 @@
         <div class="footer-section">
             <h4>Kantor</h4>
             <a href="https://www.google.co.id/maps/place/BMKG+Tarakan/@3.3137343,117.5813539,435m/data=!3m1!1e3!4m6!3m5!1s0x32138a9b98c2ecad:0xe90a0081c74e34!8m2!3d3.3135542!4d117.5814151!16s%2Fg%2F11css6w04c?entry=ttu&g_ep=EgoyMDI1MDExMC4wIKXMDSoASAFQAw%3D%3D">
-                <img style="margin-bottom: 10px; height: 200px; width: auto; border-radius: 10px" class="map-preview" src="assets/image/map_satelite.png" alt="">
+                <img class="map-preview" src="assets/image/map_satelite.png" alt="Map BMKG Tarakan">
             </a>
             <p>Stasiun Meteorologi Juata Tarakan</p>
-            <p  style="margin-top: -1px;" >JL.Mulawarman Tarakan - 77111, Kalimantan Utara</p>
-            <p>Telp. <a href="https://wa.me/6281241416409" style="text-decoration: none; color: #fff;">081241416409</a> / (0551) 21629/51606</p>     
+            <p>JL.Mulawarman Tarakan - 77111, Kalimantan Utara</p>
+            <p>Telp. <a href="https://wa.me/6281241416409">081241416409</a> / (0551) 21629/51606</p>     
         </div>
         <div class="footer-section find-us-section">
             <h4>Temukan Kami</h4>
@@ -33,7 +33,8 @@
 
         </div>
     </div>
-    <div class="solid-line" style="border-bottom: 2px solid #fff; margin: 10px 0; max-width: 70%; display: block; margin-left: auto; margin-right: auto;"></div>     <div class="copyright-section">
-            <p>© 2025 - Badan Meteorologi Juwata Tarakan - BMKG</p>
-        </div>
+    </div>
+    <div class="copyright-section">
+        <p>© 2025 - Badan Meteorologi Juwata Tarakan - BMKG <br> <a href="https://zenrega.my.id" target="_blank" rel="noopener noreferrer" style="color: #cccccc; text-decoration: none; font-size: 0.9em; margin-top: 5px; display: inline-block;">Tentang Pengembang</a></p>
+    </div>
 </footer>

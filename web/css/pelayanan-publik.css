@@ -12,7 +12,7 @@ body {
 
 #background-video {
     position: absolute;
-    top: 40%;
+    top: 0;
     left: 0;
     width: 100vw; 
     height: auto; 
@@ -254,7 +254,7 @@ section {
 
     #background-video {
         height: 100vh; /* Pastikan video memenuhi layar */
-        top: 40%; /* Posisi top video di atur ke 0 */
+        top: 0; /* Posisi top video di atur ke 0 */
     }
 
     .judul-container h1 {
