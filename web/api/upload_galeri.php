@@ -1,11 +1,8 @@
 <?php
-header('Content-Type: application/json');
-session_start();
+require_once __DIR__ . '/../config.php';
+requireAdminAuth();
 
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    echo json_encode(['success' => false, 'message' => 'Unauthorized']);
-    exit;
-}
+header('Content-Type: application/json');
 
 function formatIndonesianDate($dateStr) {
     $timestamp = strtotime($dateStr);
@@ -24,9 +21,9 @@ function formatIndonesianDate($dateStr) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title    = trim($_POST['title'] ?? '');
-    $subtitle = trim($_POST['subtitle'] ?? '');
-    $dateInput = trim($_POST['date'] ?? date('Y-m-d'));
+    $title     = sanitizeInput($_POST['title'] ?? '');
+    $subtitle  = sanitizeInput($_POST['subtitle'] ?? '');
+    $dateInput = sanitizePathSegment($_POST['date'] ?? date('Y-m-d'));
     
     if (empty($title) || empty($subtitle) || empty($dateInput)) {
         echo json_encode(['success' => false, 'message' => 'Judul, Subtitle, dan Tanggal Foto harus diisi.']);

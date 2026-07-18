@@ -1,11 +1,8 @@
 <?php
-header('Content-Type: application/json');
-session_start();
+require_once __DIR__ . '/../config.php';
+requireAdminAuth();
 
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    echo json_encode(['success' => false, 'message' => 'Unauthorized']);
-    exit;
-}
+header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ids = [];

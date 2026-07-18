@@ -1,0 +1,7 @@
+# Disable PHP Execution in Upload Directory for Security
+<FilesMatch "\.(php|phtml|php3|php4|php5|phps|cgi|pl|exe|bat|cmd|sh)$">
+    Require all denied
+</FilesMatch>
+
+# Prevent directory browsing
+Options -Indexes

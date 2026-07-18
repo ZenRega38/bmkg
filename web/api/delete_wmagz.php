@@ -1,10 +1,8 @@
 <?php
+require_once __DIR__ . '/../config.php';
+requireAdminAuth();
+
 header('Content-Type: application/json');
-session_start();
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    echo json_encode(['success' => false, 'message' => 'Unauthorized']);
-    exit;
-}
 
 function deleteDirectory($dir) {
     if (!file_exists($dir)) return true;
@@ -17,8 +15,9 @@ function deleteDirectory($dir) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $year  = $_POST['year']  ?? '';
-    $month = $_POST['month'] ?? '';
+    // Sanitasi ketat cegah Path Traversal (../)
+    $year  = sanitizePathSegment($_POST['year'] ?? '');
+    $month = sanitizePathSegment($_POST['month'] ?? '');
 
     if (empty($year) || empty($month)) {
         echo json_encode(['success' => false, 'message' => 'Tahun dan bulan diperlukan.']);
@@ -32,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $data = json_decode(file_get_contents($jsonFile), true);
-    $webDir = dirname(__DIR__); // web/ directory
+    $webDir = dirname(__DIR__);
     $monthLower = strtolower($month);
 
     if (isset($data['magazines'][$year][$month])) {

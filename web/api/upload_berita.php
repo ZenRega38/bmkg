@@ -1,18 +1,14 @@
 <?php
+require_once __DIR__ . '/../config.php';
+requireAdminAuth();
+
 header('Content-Type: application/json');
 
-// Extremely simple static password check for security (in a real app, use sessions/hashed DB)
-session_start();
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    echo json_encode(['success' => false, 'message' => 'Unauthorized']);
-    exit;
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = $_POST['title'] ?? '';
-    $date = $_POST['date'] ?? '';
-    $summary = $_POST['summary'] ?? '';
-    $details = $_POST['details'] ?? '';
+    $title   = sanitizeInput($_POST['title'] ?? '');
+    $date    = sanitizeInput($_POST['date'] ?? '');
+    $summary = sanitizeInput($_POST['summary'] ?? '');
+    $details = sanitizeInput($_POST['details'] ?? '');
     $imageFile = $_FILES['image'] ?? null;
 
     if (empty($title) || empty($date) || empty($summary) || empty($details)) {

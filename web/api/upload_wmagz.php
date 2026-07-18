@@ -1,20 +1,17 @@
 <?php
-header('Content-Type: application/json');
+require_once __DIR__ . '/../config.php';
+requireAdminAuth();
 
-session_start();
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    echo json_encode(['success' => false, 'message' => 'Unauthorized']);
-    exit;
-}
+header('Content-Type: application/json');
 
 // Include pipeline processor
 require_once __DIR__ . '/process_wmagz_pdf.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $year    = $_POST['year']    ?? '';
-    $month   = $_POST['month']   ?? '';
-    $title   = $_POST['title']   ?? '';
-    $summary = $_POST['summary'] ?? '';
+    $year    = sanitizePathSegment($_POST['year'] ?? '');
+    $month   = sanitizePathSegment($_POST['month'] ?? '');
+    $title   = sanitizeInput($_POST['title'] ?? '');
+    $summary = sanitizeInput($_POST['summary'] ?? '');
     $pdfFile = $_FILES['pdfFile'] ?? null;
     $coverBase64 = $_POST['coverImageBase64'] ?? '';
 
