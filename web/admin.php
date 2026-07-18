@@ -56,7 +56,12 @@ $beritaFile = __DIR__ . '/assets/json/data-berita.json';
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" required placeholder="••••••••">
+                    <div class="input-group">
+                        <input type="password" name="password" id="loginPassword" class="form-control" required placeholder="••••••••">
+                        <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility()" title="Lihat/Sembunyikan Password">
+                            <i class='bx bx-hide' id="togglePasswordIcon"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label d-block">Kode Keamanan</label>
@@ -71,6 +76,18 @@ $beritaFile = __DIR__ . '/assets/json/data-berita.json';
         </div>
     </div>
     <script>
+        function togglePasswordVisibility() {
+            const passInput = document.getElementById('loginPassword');
+            const icon = document.getElementById('togglePasswordIcon');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                icon.className = 'bx bx-show';
+            } else {
+                passInput.type = 'password';
+                icon.className = 'bx bx-hide';
+            }
+        }
+
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
