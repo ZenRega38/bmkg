@@ -192,28 +192,92 @@
     }
 
     .card-item {
-        /* Styles for the simplified mobile card */
-        text-align: center;
+        /* Remove text-align center to match desktop layout */
+        text-align: left;
     }
 
     .card-item .card-image {
-        height: 250px; /* Adjust image height for mobile */
+        height: 200px; /* Match desktop height or slightly larger, but keep aspect ratio */
     }
 
     .card-item .card-content {
-        padding: 10px;
+        padding: 12px;
     }
 
     .card-item .card-title {
         font-size: 1.1em;
+        width: max-content;
+        max-width: 100%;
+        position: relative;
+        transition: all 0.4s ease-in-out;
+    }
+    
+    .card-item:not(.expanded) .card-title {
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: 0;
     }
 
-    /* Hide elements not needed in the mobile view */
+    .card-item.expanded .card-title {
+        left: 0;
+        transform: translateX(0);
+        margin-left: 0;
+    }
+    
+    .card-item .card-description {
+        font-size: 0.85em;
+    }
+    
+    .card-item .weather-temp {
+        font-size: 1.2em;
+    }
+
+    /* Smooth accordion transitions */
     .card-item .card-rating,
     .card-item .card-description,
     .card-item .card-weather,
     .card-item .card-actions,
-    .map-container {
-        display: none;
+    .card-item .map-container {
+        transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out, margin 0.4s ease-in-out, padding 0.4s ease-in-out;
+    }
+
+    /* Hidden state */
+    .card-item:not(.expanded) .card-rating,
+    .card-item:not(.expanded) .card-description,
+    .card-item:not(.expanded) .card-weather,
+    .card-item:not(.expanded) .card-actions,
+    .card-item:not(.expanded) .map-container {
+        max-height: 0;
+        opacity: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        overflow: hidden;
+        border: none;
+    }
+    
+    /* Expanded state specific heights and margins */
+    .card-item.expanded .card-rating,
+    .card-item.expanded .card-weather,
+    .card-item.expanded .card-description { 
+        max-height: 200px;
+        opacity: 1;
+        margin-bottom: 10px;
+    }
+    
+    .card-item.expanded .card-actions {
+        max-height: 50px;
+        opacity: 1;
+    }
+    
+    .card-item.expanded .map-container {
+        max-height: 150px;
+        opacity: 1;
+    }
+
+
+    
+    .card-item {
+        transition: all 0.3s ease-in-out;
     }
 }

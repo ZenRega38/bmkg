@@ -162,12 +162,6 @@ function generateUniqueId($title, $index) {
     <?php endforeach; ?>
 </section>
 
-<!-- Popup Container -->
-<div class="popup-container" id="popupContainer">
-    <div class="popup-content" id="popupContent">
-        <!-- Content will be dynamically inserted here -->
-    </div>
-</div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
@@ -176,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentCards = <?= json_encode($currentCards) ?>;
     const mapContainers = document.querySelectorAll('.map-container');
 
+    const maps = [];
     mapContainers.forEach((container, index) => {
         const uniqueMapId = `map${index + 1}`;
         container.innerHTML = `<div id="${uniqueMapId}"></div>`;
@@ -193,6 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
             zIndex: 50,
             maxZoom: 19
         }).addTo(map);
+        
+        maps.push(map);
     });
 
     // Weather data fetching
@@ -262,56 +259,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Mobile Card Click Functionality
+    // Mobile Card Click Functionality (Accordion)
     const cardItems = document.querySelectorAll('.card-item');
-    const popupContainer = document.getElementById('popupContainer');
-    const popupContent = document.getElementById('popupContent');
 
-    cardItems.forEach(card => {
+    cardItems.forEach((card, index) => {
         card.addEventListener('click', () => {
             if (window.innerWidth <= 768) {
-                const cardId = card.dataset.cardId;
-                const cardData = currentCards.find((c, index) => generateUniqueId(c.title, index) === cardId);
-
-                if (cardData) {
-                    // Populate the popup with the full card content
-                    popupContent.innerHTML = `
-                        <div class="card-item">
-                            <div class="card-image">
-                                <div class="image-container">
-                                    ${cardData.images.map(image => `<img src="${image}" alt="${cardData.title}">`).join('')}
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="card-title">${cardData.title}</h2>
-                                <div class="card-rating">
-                                    <span class="rating-stars">
-                                        ${'★'.repeat(cardData.rating)}${'☆'.repeat(6 - cardData.rating)}
-                                    </span>
-                                    <span class="rating-count">(${Number(cardData.rating_count).toLocaleString()})</span>
-                                </div>
-                                <p class="card-description">${cardData.type} · <span class="open-status">${cardData.status}</span></p>
-                                <p class="card-description">${cardData.location}</p>
-                                <div class="card-actions">
-                                    <a href="${cardData.map_link}" class="navigation-button">
-                                        <img src="assets/image/direction.png" alt="Directions">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-
-                    // Show the popup
-                    popupContainer.classList.add('active');
-                    document.body.classList.add('blurred');
-
-                    // Close popup functionality
-                    popupContainer.addEventListener('click', function(event) {
-                        if (event.target === popupContainer) {
-                            popupContainer.classList.remove('active');
-                            document.body.classList.remove('blurred');
+                const isExpanded = card.classList.contains('expanded');
+                
+                // Close all other cards to ensure only one is open at a time
+                cardItems.forEach(c => c.classList.remove('expanded'));
+                
+                // If it wasn't already expanded, open it
+                if (!isExpanded) {
+                    card.classList.add('expanded');
+                    
+                    // Invalidate Leaflet map size after display:block has been applied
+                    // Using setTimeout to let the DOM settle and transitions complete
+                    setTimeout(() => {
+                        if (maps[index]) {
+                            maps[index].invalidateSize();
                         }
-                    });
+                    }, 350);
                 }
             }
         });
