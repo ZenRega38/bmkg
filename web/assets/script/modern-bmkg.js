@@ -3,10 +3,13 @@
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Initialize Navigation & Header Scroll effects
+    // 1. Tell the global loader in nav.js to wait for us before hiding
+    window.deferLoadingHide = true;
+
+    // 2. Initialize Navigation & Header Scroll effects
     initNavigation();
     
-    // 2. Initialize Clocks (UTC & WITA)
+    // 3. Initialize Clocks (UTC & WITA)
     initClocks();
     
     // 3. Initialize Swiper coverflow for W'Magz
@@ -209,6 +212,11 @@ function initWeatherFetch() {
 
         updateWeatherInfo(data);
         updateWeatherDisplay(data);
+
+        // Hide global loading screen once data is loaded and rendered
+        if (typeof window.BMKGFinishLoading === 'function') {
+            window.BMKGFinishLoading();
+        }
     };
 
     // Update the main dashboard weather widget (content-section)

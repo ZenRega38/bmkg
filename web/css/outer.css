@@ -519,3 +519,56 @@ body, p, h1, h2, h3, h4, h5, h6, a, li, ul, div, span:not([class*="bx"]):not([cl
     color: var(--bmkg-gold);
   }
 }
+
+/* =========================================================
+   Global Loading Overlay
+   ========================================================= */
+.global-loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    
+    /* Hidden by default, animated in via JS */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.global-loading-container.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.global-loading-gif {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    object-fit: contain;
+}
+
+.global-loading-progress {
+    width: 200px;
+    height: 10px;
+    background-color: #ddd;
+    margin: 20px auto;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.global-progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #007bff;
+    transition: width 0.1s linear;
+    border-radius: 5px;
+}
