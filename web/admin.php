@@ -15,6 +15,10 @@ $beritaFile = __DIR__ . '/assets/json/data-berita.json';
         $wData = json_decode(file_get_contents($wmagzFile), true);
         $wmagzData = $wData['magazines'] ?? [];
     }
+    $galeriFile = __DIR__ . '/assets/json/data-galeri.json';
+    if (file_exists($galeriFile)) {
+        $galeriData = json_decode(file_get_contents($galeriFile), true) ?? [];
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -93,6 +97,9 @@ $beritaFile = __DIR__ . '/assets/json/data-berita.json';
                 <hr style="border-color: rgba(255,255,255,0.1)">
                 <button class="nav-link" id="v-pills-wmagz-list-tab" data-bs-toggle="pill" data-bs-target="#v-pills-wmagz-list" type="button" role="tab"><i class='bx bx-list-ul'></i> Daftar W'Magz</button>
                 <button class="nav-link" id="v-pills-wmagz-add-tab" data-bs-toggle="pill" data-bs-target="#v-pills-wmagz-add" type="button" role="tab"><i class='bx bx-plus-circle'></i> Tambah W'Magz</button>
+                <hr style="border-color: rgba(255,255,255,0.1)">
+                <button class="nav-link" id="v-pills-galeri-list-tab" data-bs-toggle="pill" data-bs-target="#v-pills-galeri-list" type="button" role="tab"><i class='bx bx-images'></i> Daftar Galeri</button>
+                <button class="nav-link" id="v-pills-galeri-add-tab" data-bs-toggle="pill" data-bs-target="#v-pills-galeri-add" type="button" role="tab"><i class='bx bx-plus-circle'></i> Tambah Galeri</button>
                 <a href="api/logout.php" class="nav-link mt-auto text-danger"><i class='bx bx-log-out'></i> Keluar</a>
             </div>
         </nav>
@@ -274,6 +281,84 @@ $beritaFile = __DIR__ . '/assets/json/data-berita.json';
                                             <div class="image-preview mt-3" id="previewWmagz"><span class="text-muted">Preview Kover</span></div>
                                         </div>
                                         <button type="submit" class="btn btn-primary w-100 mt-4" id="btnSubmitWmagz"><i class='bx bx-cloud-upload'></i> Terbitkan Majalah</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAFTAR GALERI -->
+                <div class="tab-pane fade" id="v-pills-galeri-list" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>Daftar Galeri Dokumentasi</span>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleSelectAllGaleri()"><i class='bx bx-check-square'></i> Pilih Semua</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger" id="btnBatchDeleteGaleri" onclick="deleteBatchGaleri()" disabled><i class='bx bx-trash'></i> Hapus Pilihan (<span id="selectedCountGaleri">0</span>)</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <?php if(empty($galeriData)): ?>
+                                <div class="text-center text-muted py-5">Belum ada foto galeri dokumentasi.</div>
+                            <?php else: ?>
+                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+                                    <?php foreach($galeriData as $item): ?>
+                                    <div class="col">
+                                        <div class="card h-100 position-relative shadow-sm galeri-card">
+                                            <div class="position-absolute top-0 start-0 p-2 z-2">
+                                                <input type="checkbox" class="form-check-input galeri-checkbox fs-5" value="<?= $item['id'] ?>" onchange="updateGaleriSelection()">
+                                            </div>
+                                            <img src="<?= htmlspecialchars($item['image']) ?>" class="card-img-top" style="height: 180px; object-fit: cover;" alt="preview">
+                                            <div class="card-body d-flex flex-column p-3">
+                                                <small class="text-primary fw-semibold mb-1"><i class='bx bx-calendar'></i> <?= htmlspecialchars($item['date']) ?></small>
+                                                <h6 class="card-title text-truncate mb-1" title="<?= htmlspecialchars($item['title']) ?>"><?= htmlspecialchars($item['title']) ?></h6>
+                                                <p class="card-text text-muted small text-truncate mb-3" title="<?= htmlspecialchars($item['subtitle']) ?>"><?= htmlspecialchars($item['subtitle']) ?></p>
+                                                <div class="mt-auto text-end">
+                                                    <button class="btn btn-sm btn-danger" onclick="deleteGaleriSingle(<?= $item['id'] ?>, '<?= htmlspecialchars(addslashes($item['title'])) ?>')"><i class='bx bx-trash'></i> Hapus</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAMBAH GALERI -->
+                <div class="tab-pane fade" id="v-pills-galeri-add" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header">Unggah Foto Galeri / Dokumentasi</div>
+                        <div class="card-body">
+                            <form id="formGaleri" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="mb-3">
+                                            <label class="form-label">Judul Foto / Kegiatan</label>
+                                            <input type="text" name="title" class="form-control" placeholder="Contoh: Kunjungan Edukasi Siswa PKL" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Subtitle / Keterangan Singkat</label>
+                                            <textarea name="subtitle" class="form-control" rows="3" placeholder="Contoh: Dokumentasi kunjungan lapangan siswa ke Stasiun Meteorologi Juwata Tarakan" required></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Tanggal Foto Diambil (Custom Date)</label>
+                                            <input type="date" name="date" class="form-control" value="<?= date('Y-m-d') ?>" required>
+                                            <small class="text-muted d-block mt-1">Tanggal asli ketika foto dokumentasi tersebut diambil.</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Pilih Gambar Dokumentasi (Bisa Pilihan Ganda)</label>
+                                            <input type="file" name="images[]" id="imageGaleri" class="form-control" accept="image/*" multiple required>
+                                            <small class="text-muted d-block mt-1">Format gambar (PNG, JPG, HEIC, GIF, WEBP) akan otomatis dikonversi ke WebP terkompresi.</small>
+                                            <div class="image-preview mt-3 d-flex flex-wrap gap-2 justify-content-center p-2 border rounded" id="previewGaleri" style="min-height: 120px; max-height: 200px; overflow-y: auto;">
+                                                <span class="text-muted align-self-center">Preview Foto</span>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary w-100 mt-4" id="btnSubmitGaleri"><i class='bx bx-cloud-upload'></i> Unggah Dokumentasi</button>
                                     </div>
                                 </div>
                             </form>
@@ -466,6 +551,104 @@ $beritaFile = __DIR__ . '/assets/json/data-berita.json';
         setupSubmit('formWmagz', 'api/upload_wmagz.php', 'btnSubmitWmagz', 'v-pills-wmagz-list-tab');
         setupSubmit('formEditBerita', 'api/update_berita.php', 'btnSaveBerita', 'v-pills-berita-list-tab');
         setupSubmit('formEditWmagz', 'api/update_wmagz.php', 'btnSaveWmagz', 'v-pills-wmagz-list-tab');
+        setupSubmit('formGaleri', 'api/upload_galeri.php', 'btnSubmitGaleri', 'v-pills-galeri-list-tab');
+
+        // Galeri Batch & Multi-Select Logic
+        function updateGaleriSelection() {
+            const checkboxes = document.querySelectorAll('.galeri-checkbox:checked');
+            const count = checkboxes.length;
+            document.getElementById('selectedCountGaleri').innerText = count;
+            document.getElementById('btnBatchDeleteGaleri').disabled = (count === 0);
+        }
+
+        function toggleSelectAllGaleri() {
+            const checkboxes = document.querySelectorAll('.galeri-checkbox');
+            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+            checkboxes.forEach(cb => cb.checked = !allChecked);
+            updateGaleriSelection();
+        }
+
+        function deleteGaleriSingle(id, title) {
+            Swal.fire({
+                title: 'Hapus Foto Galeri?',
+                text: `Foto "${title}" akan dihapus permanen!`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const fd = new FormData();
+                    fd.append('id', id);
+                    fetch('api/delete_galeri.php', { method: 'POST', body: fd })
+                    .then(r => r.json())
+                    .then(d => {
+                        if(d.success) {
+                            localStorage.setItem('admin_active_tab', 'v-pills-galeri-list-tab');
+                            window.location.reload();
+                        } else {
+                            Swal.fire('Gagal', d.message, 'error');
+                        }
+                    });
+                }
+            });
+        }
+
+        function deleteBatchGaleri() {
+            const checkedBoxes = document.querySelectorAll('.galeri-checkbox:checked');
+            const ids = Array.from(checkedBoxes).map(cb => cb.value);
+            if (ids.length === 0) return;
+
+            Swal.fire({
+                title: `Hapus ${ids.length} Foto Terpilih?`,
+                text: "Seluruh foto terpilih beserta filenya akan dihapus permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Hapus Semua!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const fd = new FormData();
+                    ids.forEach(id => fd.append('ids[]', id));
+                    fetch('api/delete_galeri.php', { method: 'POST', body: fd })
+                    .then(r => r.json())
+                    .then(d => {
+                        if(d.success) {
+                            localStorage.setItem('admin_active_tab', 'v-pills-galeri-list-tab');
+                            window.location.reload();
+                        } else {
+                            Swal.fire('Gagal', d.message, 'error');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Multi Image Preview
+        const inputGaleri = document.getElementById('imageGaleri');
+        if (inputGaleri) {
+            inputGaleri.addEventListener('change', function(e) {
+                const container = document.getElementById('previewGaleri');
+                container.innerHTML = '';
+                if (e.target.files.length > 0) {
+                    Array.from(e.target.files).forEach(file => {
+                        const reader = new FileReader();
+                        reader.onload = function(ev) {
+                            const img = document.createElement('img');
+                            img.src = ev.target.result;
+                            img.style.width = '60px';
+                            img.style.height = '60px';
+                            img.style.objectFit = 'cover';
+                            img.className = 'rounded border';
+                            container.appendChild(img);
+                        }
+                        reader.readAsDataURL(file);
+                    });
+                } else {
+                    container.innerHTML = '<span class="text-muted align-self-center">Preview Foto</span>';
+                }
+            });
+        }
 
         // Previews
         function bindImagePreview(inputId, previewId) {

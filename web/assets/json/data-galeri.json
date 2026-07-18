@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "Kegiatan Edukasi & Orientasi Lapangan",
+        "subtitle": "Dokumentasi kunjungan edukatif siswa ke Stasiun Meteorologi Juwata Tarakan.",
+        "date": "15 Januari 2025",
+        "rawDate": "2025-01-15",
+        "image": "assets/image/gal/gal-1.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Rapat Kordinasi & Siaran Pers",
+        "subtitle": "Kordinasi pelayanan informasi meteorologi dan siaran pers cuaca.",
+        "date": "18 Januari 2025",
+        "rawDate": "2025-01-18",
+        "image": "assets/image/gal/gal-2.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Penyerahan Cenderamata & Kerjasama",
+        "subtitle": "Penyerahan kenang-kenangan atas kerjasama pelayanan informasi publik.",
+        "date": "22 Januari 2025",
+        "rawDate": "2025-01-22",
+        "image": "assets/image/gal/gal-3.jpg"
+    }
+]

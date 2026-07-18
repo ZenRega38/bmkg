@@ -48,17 +48,82 @@
 
         <section class="section-content" id="galeri">
             <h2>Galeri BMKG Juwata Tarakan</h2>
-            <div class="gallery" >
-                <img src="assets/image/gal/gal-1.jpg">
-                <img src="assets/image/gal/gal-2.jpg">
-                <img src="assets/image/gal/gal-3.jpg">
-                <img src="assets/image/gal/gal-2.jpg">
-                <img src="assets/image/gal/gal-3.jpg">                
+            <div class="gallery">
+                <?php
+                $galeriFile = __DIR__ . '/assets/json/data-galeri.json';
+                $galeriItems = [];
+                if (file_exists($galeriFile)) {
+                    $galeriItems = json_decode(file_get_contents($galeriFile), true) ?? [];
+                }
+                // Urutkan berdasarkan tanggal foto terbaru
+                usort($galeriItems, function($a, $b) {
+                    $tA = isset($a['rawDate']) ? strtotime($a['rawDate']) : 0;
+                    $tB = isset($b['rawDate']) ? strtotime($b['rawDate']) : 0;
+                    if ($tA == $tB) {
+                        return ($b['id'] ?? 0) <=> ($a['id'] ?? 0);
+                    }
+                    return $tB <=> $tA;
+                });
+
+                if (!empty($galeriItems)):
+                    foreach ($galeriItems as $g):
+                ?>
+                <div class="gallery-item" onclick="openGalleryModal(<?= htmlspecialchars(json_encode($g), ENT_QUOTES, 'UTF-8') ?>)">
+                    <img src="<?= htmlspecialchars($g['image']) ?>" alt="<?= htmlspecialchars($g['title']) ?>">
+                    <div class="gallery-overlay">
+                        <span class="gallery-date"><?= htmlspecialchars($g['date']) ?></span>
+                        <h4 class="gallery-title"><?= htmlspecialchars($g['title']) ?></h4>
+                    </div>
+                </div>
+                <?php
+                    endforeach;
+                else:
+                ?>
+                    <p style="width: 100%; text-align: center; color: #666;">Belum ada foto galeri.</p>
+                <?php endif; ?>
             </div>
         </section>
     </main>
 
+    <!-- Lightbox Modal Gallery -->
+    <div id="galleryModal" class="gallery-modal" onclick="closeGalleryModal(event)">
+        <div class="gallery-modal-content" onclick="event.stopPropagation()">
+            <button type="button" class="gallery-modal-close" onclick="closeGalleryModal()">&times;</button>
+            <img id="modalImg" src="" alt="Galeri Photo">
+            <div class="gallery-modal-info">
+                <span class="gallery-modal-date" id="modalDate"></span>
+                <h3 id="modalTitle"></h3>
+                <p id="modalSubtitle"></p>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/script/nav.js"></script>
+    <script>
+        function openGalleryModal(data) {
+            const modal = document.getElementById('galleryModal');
+            document.getElementById('modalImg').src = data.image;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalSubtitle').innerText = data.subtitle;
+            document.getElementById('modalDate').innerText = data.date;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryModal(e) {
+            if (!e || e.target.id === 'galleryModal' || e.target.classList.contains('gallery-modal-close')) {
+                const modal = document.getElementById('galleryModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeGalleryModal();
+            }
+        });
+    </script>
     
     <?php include 'widget/footer.php'; ?>
 </body>
