@@ -6,11 +6,13 @@ $isLoggedIn = isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'
 $beritaData = [];
 $wmagzData = [];
 if ($isLoggedIn) {
-    if (file_exists('assets/json/data-berita.json')) {
-        $beritaData = json_decode(file_get_contents('assets/json/data-berita.json'), true) ?? [];
+$beritaFile = __DIR__ . '/assets/json/data-berita.json';
+    if (file_exists($beritaFile)) {
+        $beritaData = json_decode(file_get_contents($beritaFile), true) ?? [];
     }
-    if (file_exists('assets/json/data-wmagz.json')) {
-        $wData = json_decode(file_get_contents('assets/json/data-wmagz.json'), true);
+    $wmagzFile = __DIR__ . '/assets/json/data-wmagz.json';
+    if (file_exists($wmagzFile)) {
+        $wData = json_decode(file_get_contents($wmagzFile), true);
         $wmagzData = $wData['magazines'] ?? [];
     }
 }
@@ -420,8 +422,24 @@ if ($isLoggedIn) {
             modalEditWmagz.show();
         }
 
+        // Tab Persistence
+        document.querySelectorAll('#v-pills-tab button[data-bs-toggle="pill"]').forEach(tabBtn => {
+            tabBtn.addEventListener('shown.bs.tab', function(e) {
+                localStorage.setItem('admin_active_tab', e.target.getAttribute('id'));
+            });
+        });
+
+        const savedTabId = localStorage.getItem('admin_active_tab');
+        if (savedTabId) {
+            const tabBtn = document.getElementById(savedTabId);
+            if (tabBtn) {
+                const tab = new bootstrap.Tab(tabBtn);
+                tab.show();
+            }
+        }
+
         // Form Submit Helpers
-        function setupSubmit(formId, apiEndpoint, btnId, isReload = true) {
+        function setupSubmit(formId, apiEndpoint, btnId, targetTabAfterSuccess = null) {
             document.getElementById(formId).addEventListener('submit', function(e) {
                 e.preventDefault();
                 const btn = document.getElementById(btnId);
@@ -434,18 +452,20 @@ if ($isLoggedIn) {
                 .then(data => {
                     btn.innerHTML = originalText; btn.disabled = false;
                     if(data.success) {
-                        Swal.fire('Sukses!', data.message, 'success').then(() => { if(isReload) window.location.reload(); });
-                        if(!isReload) this.reset();
+                        if (targetTabAfterSuccess) {
+                            localStorage.setItem('admin_active_tab', targetTabAfterSuccess);
+                        }
+                        Swal.fire('Sukses!', data.message, 'success').then(() => { window.location.reload(); });
                     } else {
                         Swal.fire('Gagal', data.message, 'error');
                     }
                 });
             });
         }
-        setupSubmit('formBerita', 'api/upload_berita.php', 'btnSubmitBerita');
-        setupSubmit('formWmagz', 'api/upload_wmagz.php', 'btnSubmitWmagz');
-        setupSubmit('formEditBerita', 'api/update_berita.php', 'btnSaveBerita');
-        setupSubmit('formEditWmagz', 'api/update_wmagz.php', 'btnSaveWmagz');
+        setupSubmit('formBerita', 'api/upload_berita.php', 'btnSubmitBerita', 'v-pills-berita-list-tab');
+        setupSubmit('formWmagz', 'api/upload_wmagz.php', 'btnSubmitWmagz', 'v-pills-wmagz-list-tab');
+        setupSubmit('formEditBerita', 'api/update_berita.php', 'btnSaveBerita', 'v-pills-berita-list-tab');
+        setupSubmit('formEditWmagz', 'api/update_wmagz.php', 'btnSaveWmagz', 'v-pills-wmagz-list-tab');
 
         // Previews
         function bindImagePreview(inputId, previewId) {

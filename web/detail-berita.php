@@ -1,6 +1,6 @@
-﻿<?php
+<?php
 // Read data from JSON file
-$jsonData = file_get_contents('assets/json/data-berita.json');
+$jsonData = file_get_contents(__DIR__ . '/assets/json/data-berita.json');
 
 // Decode the JSON data into a PHP array
 $newsItems = json_decode($jsonData, true);

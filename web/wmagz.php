@@ -36,41 +36,46 @@
                 <div class="swiper-container">
                     <img class="swiper-button-prev" src="assets/image/prev_btn.png"> <!-- Added -->
                     <div class="swiper-wrapper">
+                    <?php
+                    $wmagzFile = __DIR__ . '/assets/json/data-wmagz.json';
+                    $latestMagazines = [];
+                    if (file_exists($wmagzFile)) {
+                        $wmagzJson = json_decode(file_get_contents($wmagzFile), true);
+                        if ($wmagzJson && isset($wmagzJson['magazines'])) {
+                            foreach ($wmagzJson['magazines'] as $year => $months) {
+                                foreach ($months as $month => $item) {
+                                    $item['_timestamp'] = strtotime("1 $month $year");
+                                    $latestMagazines[] = $item;
+                                }
+                            }
+                        }
+                    }
+                    
+                    usort($latestMagazines, function($a, $b) {
+                        return $b['_timestamp'] <=> $a['_timestamp'];
+                    });
+                    
+                    $latestMagazines = array_slice($latestMagazines, 0, 5); // Ambil 5 terbaru
+                    $latestMagazines = array_reverse($latestMagazines); // Urutkan terlama -> terbaru (terbaru ada di paling kanan / index terakhir)
+                    
+                    if (!empty($latestMagazines)):
+                        foreach ($latestMagazines as $mag):
+                    ?>
                         <div class="swiper-slide">
-                            <a href="assets/wmagz/magazine_january_2025/viewer.html">
-                                <img src="assets/wmagz/magazine_january_2025/pages/1.webp">
+                            <a href="<?= htmlspecialchars($mag['link'] ?? '#') ?>">
+                                <img src="<?= htmlspecialchars($mag['coverImage'] ?? '') ?>" alt="<?= htmlspecialchars($mag['title'] ?? '') ?>">
                             </a>
-                            <h2>W'Magz January 2025</h2>
-                            <p>Kilas Balik Desember 2024</p>
+                            <h2><?= htmlspecialchars($mag['title'] ?? '') ?></h2>
+                            <p><?= htmlspecialchars($mag['summary'] ?? '') ?></p>
                         </div>
+                    <?php 
+                        endforeach;
+                    else:
+                    ?>
                         <div class="swiper-slide">
-                            <a href="assets/wmagz/magazine_january_2025/viewer.html">
-                                <img src="assets/wmagz/magazine_january_2025/pages/1.webp">
-                            </a>
-                            <h2>W'Magz January 2025</h2>
-                            <p>Kilas Balik Desember 2024</p>
+                            <p style="text-align: center; color: white;">Belum ada majalah tersedia.</p>
                         </div>
-                        <div class="swiper-slide">
-                            <a href="assets/wmagz/magazine_january_2025/viewer.html">
-                                <img src="assets/wmagz/magazine_january_2025/pages/1.webp">
-                            </a>
-                            <h2>W'Magz January 2025</h2>
-                            <p>Kilas Balik Desember 2024</p>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="assets/wmagz/magazine_january_2025/viewer.html">
-                                <img src="assets/wmagz/magazine_january_2025/pages/1.webp">
-                            </a>
-                            <h2>W'Magz January 2025</h2>
-                            <p>Kilas Balik Desember 2024</p>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="assets/wmagz/magazine_january_2025/viewer.html">
-                                <img src="assets/wmagz/magazine_january_2025/pages/1.webp">
-                            </a>
-                            <h2>W'Magz January 2025</h2>
-                            <p>Kilas Balik Desember 2024</p>
-                        </div>
+                    <?php endif; ?>
                     </div>
                     <img class="swiper-button-next" src="assets/image/next_btn.png"> <!-- Added -->
                 </div>

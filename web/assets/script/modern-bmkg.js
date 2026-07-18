@@ -314,11 +314,16 @@ function initWeatherFetch() {
 function initMagazineSwiper() {
     if (typeof Swiper === 'undefined') return;
 
+    const slidesCount = document.querySelectorAll('.imgBox .swiper-slide').length;
+    const initialIndex = slidesCount > 0 ? slidesCount - 1 : 0;
+
     new Swiper('.swiper-container', {
         effect: 'coverflow',
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: 'auto',
+        initialSlide: initialIndex,
+        loop: false,
         coverflowEffect: {
             rotate: 15,
             stretch: 0,
@@ -334,7 +339,6 @@ function initMagazineSwiper() {
             el: '.swiper-pagination',
             clickable: true,
         },
-        loop: true,
         on: {
             slideChangeTransitionStart: function () {
                 const slides = this.slides;
