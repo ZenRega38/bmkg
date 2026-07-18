@@ -1,141 +1,130 @@
-﻿<?php
+<?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Configuration
-$url = 'https://api.bmkg.go.id/publik/prakiraan-cuaca?adm4=6571020';
+// Configuration: ADM4 codes for the 5 regencies in Kalimantan Utara
+$kaltaraAdm4 = [
+    '65.71.01.1001', // Kota Tarakan
+    '65.01.02.2001', // Kab. Bulungan
+    '65.02.04.2001', // Kab. Malinau
+    '65.03.02.1001', // Kab. Nunukan
+    '65.04.01.2001'  // Kab. Tana Tidung
+];
 
-// Function to fetch JSON data
-function ambilDataCuaca($url)
-{
-    $json_data = @file_get_contents($url);
-    if ($json_data !== false) {
-        $data = @json_decode($json_data, true);
-        if ($data !== null && isset($data['data'])) {
-            return $data;
-        }
+// Function to fetch multiple JSON data concurrently
+function fetchKaltaraWeather($adm4Codes) {
+    $mh = curl_multi_init();
+    $curl_handles = [];
+    
+    foreach ($adm4Codes as $code) {
+        $ch = curl_init();
+        $url = 'https://api.bmkg.go.id/publik/prakiraan-cuaca?adm4=' . $code;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_multi_add_handle($mh, $ch);
+        $curl_handles[$code] = $ch;
     }
     
-    // FALLBACK MOCK DATA IF BMKG SERVER (CLOUDFLARE) BLOCKS THE REQUEST
-    $mockData = [
-        "data" => [
-            [
-                "lokasi" => [
-                    "adm1" => "65",
-                    "adm2" => "65.71",
-                    "provinsi" => "Kalimantan Utara",
-                    "kotkab" => "Kota Tarakan",
-                    "kecamatan" => "Tarakan Barat",
-                    "timezone" => "Asia/Makassar"
-                ],
-                "cuaca" => []
-            ],
-            [
-                "lokasi" => [
-                    "adm1" => "65",
-                    "adm2" => "65.71",
-                    "provinsi" => "Kalimantan Utara",
-                    "kotkab" => "Kota Tarakan",
-                    "kecamatan" => "Tarakan Timur",
-                    "timezone" => "Asia/Makassar"
-                ],
-                "cuaca" => []
-            ],
-            [
-                "lokasi" => [
-                    "adm1" => "65",
-                    "adm2" => "65.71",
-                    "provinsi" => "Kalimantan Utara",
-                    "kotkab" => "Kota Tarakan",
-                    "kecamatan" => "Tarakan Tengah",
-                    "timezone" => "Asia/Makassar"
-                ],
-                "cuaca" => []
-            ],
-            [
-                "lokasi" => [
-                    "adm1" => "65",
-                    "adm2" => "65.71",
-                    "provinsi" => "Kalimantan Utara",
-                    "kotkab" => "Kota Tarakan",
-                    "kecamatan" => "Tarakan Utara",
-                    "timezone" => "Asia/Makassar"
-                ],
-                "cuaca" => []
-            ]
-        ]
-    ];
+    $running = null;
+    do {
+        curl_multi_exec($mh, $running);
+    } while ($running);
     
-    $weatherTypes = ['Cerah Berawan', 'Hujan Petir', 'Cerah', 'Hujan Petir'];
-    $images = [
-        'Cerah' => 'https://ibnux.github.io/BMKG-importer/icon/0.png',
-        'Cerah Berawan' => 'https://ibnux.github.io/BMKG-importer/icon/1.png',
-        'Berawan' => 'https://ibnux.github.io/BMKG-importer/icon/3.png',
-        'Hujan Ringan' => 'https://ibnux.github.io/BMKG-importer/icon/60.png',
-        'Hujan Petir' => 'https://ibnux.github.io/BMKG-importer/icon/95.png'
-    ];
-    $windDirs = ['TL', 'TG', 'TG', 'T'];
-
-    for ($i = 0; $i < 4; $i++) {
-        for ($j = 0; $j < 15; $j++) { // Generate for 15 hours
-            $timestamp = date('Y-m-d H:00:00', strtotime("+$j hours"));
-            $mockData['data'][$i]['cuaca'][] = [
-                [
-                    "datetime" => str_replace(' ', 'T', $timestamp) . "Z",
-                    "local_datetime" => str_replace(' ', 'T', $timestamp),
-                    "t" => rand(28, 32),
-                    "hu" => rand(70, 85),
-                    "weather_desc" => $weatherTypes[$i % 4],
-                    "image" => $images[$weatherTypes[$i % 4]],
-                    "ws" => rand(10, 30),
-                    "wd" => $windDirs[$i % 4],
-                    "vs" => rand(5000, 10000),
-                    "vs_text" => "> 5 km"
-                ]
+    $results = [];
+    foreach ($curl_handles as $code => $ch) {
+        $response = curl_multi_getcontent($ch);
+        if ($response) {
+            $data = @json_decode($response, true);
+            if ($data && isset($data['data'][0])) {
+                $results[] = $data['data'][0];
+            }
+        }
+        curl_multi_remove_handle($mh, $ch);
+    }
+    curl_multi_close($mh);
+    
+    // FALLBACK MOCK DATA IF BMKG SERVER BLOCKS THE REQUEST
+    if (empty($results)) {
+        // Generate fake data for all 5 regencies
+        $mockKotkab = ['Kota Tarakan', 'Kab. Bulungan', 'Kab. Malinau', 'Kab. Nunukan', 'Kab. Tana Tidung'];
+        $weatherTypes = ['Cerah Berawan', 'Hujan Petir', 'Cerah', 'Hujan Ringan', 'Berawan'];
+        $images = [
+            'Cerah' => 'https://ibnux.github.io/BMKG-importer/icon/0.png',
+            'Cerah Berawan' => 'https://ibnux.github.io/BMKG-importer/icon/1.png',
+            'Berawan' => 'https://ibnux.github.io/BMKG-importer/icon/3.png',
+            'Hujan Ringan' => 'https://ibnux.github.io/BMKG-importer/icon/60.png',
+            'Hujan Petir' => 'https://ibnux.github.io/BMKG-importer/icon/95.png'
+        ];
+        
+        foreach ($mockKotkab as $index => $kotkab) {
+            $mockItem = [
+                "lokasi" => [
+                    "adm2" => "65.0" . ($index+1),
+                    "provinsi" => "Kalimantan Utara",
+                    "kotkab" => $kotkab,
+                    "timezone" => "Asia/Makassar"
+                ],
+                "cuaca" => []
             ];
+            for ($j = 0; $j < 15; $j++) {
+                $timestamp = date('Y-m-d H:00:00', strtotime("+$j hours"));
+                $mockItem['cuaca'][] = [
+                    [
+                        "datetime" => str_replace(' ', 'T', $timestamp) . "Z",
+                        "local_datetime" => str_replace(' ', 'T', $timestamp),
+                        "t" => rand(28, 32),
+                        "hu" => rand(70, 85),
+                        "weather_desc" => $weatherTypes[$index % 5],
+                        "image" => $images[$weatherTypes[$index % 5]],
+                        "ws" => rand(10, 30),
+                        "wd" => 'TL',
+                        "vs" => rand(5000, 10000),
+                        "vs_text" => "> 5 km"
+                    ]
+                ];
+            }
+            $results[] = $mockItem;
         }
     }
-    
-    return $mockData;
+    return $results;
 }
 
-// Fetch weather data
-$dataCuaca = ambilDataCuaca($url);
-if ($dataCuaca === null || !isset($dataCuaca['data'])) {
-    echo '<p class="error">Failed to fetch weather data.</p>';
-    exit;
-}
+// Fetch weather data for all Kaltara Regencies
+$dataCuacaArray = fetchKaltaraWeather($kaltaraAdm4);
 
 // Prepare associative array of city data
 $citiesData = [];
-foreach ($dataCuaca['data'] as $location_data) {
+foreach ($dataCuacaArray as $location_data) {
     $adm2 = isset($location_data['lokasi']['adm2']) ? $location_data['lokasi']['adm2'] : 'N/A';
     $provinsi = isset($location_data['lokasi']['provinsi']) ? $location_data['lokasi']['provinsi'] : 'N/A';
     $kotkab = isset($location_data['lokasi']['kotkab']) ? $location_data['lokasi']['kotkab'] : 'N/A';
-    $kecamatan = isset($location_data['lokasi']['kecamatan']) ? $location_data['lokasi']['kecamatan'] : $kotkab;
     $timezone = isset($location_data['lokasi']['timezone']) && !empty($location_data['lokasi']['timezone'])
         ? $location_data['lokasi']['timezone']
         : 'Asia/Jakarta';
-    $citiesData[$kecamatan] = [
-        'adm2'      => $adm2,
-        'provinsi'  => $provinsi,
-        'kotkab'    => $kotkab,
-        'cuaca'     => $location_data['cuaca'],
-        'timezone'  => $timezone
-    ];
+        
+    if (!isset($citiesData[$kotkab]) && $kotkab !== 'N/A') {
+        $citiesData[$kotkab] = [
+            'adm2'      => $adm2,
+            'provinsi'  => $provinsi,
+            'kotkab'    => $kotkab,
+            'cuaca'     => $location_data['cuaca'],
+            'timezone'  => $timezone
+        ];
+    }
 }
 
-$defaultCity = array_key_last($citiesData);
+$defaultCity = isset($citiesData['Kota Tarakan']) ? 'Kota Tarakan' : (empty($citiesData) ? 'N/A' : array_key_first($citiesData));
 $selectedCity = $_GET['kota'] ?? $defaultCity;
 if (!isset($citiesData[$selectedCity])) {
     $selectedCity = $defaultCity;
 }
-$selectedCityData = $citiesData[$selectedCity];
+$selectedCityData = $citiesData[$selectedCity] ?? null;
 $allCities = array_keys($citiesData);
 $currentCityIndex = array_search($selectedCity, $allCities);
-$prevCity = $allCities[($currentCityIndex - 1 + count($allCities)) % count($allCities)];
-$nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
+if ($currentCityIndex === false) { $currentCityIndex = 0; }
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -150,7 +139,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
           integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/all.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         /* ===PASTE THE ENTIRE MOBILE CARD SWIPER CSS FROM tes_scroll_cuaca.php HERE=== */
 
@@ -161,23 +150,25 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             padding: 0;
             overflow-x: hidden; /* Prevent horizontal scroll */
             touch-action: pan-y; /* Allow only vertical touch scrolling */
-        }
-
-        * {
-            touch-action: pan-y;  /* Ensure the above rule is applied broadly */
-        }
-
-        section {
-            position: relative;
-            padding: 100px;
-            width: 100%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
             background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
                               url('assets/image/bg_clouds.png');
             background-repeat: no-repeat;
             background-size: cover;
+            background-attachment: fixed; /* Keep background static on view height changes */
+        }
+
+        * {
+            touch-action: pan-y;  /* Ensure the above rule is applied broadly */
+            box-sizing: border-box;
+        }
+
+        section {
+            position: relative;
+            padding: 40px 5%;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         .forecast-title {
             color: white;
@@ -189,10 +180,20 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         .current-weather {
             margin: 20px auto;
             padding: 20px;
-            max-width: 400px;
-            text-align: center;
-            background-color: rgba(255,255,255,0.8);
-            border-radius: 10px;
+            width: 320px;
+            height: 245px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: var(--bmkg-blue);
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
         }
         .current-weather-container {
             margin-bottom: 20px;
@@ -201,25 +202,49 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         }
         .weather-table-container {
             overflow-x: auto;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 90%;
         }
         .weather-table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             margin-top: 20px;
-            background-color: rgba(255,255,255,0.9);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
         .weather-table th {
-            background-color: #5f9ea0;
-            color: white;
-            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--bmkg-blue);
+            padding: 15px;
             text-align: center;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
         }
         .weather-table td {
-            background-color: rgba(95,158,160,0.8);
-            color: white;
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #4682b4;
+            background: transparent;
+            color: var(--bmkg-blue);
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+            transition: background 0.3s ease;
+        }
+        .weather-table td:nth-child(3) {
+            white-space: nowrap;
+        }
+        .weather-table tr:last-child td {
+            border-bottom: none;
+        }
+        .weather-table tr:hover td {
+            background: rgba(255, 255, 255, 0.3);
         }
         .filter-container {
             text-align: center;
@@ -279,11 +304,11 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
 
             .day-heading {
                 text-align: center;
-                font-weight: bold;
+                font-weight: 600;
                 font-size: 1.2em;
                 margin-bottom: 5px;
                 padding: 5px;
-                color: white;
+                color: var(--bmkg-blue);
             }
 
             .mobile-swiper-container {
@@ -308,28 +333,29 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                 flex: 0 0 auto;
                 min-width: 100%;
                 padding: 15px;
-                border: none;
+                border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 15px;
                 text-align: left;
-                background-color: rgba(55, 123, 201, 0.69);
-                color: white;
+                background: rgba(255, 255, 255, 0.15); /* Match desktop frosted glass */
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                color: var(--bmkg-blue); /* Match desktop text color */
+                text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6); /* Match desktop text shadow */
                 box-sizing: border-box;
             }
 
             .weather-card-title {
                 font-weight: bold;
                 font-size: 1.1em;
-                color: #f0ad4e;
+                color: var(--bmkg-blue);
                 margin-bottom: 10px;
-                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
                 text-align: center;
             }
 
-            .weather-icon {
+            .weather-card .weather-icon {
                 display: block;
                 margin: 0 auto 10px;
-                font-size: 5em;
-                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+                font-size: 3em; /* Scaled down slightly */
                 text-align: center;
             }
 
@@ -345,10 +371,25 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
             section {
                 padding: 0;
             }
-            .current-weather { width: 100% !important; max-width: 100%; }
-            .current-weather-temp { font-size: 20px !important; }
-            .current-weather-icon { font-size: 16px !important; }
-            .current-weather-humidity { font-size: 12px !important; }
+            .current-weather {
+                width: 290px !important;
+                height: 225px !important;
+                margin: 15px auto !important;
+                padding: 15px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-around !important;
+                align-items: center !important;
+            }
+            .current-weather-time { font-size: 18px !important; }
+            .current-weather-temp { font-size: 32px !important; }
+            .current-weather-icon { font-size: 18px !important; }
+            .current-weather-icon .weather-icon {
+                font-size: 1.5em !important; /* Increased icon size */
+                display: inline-block !important;
+                margin: 0 !important;
+            }
+            .current-weather-humidity { font-size: 20px !important; } /* Increased humidity font size */
             .swiper-container { padding: 10px; }
             .swiper-slide { font-size: 16px; padding: 5px 10px; }
         }
@@ -363,23 +404,25 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
 <body>
 <?php include 'widget/header.php'; ?>
 <script src="assets/script/nav.js"></script>
-<section>
-    <div class="swiper-container master-city-swiper" style="width: 100%; overflow: hidden;">
-        <div class="swiper-wrapper">
-            <?php foreach ($citiesData as $cityName => $selectedCityData): ?>
-            <div class="swiper-slide master-city-slide">
-                <h2 class="forecast-title">
-                    Prakiraan Cuaca <?= $cityName . ', ' . $selectedCityData['provinsi'] ?>
-                </h2>
+<section style="width: 100%;">
+    <?php 
+    $cityIndex = 0;
+    foreach ($citiesData as $cityName => $selectedCityData): 
+        $display = ($cityIndex === $currentCityIndex) ? 'block' : 'none';
+    ?>
+    <div class="city-panel" id="city-panel-<?= $cityIndex ?>" style="display: <?= $display ?>; width: 100%;">
+        <h2 class="forecast-title">
+            Prakiraan Cuaca <?= $cityName . ', ' . $selectedCityData['provinsi'] ?>
+        </h2>
                 
                 <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 20px;">
-                      <a href="#" class="master-prev-btn" style="text-decoration: none; color: #000; font-size: 20px; display: flex; align-items: center;">
+                      <a href="javascript:void(0)" onclick="prevCity()" class="master-prev-btn" style="text-decoration: none; color: #000; font-size: 20px; display: flex; align-items: center;">
                           <img style="width:16px;height:22px;margin-right: 16px;" src="assets/image/prev_btn.png"/>
                       </a>
-                      <div style="text-decoration: none; color: #000; font-size: 20px; display: flex; align-items: center; justify-content: center; height: 100%;">
+                      <div style="text-decoration: none; color: #000; font-size: 20px; display: flex; align-items: center; justify-content: center; height: 100%; width: 220px; text-align: center; font-weight: 500;">
                           <?= $cityName ?>
                       </div>
-                      <a href="#" class="master-next-btn" style="text-decoration: none; color: #000; font-size: 20px; display: flex; align-items: center;">
+                      <a href="javascript:void(0)" onclick="nextCity()" class="master-next-btn" style="text-decoration: none; color: #000; font-size: 20px; display: flex; align-items: center;">
                           <img style="width:16px;height:22px;margin-left: 16px;" src="assets/image/next_btn.png"/>
                       </a>
                 </div>
@@ -388,58 +431,58 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                 <div class="current-weather-container">
                     <?php
                     $icon_mapping = [
-                        'Cerah' => '<span class="weather-icon">â˜€ï¸</span>',
-                        'Berawan' => '<span class="weather-icon">â˜ï¸</span>',
-                        'Hujan Ringan' => '<span class="weather-icon">ðŸŒ¦ï¸</span>',
-                        'Hujan Sedang' => '<span class="weather-icon">ðŸŒ§ï¸</span>',
-                        'Hujan Lebat' => '<span class="weather-icon">â›ˆï¸</span>',
-                        'Hujan Petir' => '<span class="weather-icon">â›ˆï¸</span>',
-                        'Cerah Berawan' => '<span class="weather-icon">ðŸŒ¤ï¸</span>',
-                        'Awan Tebal' => '<span class="weather-icon">ðŸŒ¥ï¸</span>',
-                        'Udara Kabur' => '<span class="weather-icon">ðŸŒ«ï¸</span>',
-                        'Angin Kencang' => '<span class="weather-icon">ðŸŒªï¸</span>',
-                        'Kabut' => '<span class="weather-icon">ðŸŒ«ï¸</span>',
-                        'Asap' => '<span class="weather-icon">ðŸŒ«ï¸</span>',
-                        'Berawan Tebal' => '<span class="weather-icon">ðŸŒ¥ï¸</span>',
-                        'Kabut Asap' => '<span class="weather-icon">ðŸŒ«ï¸</span>',
-                        'Cloudy' => '<span class="weather-icon">â˜ï¸</span>',
-                        'Light Rain' => '<span class="weather-icon">ðŸŒ¦ï¸</span>',
-                        'Moderate Rain' => '<span class="weather-icon">ðŸŒ§ï¸</span>',
-                        'Heavy Rain' => '<span class="weather-icon">â›ˆï¸</span>',
-                        'Clear' => '<span class="weather-icon">â˜€ï¸</span>',
-                        'Partly Cloudy' => '<span class="weather-icon">ðŸŒ¤ï¸</span>',
-                        'Fog' => '<span class="weather-icon">ðŸŒ«ï¸</span>',
-                        'Smoke' => '<span class="weather-icon">ðŸŒ«ï¸</span>',
-                        'Overcast' => '<span class="weather-icon">ðŸŒ¥ï¸</span>',
-                        'Haze' => '<span class="weather-icon">ðŸŒ«ï¸</span>',
-                        'Light Snow' => '<span class="weather-icon">ðŸŒ¨ï¸</span>',
-                        'Moderate Snow' => '<span class="weather-icon">ðŸŒ¨ï¸</span>',
-                        'Heavy Snow' => '<span class="weather-icon">ðŸŒ¨ï¸</span>',
-                        'Snow' => '<span class="weather-icon">ðŸŒ¨ï¸</span>',
-                        'Sleet' => '<span class="weather-icon">ðŸŒ§ï¸</span>',
-                        'Freezing Rain' => '<span class="weather-icon">ðŸŒ¦ï¸</span>',
-                        'Drizzle' => '<span class="weather-icon">ðŸŒ¦ï¸</span>',
-                        'Rain' => '<span class="weather-icon">ðŸŒ§ï¸</span>',
-                        'Thunder' => '<span class="weather-icon">â›ˆï¸</span>',
-                        'Windy' => '<span class="weather-icon">ðŸŒªï¸</span>',
-                        'Clear Sky' => '<span class="weather-icon">â˜€ï¸</span>',
-                        'Few Clouds' => '<span class="weather-icon">ðŸŒ¤ï¸</span>',
-                        'Scattered Clouds' => '<span class="weather-icon">â˜ï¸</span>',
-                        'Broken Clouds' => '<span class="weather-icon">ðŸŒ¥ï¸</span>',
-                        'Shower Rain' => '<span class="weather-icon">ðŸŒ¦ï¸</span>',
-                        'Rain Shower' => '<span class="weather-icon">ðŸŒ¦ï¸</span>',
-                        'Snow Shower' => '<span class="weather-icon">ðŸŒ¨ï¸</span>',
-                        'Ice Pellets' => '<span class="weather-icon">ðŸŒ§ï¸</span>',
-                        'Mist' => '<span class="weather-icon">ðŸŒ«ï¸</span>',
-                        'Sand' => '<span class="weather-icon">ðŸœï¸</span>',
-                        'Dust' => '<span class="weather-icon">ðŸŒ«ï¸</span>',
-                        'Squall' => '<span class="weather-icon">ðŸŒªï¸</span>',
-                        'Tornado' => '<span class="weather-icon">ðŸŒ‹</span>',
-                        'Sandstorm' => '<span class="weather-icon">ðŸœï¸</span>',
-                        'Duststorm' => '<span class="weather-icon">ðŸŒ«ï¸</span>',
-                        'Funnel Cloud' => '<span class="weather-icon">ðŸŒªï¸</span>',
-                        'Hail' => '<span class="weather-icon">ðŸŒ§ï¸</span>',
-                        'Small Hail' => '<span class="weather-icon">ðŸŒ§ï¸</span>',
+                        'Cerah' => '<span class="weather-icon">☀️</span>',
+                        'Berawan' => '<span class="weather-icon">☁️</span>',
+                        'Hujan Ringan' => '<span class="weather-icon">🌦️</span>',
+                        'Hujan Sedang' => '<span class="weather-icon">🌧️</span>',
+                        'Hujan Lebat' => '<span class="weather-icon">⛈️</span>',
+                        'Hujan Petir' => '<span class="weather-icon">⛈️</span>',
+                        'Cerah Berawan' => '<span class="weather-icon">⛅</span>',
+                        'Awan Tebal' => '<span class="weather-icon">☁️</span>',
+                        'Udara Kabur' => '<span class="weather-icon">🌫️</span>',
+                        'Angin Kencang' => '<span class="weather-icon">🌪️</span>',
+                        'Kabut' => '<span class="weather-icon">🌫️</span>',
+                        'Asap' => '<span class="weather-icon">🌫️</span>',
+                        'Berawan Tebal' => '<span class="weather-icon">☁️</span>',
+                        'Kabut Asap' => '<span class="weather-icon">🌫️</span>',
+                        'Cloudy' => '<span class="weather-icon">☁️</span>',
+                        'Light Rain' => '<span class="weather-icon">🌦️</span>',
+                        'Moderate Rain' => '<span class="weather-icon">🌧️</span>',
+                        'Heavy Rain' => '<span class="weather-icon">⛈️</span>',
+                        'Clear' => '<span class="weather-icon">☀️</span>',
+                        'Partly Cloudy' => '<span class="weather-icon">⛅</span>',
+                        'Fog' => '<span class="weather-icon">🌫️</span>',
+                        'Smoke' => '<span class="weather-icon">🌫️</span>',
+                        'Overcast' => '<span class="weather-icon">☁️</span>',
+                        'Haze' => '<span class="weather-icon">🌫️</span>',
+                        'Light Snow' => '<span class="weather-icon">🌨️</span>',
+                        'Moderate Snow' => '<span class="weather-icon">🌨️</span>',
+                        'Heavy Snow' => '<span class="weather-icon">🌨️</span>',
+                        'Snow' => '<span class="weather-icon">🌨️</span>',
+                        'Sleet' => '<span class="weather-icon">🌧️</span>',
+                        'Freezing Rain' => '<span class="weather-icon">🌦️</span>',
+                        'Drizzle' => '<span class="weather-icon">🌦️</span>',
+                        'Rain' => '<span class="weather-icon">🌧️</span>',
+                        'Thunder' => '<span class="weather-icon">⛈️</span>',
+                        'Windy' => '<span class="weather-icon">🌪️</span>',
+                        'Clear Sky' => '<span class="weather-icon">☀️</span>',
+                        'Few Clouds' => '<span class="weather-icon">⛅</span>',
+                        'Scattered Clouds' => '<span class="weather-icon">☁️</span>',
+                        'Broken Clouds' => '<span class="weather-icon">☁️</span>',
+                        'Shower Rain' => '<span class="weather-icon">🌦️</span>',
+                        'Rain Shower' => '<span class="weather-icon">🌦️</span>',
+                        'Snow Shower' => '<span class="weather-icon">🌨️</span>',
+                        'Ice Pellets' => '<span class="weather-icon">🌧️</span>',
+                        'Mist' => '<span class="weather-icon">🌫️</span>',
+                        'Sand' => '<span class="weather-icon">🏜️</span>',
+                        'Dust' => '<span class="weather-icon">🌫️</span>',
+                        'Squall' => '<span class="weather-icon">🌪️</span>',
+                        'Tornado' => '<span class="weather-icon">🌪️</span>',
+                        'Sandstorm' => '<span class="weather-icon">🏜️</span>',
+                        'Duststorm' => '<span class="weather-icon">🌫️</span>',
+                        'Funnel Cloud' => '<span class="weather-icon">🌪️</span>',
+                        'Hail' => '<span class="weather-icon">🌧️</span>',
+                        'Small Hail' => '<span class="weather-icon">🌧️</span>',
                         'Unknown' => ''
                     ];
                     $timezone = $selectedCityData['timezone'] ?? 'Asia/Jakarta';
@@ -466,12 +509,12 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                         $formatted_time = $now->format('H:i');
                         echo '<div class="current-weather">';
                         echo '<div class="current-weather-time realtime-clock" data-timezone="'.$timezone.'" style="font-size: 24px; font-weight: 600; text-align: center;">' . $formatted_time . ' WITA</div>';
-                        echo '<div class="current-weather-temp" style="display: flex; justify-content: center; align-items: center; font-size: 40px; font-weight: 700;">' . (isset($currentForecast['t']) ? $currentForecast['t'] : 'N/A') . 'Â°C</div>';
-                        echo '<div class="current-weather-icon" style="display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: 600; flex-direction: row;">';
-                        echo '<span style="margin-right: 18px; margin-top: -24px">' . $icon_html . '</span>';
+                        echo '<div class="current-weather-temp" style="display: flex; justify-content: center; align-items: center; font-size: 40px; font-weight: 700;">' . (isset($currentForecast['t']) ? $currentForecast['t'] : 'N/A') . '°C</div>';
+                        echo '<div class="current-weather-icon" style="display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: 600; flex-direction: row; gap: 8px;">';
+                        echo '<span>' . $icon_html . '</span>';
                         echo '<span>' . $weather_desc . '</span>';
                         echo '</div>';
-                        echo '<div class="current-weather-humidity" style="display: flex; justify-content: center; align-items: center; font-size: 22px; font-weight: 500; margin-top: 15px;">ðŸ’§ ' . (isset($currentForecast['hu']) ? $currentForecast['hu'] : 'N/A') . ' %</div>';
+                        echo '<div class="current-weather-humidity" style="display: flex; justify-content: center; align-items: center; font-size: 22px; font-weight: 500;">💧 ' . (isset($currentForecast['hu']) ? $currentForecast['hu'] : 'N/A') . ' %</div>';
                         echo '</div>';
                     }
                     ?>
@@ -494,7 +537,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                             <tr>
                                 <th>Suhu</th>
                                 <th>Tutupan Awan</th>
-                                <th>Deskripsi Cuaca</th>
+                                <th>Deskripsi<br>Cuaca</th>
                                 <th>Kecepatan Angin</th>
                                 <th>Kelembapan Udara</th>
                                 <th>Jarak Pandang</th>
@@ -548,7 +591,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                                           $dayCount++;
                                       }
                                         echo '<tr data-date="' . $formatted_date . '">';
-                                       echo '<td>' . (isset($forecast['t']) ? $forecast['t'] : 'N/A') . ' Â°C</td>';
+                                       echo '<td>' . (isset($forecast['t']) ? $forecast['t'] : 'N/A') . ' °C</td>';
                                        echo '<td>' . (isset($forecast['tcc']) ? $forecast['tcc'] : 'N/A') . ' %</td>';
                                        echo '<td>' . $icon_html . ' ' . $weather_desc . '</td>';
                                        echo '<td>' . (isset($forecast['ws']) ? $forecast['ws'] : 'N/A') . ' km/jam</td>';
@@ -636,7 +679,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                                                 <div class="weather-card-title"><?= $formatted_time ?></div>
                                                 <div style="text-align: center; color:white; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);"><?=$icon_html?></div>
                                                 <div class="weather-card-detail">
-                                                    Suhu: <?= (isset($forecast['t']) ? $forecast['t'] : 'N/A') ?> Â°C
+                                                    Suhu: <?= (isset($forecast['t']) ? $forecast['t'] : 'N/A') ?> °C
                                                 </div>
                                                 <div class="weather-card-detail">
                                                      <?= $weather_desc ?>
@@ -664,10 +707,11 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                         </div>
                     </div>
                 <?php endforeach; ?>
-            </div> <!-- swiper-slide master-city-slide -->
-            <?php endforeach; ?>
-        </div>
-    </div>
+            </div> <!-- city-panel -->
+            <?php 
+                $cityIndex++;
+            endforeach; 
+            ?>
 </section>
 <?php include 'widget/footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -716,34 +760,40 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
         }
         
 
-        document.addEventListener('DOMContentLoaded', function () {
+        let currentCityIndex = <?= $currentCityIndex ?>;
+        const totalCities = <?= count($citiesData) ?>;
+
+        function showCity(index) {
+            for (let i = 0; i < totalCities; i++) {
+                const el = document.getElementById('city-panel-' + i);
+                if (el) el.style.display = 'none';
+            }
+            const el = document.getElementById('city-panel-' + index);
+            if (el) el.style.display = 'block';
             
-            const masterSwiper = new Swiper('.master-city-swiper', {
-                direction: 'horizontal',
-                loop: false,
-                navigation: {
-                    nextEl: '.master-next-btn',
-                    prevEl: '.master-prev-btn',
-                },
-                preventClicks: false,
-                preventClicksPropagation: false
-            });
-
-            // Re-assign next/prev buttons manually due to swiper structure
-            document.querySelectorAll('.master-next-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    masterSwiper.slideNext();
+            currentCityIndex = index;
+            
+            // Update mobile swipers inside the newly shown panel
+            if (window.mobileSwipers) {
+                window.mobileSwipers.forEach(sw => {
+                    sw.update();
                 });
-            });
-            document.querySelectorAll('.master-prev-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    masterSwiper.slidePrev();
-                });
-            });
+            }
+        }
 
+        function prevCity() {
+            let prevIndex = (currentCityIndex - 1 + totalCities) % totalCities;
+            showCity(prevIndex);
+        }
+
+        function nextCity() {
+            let nextIndex = (currentCityIndex + 1) % totalCities;
+            showCity(nextIndex);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
             const swiperContainers = document.querySelectorAll('.swiper-mobile'); // Target mobile swipers specifically
+            window.mobileSwipers = [];
 
             swiperContainers.forEach(function (container) {
                 const swiper = new Swiper(container, { // Initialize for each mobile swiper
@@ -760,6 +810,7 @@ $nextCity = $allCities[($currentCityIndex + 1) % count($allCities)];
                     },
                     loop: true,
                 });
+                window.mobileSwipers.push(swiper);
             });
         });
     </script>

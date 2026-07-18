@@ -103,27 +103,29 @@ body, p, h1, h2, h3, h4, h5, h6, a, li, ul, div, span:not([class*="bx"]):not([cl
 }
 
 .container-header {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 5% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 2rem !important;
 }
 
 /* =========================================================
    Navigation Bar (Header Bawah)
    ========================================================= */
 #nav-menu {
-  background-color: var(--bmkg-blue);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: var(--shadow-md);
-  height: 65px;
-  display: flex;
-  align-items: center;
+  background-color: var(--bmkg-blue) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  box-shadow: var(--shadow-md) !important;
+  height: 65px !important;
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .menu {
@@ -216,8 +218,10 @@ body, p, h1, h2, h3, h4, h5, h6, a, li, ul, div, span:not([class*="bx"]):not([cl
   display: none;
   color: var(--white);
   font-size: 2rem;
-  background: transparent;
-  border: none;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
   cursor: pointer;
   padding: 5px;
   z-index: 9999;
@@ -227,20 +231,29 @@ body, p, h1, h2, h3, h4, h5, h6, a, li, ul, div, span:not([class*="bx"]):not([cl
    Top Header (Logo & Teks)
    ========================================================= */
 .header1 {
-  background-color: var(--white);
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--border-light);
+  background-color: var(--white) !important;
+  padding: 1.5rem 0 !important;
+  margin: 0 !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  display: block !important;
 }
 
 .dashboard1 {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.5rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.logo1 {
+  flex-shrink: 0 !important;
 }
 
 .logo1 img {
-  height: 80px;
-  width: auto;
+  height: 80px !important;
+  width: auto !important;
+  flex-shrink: 0 !important;
   transition: transform 0.3s ease;
 }
 
@@ -249,31 +262,36 @@ body, p, h1, h2, h3, h4, h5, h6, a, li, ul, div, span:not([class*="bx"]):not([cl
 }
 
 .text-content1 .title1 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--bmkg-blue);
-  line-height: 1.2;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: var(--bmkg-blue) !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .text-content1 .subtitle1 {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--medium-grey);
-  margin-top: 0.2rem;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+  color: var(--medium-grey) !important;
+  margin: 0.2rem 0 0 0 !important;
+  padding: 0 !important;
 }
 
 .text-content1 .solid-line1 {
-  height: 3px;
-  width: 60px;
-  background-color: var(--bmkg-gold);
-  margin: 0.5rem 0;
-  border-radius: 2px;
+  height: 3px !important;
+  width: 60px !important;
+  background-color: var(--bmkg-gold) !important;
+  margin: 0.5rem 0 !important;
+  border-radius: 2px !important;
 }
 
 .text-content1 .slogan1 {
-  font-size: 0.95rem;
-  color: var(--medium-grey);
-  font-style: italic;
+  font-size: 0.95rem !important;
+  color: var(--medium-grey) !important;
+  font-style: italic !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* =========================================================
@@ -371,20 +389,23 @@ body, p, h1, h2, h3, h4, h5, h6, a, li, ul, div, span:not([class*="bx"]):not([cl
   .logo1 img {
     height: 45px !important;
   }
+  .logo1 img {
+    height: 55px !important;
+  }
   .text-content1 .title1 {
-    font-size: 1.1rem !important;
-    white-space: nowrap;
+    font-size: 1.15rem !important;
+    white-space: nowrap !important;
   }
   .text-content1 .subtitle1 {
-    font-size: 0.6rem !important;
-    white-space: nowrap;
+    font-size: 0.65rem !important;
+    white-space: nowrap !important;
   }
   .text-content1 .slogan1 {
-    font-size: 0.5rem !important;
-    white-space: nowrap;
+    font-size: 0.55rem !important;
+    white-space: nowrap !important;
   }
   .text-content1 .solid-line1 {
-    margin: 3px 0;
+    margin: 4px 0 !important;
   }
   .header1 {
     padding: 0.8rem 0;
@@ -402,12 +423,16 @@ body, p, h1, h2, h3, h4, h5, h6, a, li, ul, div, span:not([class*="bx"]):not([cl
   }
 
   #hamburger {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     margin-left: auto;
     font-size: 2.5rem;
-    color: #ffffff;
+    color: #ffffff !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
   }
 
   .menu {

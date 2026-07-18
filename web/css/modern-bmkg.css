@@ -827,7 +827,14 @@ body.modern-theme h4 {
         flex: 1 1 100% !important;
     }
     
-    .gempa .stats {
+    .container-gempa .stats {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .container-gempa .stats .stat-box:nth-child(3) {
+        grid-column: span 2 !important;
+    }
+    
+    .cuaca .row {
         grid-template-columns: repeat(2, 1fr) !important;
     }
     
@@ -843,7 +850,7 @@ body.modern-theme h4 {
 }
 
 @media (max-width: 480px) {
-    .gempa .stats {
+    .container-gempa .stats {
         grid-template-columns: 1fr !important;
     }
 }

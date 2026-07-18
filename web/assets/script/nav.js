@@ -19,8 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
         navMenu.classList.toggle('show');
         if (navMenu.classList.contains('show')) {
             body.style.overflow = 'hidden'; // prevent background scrolling
+            if (hamburgerBtn) hamburgerBtn.style.setProperty('display', 'none', 'important');
         } else {
             body.style.overflow = '';
+            if (hamburgerBtn) hamburgerBtn.style.removeProperty('display');
         }
     }
 

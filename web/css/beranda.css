@@ -587,6 +587,38 @@
         align-items: flex-start;
         gap: 0.5rem;
     }
+    
+    /* Mobile Sub-District Weather 2-Columns Layout */
+    .cuaca .row {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem !important;
+    }
+    .cuaca-col {
+        padding: 1rem 0.75rem !important;
+        border-radius: 12px !important;
+    }
+    .cuaca-col img {
+        width: 60px !important;
+        height: 60px !important;
+        margin-bottom: 0.5rem !important;
+    }
+    .cuaca-col h3 {
+        font-size: 1rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    .cuaca-col p {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.1rem !important;
+    }
+
+    /* Mobile Earthquake Stats Layout */
+    .container-gempa .stats {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem !important;
+    }
+    .container-gempa .stats .stat-box:nth-child(3) {
+        grid-column: span 2 !important;
+    }
 }
 
 
